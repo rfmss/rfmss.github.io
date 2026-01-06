@@ -21,12 +21,12 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center; /* Centraliza verticalmente se a tela for grande */
+            align-items: center;
             font-family: var(--font-mono);
             background-color: var(--dark-bg);
             color: var(--text-main);
             
-            /* FUNDO DE FUMAÇA + GRADE DO ESTILO MESTRE */
+            /* FUNDO DE FUMAÇA + GRADE */
             background-image: 
                 linear-gradient(rgba(204, 122, 0, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(204, 122, 0, 0.03) 1px, transparent 1px),
@@ -45,26 +45,47 @@
         body.rtl .lang-switch { right: auto; left: 20px; }
         body.rtl h2 { border-left: none; border-right: 3px solid var(--amber); padding-left: 0; padding-right: 15px; }
 
+        /* --- A BORDA MÁGICA (SVG) --- */
+        .border-svg {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            pointer-events: none; /* Permite clicar através da borda */
+            z-index: 0; 
+            overflow: visible;
+            filter: drop-shadow(0 0 5px rgba(204, 122, 0, 0.5)); /* O Glow Externo */
+        }
+
+        .border-rect {
+            fill: none;
+            stroke: url(#amberGradient); /* Conecta com o ID no HTML */
+            stroke-width: 2;
+            rx: 8px; /* Arredondamento dos cantos */
+            vector-effect: non-scaling-stroke; /* Mantém a borda fina mesmo responsiva */
+            width: 100%;
+            height: 100%;
+        }
+
         /* O VIDRO (CONTAINER PRINCIPAL) */
         .glass-panel {
             position: relative;
             max-width: 720px;
             width: 100%;
-            background: rgba(12, 6, 2, 0.75); /* Um pouco mais escuro para leitura */
+            background: rgba(12, 6, 2, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 50px 40px;
             border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            
-            /* BORDA QUE RESPIRA (Simulação CSS do SVG) */
-            border: 1px solid rgba(204, 122, 0, 0.3);
-            animation: border-breathe 4s infinite alternate;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.9), inset 0 0 50px rgba(0,0,0,0.5);
+            /* Borda removida aqui, pois agora é SVG */
         }
 
-        @keyframes border-breathe {
-            0% { box-shadow: 0 0 5px rgba(204, 122, 0, 0.1), inset 0 0 20px rgba(0,0,0,0.8); border-color: rgba(204, 122, 0, 0.3); }
-            100% { box-shadow: 0 0 15px rgba(204, 122, 0, 0.3), inset 0 0 20px rgba(0,0,0,0.8); border-color: rgba(204, 122, 0, 0.6); }
+        /* Conteúdo precisa estar acima da borda SVG */
+        .glass-panel > * {
+            position: relative;
+            z-index: 1;
         }
 
         /* SELETOR DE IDIOMAS */
@@ -74,7 +95,7 @@
             right: 20px;
             display: flex;
             gap: 10px;
-            z-index: 10;
+            z-index: 100; /* Acima de tudo */
         }
 
         .lang-btn {
@@ -141,7 +162,7 @@
         .highlight-box {
             background: rgba(204, 122, 0, 0.05);
             padding: 20px;
-            border-left: 2px solid var(--amber); /* Fina e elegante */
+            border-left: 2px solid var(--amber);
             font-family: var(--font-mono);
             color: #e0e0e0;
             margin: 30px 0;
@@ -275,6 +296,26 @@
 
     <div class="glass-panel">
         
+        <svg class="border-svg" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="amberGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#662900" stop-opacity="0.3" />
+                    <stop offset="50%" stop-color="#cc7a00" stop-opacity="1" />
+                    <stop offset="100%" stop-color="#662900" stop-opacity="0.3" />
+                    
+                    <animateTransform 
+                        attributeName="gradientTransform" 
+                        type="rotate" 
+                        from="0 .5 .5" 
+                        to="360 .5 .5" 
+                        dur="5s" 
+                        repeatCount="indefinite" 
+                    />
+                </linearGradient>
+            </defs>
+            <rect class="border-rect" x="0" y="0" width="100%" height="100%"></rect>
+        </svg>
+
         <div class="lang-switch">
             <button onclick="changeLang('pt')" class="lang-btn active" id="btn-pt" title="Português">🇧🇷</button>
             <button onclick="changeLang('en')" class="lang-btn" id="btn-en" title="English (UK)">🇬🇧</button>
