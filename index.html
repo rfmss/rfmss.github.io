@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="me" href="https://wandering.shop/@rafa" />
-<link rel="me" href="https://hachyderm.io/@rfmss" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rfmss | Writer & System Builder</title>
-    <meta name="description" content="Professor, Writer & Applied Neuroscience Specialist. Building cognitive writing tools via LLM.">
+    <title>rfmss | LLM Orchestrator</title>
+    <meta name="description" content="Manifesto de um Diretor de Arte pilotando IAs. Cognitive Creative Developer e criador do projeto Type Over Tap.">
     
     <style>
         :root {
             --bg-color: #0f0f0f;
             --text-color: #d4d4d4;
-            --accent: #ff5500; /* Laranja TOT */
-            --dim: #777;
+            --accent: #ff6600; /* Laranja TOT/ZEL */
+            --dim: #888;
             --font-mono: 'Courier New', monospace;
             --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
@@ -30,7 +28,7 @@
         }
 
         .wrapper {
-            max-width: 680px;
+            max-width: 700px;
             padding: 60px 20px;
         }
 
@@ -43,78 +41,112 @@
 
         h1 {
             font-size: 3rem;
-            margin: 0;
+            margin: 0 0 10px 0;
             letter-spacing: -2px;
             color: #fff;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
         }
 
         .role {
             color: var(--accent);
             font-weight: bold;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
             display: block;
-            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        
+        .sub-role {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            color: var(--dim);
         }
 
-        /* MANIFESTO TEXT */
-        .manifesto {
+        /* TEXT SECTIONS */
+        .content-section {
             font-family: var(--font-sans);
             font-size: 1.1rem;
             color: #e0e0e0;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
-        .manifesto p {
-            margin-bottom: 25px;
+        .content-section p {
+            margin-bottom: 20px;
         }
 
-        .manifesto strong {
+        .content-section strong {
             color: #fff;
             font-weight: 700;
         }
 
         .highlight-box {
-            border-left: 4px solid var(--accent);
-            background: #161616;
+            background: #1a1a1a;
             padding: 20px;
-            margin: 35px 0;
-            font-style: italic;
+            margin: 25px 0;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            border-left: 1px solid var(--accent);
             color: #ccc;
         }
 
-        /* PROJETOS */
-        .section-header {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--dim);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            border-bottom: 1px dashed #333;
-            padding-bottom: 5px;
-        }
-
+        /* PROJETO */
         .project-card {
             border: 1px solid #333;
-            padding: 25px;
-            margin-bottom: 30px;
+            padding: 30px;
+            margin-bottom: 50px;
             background: #141414;
-            transition: border-color 0.2s;
+            transition: transform 0.2s, border-color 0.2s;
         }
 
         .project-card:hover {
             border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
         }
 
         .project-title {
             font-family: var(--font-mono);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #fff;
-            display: block;
-            margin-bottom: 8px;
         }
+
+        .status {
+            font-size: 0.7rem;
+            background: #2a2a2a;
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .stack-list {
+            margin: 15px 0;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: var(--dim);
+            font-family: var(--font-mono);
+        }
+        
+        .stack-list li { margin-bottom: 5px; }
 
         .btn {
             display: inline-block;
@@ -123,48 +155,59 @@
             padding: 10px 20px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 20px;
-            margin-right: 15px;
+            margin-top: 15px;
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: background 0.2s;
         }
 
-        .btn.secondary {
-            background: transparent;
-            border: 1px solid #444;
-            color: #ccc;
+        .btn:hover { background: #fff; }
+
+        /* REDE */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
         }
 
-        .btn:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        /* LINKS FOOTER */
-        .connect {
-            border-top: 1px solid #333;
-            padding-top: 40px;
-            font-size: 0.9rem;
-        }
-
-        .link-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .link-list a {
+        .social-link {
+            background: #141414;
+            border: 1px solid #222;
+            padding: 15px;
             color: var(--dim);
             text-decoration: none;
-            border-bottom: 1px dotted transparent;
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+            transition: all 0.2s;
         }
 
-        .link-list a:hover {
-            color: #fff;
-            border-bottom-color: var(--accent);
+        .social-link:hover {
+            border-color: var(--dim);
+            background: #1a1a1a;
         }
 
+        .social-link span {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .social-link .handle {
+            color: var(--accent);
+        }
+
+        footer {
+            margin-top: 60px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #444;
+        }
     </style>
 </head>
 <body>
@@ -172,64 +215,89 @@
     <div class="wrapper">
         <header>
             <h1>rfmss</h1>
-            <span class="role">Writer & Applied Neuroscience Specialist</span>
+            <span class="role">Peço licença aos mestres da sintaxe.</span>
+            <span class="sub-role">
+                Ex-Diretor de Arte (Rio) 💠 Professor de Português & Especialista em Neurociência (Vila de Pescadores 🇧🇷).
+            </span>
         </header>
 
-        <section class="manifesto">
-            <p><strong>Peço licença aos mestres da sintaxe.</strong></p>
+        <h2>/// SOBRE (ABOUT)</h2>
+        <section class="content-section">
+            <p>
+                Não digito código; <strong>eu converso com ele.</strong>
+            </p>
             
             <p>
                 Gostaria de pedir permissão e deixar minha reverência a todos os programadores que dedicaram anos de estudo à lógica, aos algoritmos e à tela preta. Graças à fundação que vocês construíram, hoje uma nova porta se abriu para pessoas como eu.
             </p>
-            
-            <p>
-                Tenho 10 anos de história no mercado criativo do Rio de Janeiro como Diretor de Arte. Sempre trabalhei com devs na equipe; eles eram meus melhores amigos. Eu entendia a lógica, admirava a mágica, mas a barreira técnica sempre vencia a criativa.
-            </p>
 
             <div class="highlight-box">
-                Hoje a vida é outra. Sou Escritor e Professor de Língua Portuguesa numa pequena vila de pescadores no Brasil.
+                "O software moderno é barulhento e cognitivamente ineficiente. Decidi construir minhas próprias ferramentas."
             </div>
 
             <p>
-                Como <strong>Especialista em Neurociência Aplicada</strong>, percebi que os softwares modernos lutam contra o nosso cérebro. Eles geram ruído onde deveria haver fluxo.
-            </p>
-
-            <p>
-                Então, uni as pontas. Não preciso mais digitar o código; <strong>eu converso com ele.</strong> Piloto uma equipe de IAs para construir as ferramentas de escrita que a neurociência diz que precisamos. Eu trago a arquitetura cognitiva, a vivência humana e a lógica; elas constroem as pontes digitais.
-            </p>
-            
-            <p>
-                Não estou aqui para substituir ninguém. Estou aqui para somar e, finalmente, tirar minhas ideias do papel.
+                Como Especialista em Neurociência Aplicada, defino a arquitetura lógica e o fluxo cognitivo. Orquestro LLMs para escrever a sintaxe. Não estou aqui para substituir ninguém, mas para tirar minhas ideias do papel.
             </p>
         </section>
 
-        <div class="section-header">/// WORK & LOGS</div>
-
+        <h2>/// PROJETO ATUAL</h2>
         <div class="project-card">
-            <span class="project-title">TYPE OVER TAP (TOT)</span>
-            <p style="font-size: 0.95rem; color: #bbb; margin-top: 0;">
-                Editor distraction-free baseado em princípios de neurociência.
-                Projetado para manter o fluxo cognitivo e reduzir a carga mental.
-            </p>
-            
-            <a href="https://tot.undo.it" class="btn">ACESSAR SISTEMA (v1.0)</a>
-            <a href="https://tot.writeas.com/" class="btn secondary">LOGBOOK</a>
-            
-            <div style="margin-top: 15px; font-size: 0.8rem; color: #666;">
-                Follow logs: @tot@writeas.com
+            <div class="project-header">
+                <span class="project-title">TYPE OVER TAP (TOT)</span>
+                <span class="status">v5.5 Live</span>
             </div>
+            
+            <p style="font-size: 0.95rem; color: #ddd; font-family: var(--font-sans);">
+                Editor de texto <em>distraction-free</em>. Projetado para manter o fluxo cognitivo e respeitar a neurobiologia da atenção humana.
+            </p>
+
+            <ul class="stack-list">
+                <li>Stack: Natural Language, Logic, Web Technologies.</li>
+                <li>Status: Operacional e em uso diário.</li>
+            </ul>
+            
+            <a href="https://zel.ftp.sh" class="btn" target="_blank">ACESSAR SISTEMA</a>
+            <a href="https://write.as/tot" class="btn" style="background: transparent; color: #fff; border: 1px solid #333;" target="_blank">LER DEVLOG</a>
         </div>
 
-        <section class="connect">
-            <div class="link-list">
-                <a href="https://wandering.shop/@rafa" rel="me">Mastodon (Personal)</a>
-                <a href="https://hachyderm.io/@rfmss" rel="me">Mastodon (Work)</a>
-                <a href="https://sh.itjust.works/u/rfmss" rel="me">Lemmy</a>
-                <a href="https://bsky.app/profile/rfmss.undo.it" rel="me">Bluesky</a>
-                <a href="https://github.com/rfmss" rel="me">GitHub</a>
-                <a href="mailto:rfmss@disr.it">Email</a>
-            </div>
+        <h2>/// REDE (NETWORK)</h2>
+        <section class="social-grid">
+            
+            <a href="https://rfmss.undo.it" class="social-link" target="_blank">
+                <span>Hub Pessoal</span>
+                <div class="handle">rfmss.undo.it</div>
+            </a>
+
+            <a href="https://bsky.app/profile/rfmss.undo.it" class="social-link" target="_blank">
+                <span>Bluesky</span>
+                <div class="handle">@rfmss.undo.it</div>
+            </a>
+
+            <a href="https://wandering.shop/@rafa" class="social-link" target="_blank">
+                <span>Mastodon (Pessoal)</span>
+                <div class="handle">@rafa@wandering.shop</div>
+            </a>
+
+            <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank">
+                <span>Mastodon (Work)</span>
+                <div class="handle">@rfmss@hachyderm.io</div>
+            </a>
+
+            <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank">
+                <span>Lemmy</span>
+                <div class="handle">sh.itjust.works/u/rfmss</div>
+            </a>
+
+            <a href="mailto:rfmss@disr.it" class="social-link">
+                <span>Email</span>
+                <div class="handle">rfmss@disr.it</div>
+            </a>
+
         </section>
+
+        <footer>
+            CODE IS POETRY (EVEN WHEN WRITTEN BY MACHINES)
+        </footer>
     </div>
 
 </body>
