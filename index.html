@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rfmss | LLM Orchestrator</title>
-    <meta name="description" content="Manifesto de um Diretor de Arte pilotando IAs. Cognitive Creative Developer e criador do projeto Type Over Tap.">
     
     <style>
         :root {
             --bg-color: #0f0f0f;
             --text-color: #d4d4d4;
-            --accent: #ff6600; /* Laranja TOT/ZEL */
+            --accent: #ff6600;
             --dim: #888;
             --font-mono: 'Courier New', monospace;
             --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -25,246 +24,155 @@
             padding: 0;
             display: flex;
             justify-content: center;
+            transition: all 0.3s ease;
         }
+
+        /* Classe para inverter layout (Árabe) */
+        body.rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        
+        /* Ajustes finos para RTL */
+        body.rtl .highlight-box { border-left: none; border-right: 1px solid var(--accent); }
+        body.rtl h2 { border-left: none; border-right: 3px solid var(--accent); padding-left: 0; padding-right: 10px; }
+        body.rtl .stack-list { padding-left: 0; padding-right: 20px; }
+        body.rtl .lang-switch { right: auto; left: 20px; }
 
         .wrapper {
             max-width: 700px;
             padding: 60px 20px;
+            position: relative;
+        }
+
+        /* LANGUAGE SWITCHER */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            opacity: 0.3;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.2);
         }
 
         /* HEADER */
-        header {
-            margin-bottom: 50px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            letter-spacing: -2px;
-            color: #fff;
-        }
-
-        h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent);
-            padding-left: 10px;
-        }
-
-        .role {
-            color: var(--accent);
-            font-weight: bold;
-            font-size: 0.9rem;
-            display: block;
-            margin-bottom: 5px;
-        }
+        header { margin-bottom: 50px; border-bottom: 1px solid #333; padding-bottom: 30px; margin-top: 20px; }
+        h1 { font-size: 3rem; margin: 0 0 10px 0; letter-spacing: -2px; color: #fff; }
+        h2 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; color: #fff; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 10px; }
         
-        .sub-role {
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            color: var(--dim);
-        }
+        .role { color: var(--accent); font-weight: bold; font-size: 0.9rem; display: block; margin-bottom: 5px; }
+        .sub-role { font-family: var(--font-sans); font-size: 0.85rem; color: var(--dim); }
 
         /* TEXT SECTIONS */
-        .content-section {
-            font-family: var(--font-sans);
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            margin-bottom: 50px;
-        }
-
-        .content-section p {
-            margin-bottom: 20px;
-        }
-
-        .content-section strong {
-            color: #fff;
-            font-weight: 700;
-        }
-
-        .highlight-box {
-            background: #1a1a1a;
-            padding: 20px;
-            margin: 25px 0;
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            border-left: 1px solid var(--accent);
-            color: #ccc;
-        }
+        .content-section { font-family: var(--font-sans); font-size: 1.1rem; color: #e0e0e0; margin-bottom: 50px; }
+        .content-section p { margin-bottom: 20px; }
+        .content-section strong { color: #fff; font-weight: 700; }
+        .highlight-box { background: #1a1a1a; padding: 20px; margin: 25px 0; font-family: var(--font-mono); font-size: 1rem; border-left: 1px solid var(--accent); color: #ccc; }
 
         /* PROJETO */
-        .project-card {
-            border: 1px solid #333;
-            padding: 30px;
-            margin-bottom: 50px;
-            background: #141414;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 15px;
-        }
-
-        .project-title {
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .status {
-            font-size: 0.7rem;
-            background: #2a2a2a;
-            color: var(--accent);
-            padding: 4px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .stack-list {
-            margin: 15px 0;
-            padding-left: 20px;
-            font-size: 0.9rem;
-            color: var(--dim);
-            font-family: var(--font-mono);
-        }
+        .project-card { border: 1px solid #333; padding: 30px; margin-bottom: 50px; background: #141414; transition: transform 0.2s, border-color 0.2s; }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 15px; }
+        .project-title { font-family: var(--font-mono); font-size: 1.3rem; font-weight: bold; color: #fff; }
+        .status { font-size: 0.7rem; background: #2a2a2a; color: var(--accent); padding: 4px 8px; border-radius: 4px; text-transform: uppercase; font-weight: bold; }
         
+        .stack-list { margin: 15px 0; padding-left: 20px; font-size: 0.9rem; color: var(--dim); font-family: var(--font-mono); }
         .stack-list li { margin-bottom: 5px; }
 
-        .btn {
-            display: inline-block;
-            background: var(--accent);
-            color: #000;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-
+        .btn { display: inline-block; background: var(--accent); color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; margin-top: 15px; font-family: var(--font-mono); font-size: 0.9rem; transition: background 0.2s; }
         .btn:hover { background: #fff; }
 
         /* REDE */
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
+        .social-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .social-link { background: #141414; border: 1px solid #222; padding: 15px; color: var(--dim); text-decoration: none; display: flex; flex-direction: column; font-size: 0.85rem; transition: all 0.2s; }
+        .social-link:hover { border-color: var(--dim); background: #1a1a1a; }
+        .social-link span { font-weight: bold; color: var(--text-color); margin-bottom: 5px; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+        .social-link .handle { color: var(--accent); }
 
-        .social-link {
-            background: #141414;
-            border: 1px solid #222;
-            padding: 15px;
-            color: var(--dim);
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-
-        .social-link:hover {
-            border-color: var(--dim);
-            background: #1a1a1a;
-        }
-
-        .social-link span {
-            font-weight: bold;
-            color: var(--text-color);
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        .social-link .handle {
-            color: var(--accent);
-        }
-
-        footer {
-            margin-top: 60px;
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #444;
-        }
+        footer { margin-top: 60px; border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 0.8rem; color: #444; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
+        
+        <div class="lang-switch">
+            <button onclick="changeLang('pt')" class="lang-btn active" id="btn-pt" title="Português">🇧🇷</button>
+            <button onclick="changeLang('en')" class="lang-btn" id="btn-en" title="English (UK)">🇬🇧</button>
+            <button onclick="changeLang('es')" class="lang-btn" id="btn-es" title="Español">🇪🇸</button>
+            <button onclick="changeLang('fr')" class="lang-btn" id="btn-fr" title="Français">🇫🇷</button>
+            <button onclick="changeLang('ar')" class="lang-btn" id="btn-ar" title="Filastin">🇵🇸</button>
+        </div>
+
         <header>
             <h1>rfmss</h1>
-            <span class="role">Peço licença aos mestres da sintaxe.</span>
-            <span class="sub-role">
+            <span class="role" data-i18n="role_headline">Peço licença aos mestres da sintaxe.</span>
+            <span class="sub-role" data-i18n="role_sub">
                 Ex-Diretor de Arte (Rio) 💠 Professor de Português & Especialista em Neurociência (Vila de Pescadores 🇧🇷).
             </span>
         </header>
 
-        <h2>/// SOBRE (ABOUT)</h2>
+        <h2 data-i18n="title_about">/// SOBRE (ABOUT)</h2>
         <section class="content-section">
-            <p>
+            <p data-i18n="about_p1">
                 Não digito código; <strong>eu converso com ele.</strong>
             </p>
             
-            <p>
+            <p data-i18n="about_p2">
                 Gostaria de pedir permissão e deixar minha reverência a todos os programadores que dedicaram anos de estudo à lógica, aos algoritmos e à tela preta. Graças à fundação que vocês construíram, hoje uma nova porta se abriu para pessoas como eu.
             </p>
 
-            <div class="highlight-box">
+            <div class="highlight-box" data-i18n="highlight">
                 "O software moderno é barulhento e cognitivamente ineficiente. Decidi construir minhas próprias ferramentas."
             </div>
 
-            <p>
+            <p data-i18n="about_p3">
                 Como Especialista em Neurociência Aplicada, defino a arquitetura lógica e o fluxo cognitivo. Orquestro LLMs para escrever a sintaxe. Não estou aqui para substituir ninguém, mas para tirar minhas ideias do papel.
             </p>
         </section>
 
-        <h2>/// PROJETO ATUAL</h2>
+        <h2 data-i18n="title_project">/// PROJETO ATUAL</h2>
         <div class="project-card">
             <div class="project-header">
                 <span class="project-title">TYPE OVER TAP (TOT)</span>
                 <span class="status">v5.5 Live</span>
             </div>
             
-            <p style="font-size: 0.95rem; color: #ddd; font-family: var(--font-sans);">
+            <p style="font-size: 0.95rem; color: #ddd; font-family: var(--font-sans);" data-i18n="project_desc">
                 Editor de texto <em>distraction-free</em>. Projetado para manter o fluxo cognitivo e respeitar a neurobiologia da atenção humana.
             </p>
 
             <ul class="stack-list">
-                <li>Stack: Natural Language, Logic, Web Technologies.</li>
-                <li>Status: Operacional e em uso diário.</li>
+                <li data-i18n="stack_tech">Stack: Linguagem Natural, Lógica, Tecnologias Web.</li>
+                <li data-i18n="stack_status">Status: Operacional e em uso diário.</li>
             </ul>
             
-            <a href="https://zel.ftp.sh" class="btn" target="_blank">ACESSAR SISTEMA</a>
-            <a href="https://write.as/tot" class="btn" style="background: transparent; color: #fff; border: 1px solid #333;" target="_blank">LER DEVLOG</a>
+            <a href="https://zel.ftp.sh" class="btn" target="_blank" data-i18n="btn_access">ACESSAR SISTEMA</a>
+            <a href="https://write.as/tot" class="btn" style="background: transparent; color: #fff; border: 1px solid #333;" target="_blank" data-i18n="btn_log">LER DEVLOG</a>
         </div>
 
-        <h2>/// REDE (NETWORK)</h2>
+        <h2 data-i18n="title_network">/// REDE (NETWORK)</h2>
         <section class="social-grid">
             
             <a href="https://rfmss.undo.it" class="social-link" target="_blank">
-                <span>Hub Pessoal</span>
+                <span data-i18n="link_hub">Hub Pessoal</span>
                 <div class="handle">rfmss.undo.it</div>
             </a>
 
@@ -274,12 +182,12 @@
             </a>
 
             <a href="https://wandering.shop/@rafa" class="social-link" target="_blank">
-                <span>Mastodon (Pessoal)</span>
+                <span data-i18n="link_mastodon_p">Mastodon (Pessoal)</span>
                 <div class="handle">@rafa@wandering.shop</div>
             </a>
 
             <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank">
-                <span>Mastodon (Work)</span>
+                <span data-i18n="link_mastodon_w">Mastodon (Work)</span>
                 <div class="handle">@rfmss@hachyderm.io</div>
             </a>
 
@@ -295,10 +203,138 @@
 
         </section>
 
-        <footer>
+        <footer data-i18n="footer">
             CODE IS POETRY (EVEN WHEN WRITTEN BY MACHINES)
         </footer>
     </div>
 
+    <script>
+        const translations = {
+            'pt': {
+                role_headline: "Peço licença aos mestres da sintaxe.",
+                role_sub: "Ex-Diretor de Arte (Rio) 💠 Professor de Português & Especialista em Neurociência (Vila de Pescadores 🇧🇷).",
+                title_about: "/// SOBRE (ABOUT)",
+                about_p1: "Não digito código; <strong>eu converso com ele.</strong>",
+                about_p2: "Gostaria de pedir permissão e deixar minha reverência a todos os programadores que dedicaram anos de estudo à lógica, aos algoritmos e à tela preta. Graças à fundação que vocês construíram, hoje uma nova porta se abriu para pessoas como eu.",
+                highlight: "\"O software moderno é barulhento e cognitivamente ineficiente. Decidi construir minhas próprias ferramentas.\"",
+                about_p3: "Como Especialista em Neurociência Aplicada, defino a arquitetura lógica e o fluxo cognitivo. Orquestro LLMs para escrever a sintaxe. Não estou aqui para substituir ninguém, mas para tirar minhas ideias do papel.",
+                title_project: "/// PROJETO ATUAL",
+                project_desc: "Editor de texto distraction-free. Projetado para manter o fluxo cognitivo e respeitar a neurobiologia da atenção humana.",
+                stack_tech: "Stack: Linguagem Natural, Lógica, Tecnologias Web.",
+                stack_status: "Status: Operacional e em uso diário.",
+                btn_access: "ACESSAR SISTEMA",
+                btn_log: "LER DEVLOG",
+                title_network: "/// REDE (NETWORK)",
+                link_hub: "Hub Pessoal",
+                link_mastodon_p: "Mastodon (Pessoal)",
+                link_mastodon_w: "Mastodon (Work)",
+                footer: "CODE IS POETRY (EVEN WHEN WRITTEN BY MACHINES)"
+            },
+            'en': {
+                role_headline: "I ask leave of the masters of syntax.",
+                role_sub: "Ex-Art Director (Rio) 💠 Portuguese Teacher & Neuroscience Specialist (Fisherman's Village 🇧🇷).",
+                title_about: "/// ABOUT",
+                about_p1: "I don't type code; <strong>I talk to it.</strong>",
+                about_p2: "I would like to ask permission and pay my respects to all programmers who dedicated years studying logic, algorithms, and the black screen. Thanks to the foundation you built, a new door has opened for people like me.",
+                highlight: "\"Modern software is noisy and cognitively inefficient. I decided to build my own tools.\"",
+                about_p3: "As an Applied Neuroscience Specialist, I define the logical architecture and cognitive flow. I orchestrate LLMs to write the syntax. I'm not here to replace anyone, but to get my ideas off the paper.",
+                title_project: "/// CURRENT PROJECT",
+                project_desc: "Distraction-free text editor. Designed to maintain cognitive flow and respect the neurobiology of human attention.",
+                stack_tech: "Stack: Natural Language, Logic, Web Technologies.",
+                stack_status: "Status: Operational and in daily use.",
+                btn_access: "ACCESS SYSTEM",
+                btn_log: "READ DEVLOG",
+                title_network: "/// NETWORK",
+                link_hub: "Personal Hub",
+                link_mastodon_p: "Mastodon (Personal)",
+                link_mastodon_w: "Mastodon (Work)",
+                footer: "CODE IS POETRY (EVEN WHEN WRITTEN BY MACHINES)"
+            },
+            'es': {
+                role_headline: "Pido permiso a los maestros de la sintaxis.",
+                role_sub: "Ex-Director de Arte (Río) 💠 Profesor de Portugués y Especialista en Neurociencia (Pueblo de Pescadores 🇧🇷).",
+                title_about: "/// SOBRE MÍ",
+                about_p1: "No escribo código; <strong>converso con él.</strong>",
+                about_p2: "Quisiera pedir permiso y ofrecer mis respetos a todos los programadores que dedicaron años al estudio de la lógica, los algoritmos y la pantalla negra. Gracias a los cimientos que construyeron, hoy se abre una nueva puerta para personas como yo.",
+                highlight: "\"El software moderno es ruidoso y cognitivamente ineficiente. Decidí construir mis propias herramientas.\"",
+                about_p3: "Como Especialista en Neurociencia Aplicada, defino la arquitectura lógica y el flujo cognitivo. Orquesto LLMs para escribir la sintaxis. No estoy aquí para reemplazar a nadie, sino para sacar mis ideas del papel.",
+                title_project: "/// PROYECTO ACTUAL",
+                project_desc: "Editor de texto libre de distracciones. Diseñado para mantener el flujo cognitivo y respetar la neurobiología de la atención humana.",
+                stack_tech: "Stack: Lenguaje Natural, Lógica, Tecnologías Web.",
+                stack_status: "Estado: Operacional y en uso diario.",
+                btn_access: "ACCEDER AL SISTEMA",
+                btn_log: "LEER DEVLOG",
+                title_network: "/// RED",
+                link_hub: "Hub Personal",
+                link_mastodon_p: "Mastodon (Personal)",
+                link_mastodon_w: "Mastodon (Trabajo)",
+                footer: "EL CÓDIGO ES POESÍA (AUNQUE LO ESCRIBAN MÁQUINAS)"
+            },
+            'fr': {
+                role_headline: "Je demande la permission aux maîtres de la syntaxe.",
+                role_sub: "Ex-Directeur Artistique (Rio) 💠 Professeur de Portugais & Spécialiste en Neurosciences (Village de Pêcheurs 🇧🇷).",
+                title_about: "/// À PROPOS",
+                about_p1: "Je ne tape pas de code; <strong>je discute avec lui.</strong>",
+                about_p2: "Je voudrais demander la permission et rendre hommage à tous les programmeurs qui ont consacré des années à l'étude de la logique, des algorithmes et de l'écran noir. Grâce aux fondations que vous avez bâties, une nouvelle porte s'est ouverte aujourd'hui pour des gens comme moi.",
+                highlight: "\"Les logiciels modernes sont bruyants et cognitivement inefficaces. J'ai décidé de construire mes propres outils.\"",
+                about_p3: "En tant que Spécialiste en Neurosciences Appliquées, je définis l'architecture logique et le flux cognitif. J'orchestre des LLM pour écrire la syntaxe. Je ne suis pas là pour remplacer qui que ce soit, mais pour concrétiser mes idées.",
+                title_project: "/// PROJET ACTUEL",
+                project_desc: "Éditeur de texte sans distraction. Conçu pour maintenir le flux cognitif et respecter la neurobiologie de l'attention humaine.",
+                stack_tech: "Stack: Langage Naturel, Logique, Technologies Web.",
+                stack_status: "Statut: Opérationnel et en utilisation quotidienne.",
+                btn_access: "ACCÉDER AU SYSTÈME",
+                btn_log: "LIRE DEVLOG",
+                title_network: "/// RÉSEAU",
+                link_hub: "Hub Personnel",
+                link_mastodon_p: "Mastodon (Perso)",
+                link_mastodon_w: "Mastodon (Pro)",
+                footer: "LE CODE EST POÉSIE (MÊME ÉCRIT PAR DES MACHINES)"
+            },
+            'ar': {
+                role_headline: "أستأذن سادة النحو والمنطق.",
+                role_sub: "مدير فني سابق (ريو) 💠 مدرس لغة برتغالية وأخصائي علم أعصاب (قرية صيادين 🇧🇷).",
+                title_about: "/// حول",
+                about_p1: "أنا لا أكتب الكود؛ <strong>أنا أتحدث معه.</strong>",
+                about_p2: "أود أن أستأذن وأعرب عن احترامي لجميع المبرمجين الذين كرسوا سنوات لدراسة المنطق والخوارزميات والشاشة السوداء. بفضل الأساس الذي بنيتموه، فتح باب جديد اليوم لأشخاص مثلي.",
+                highlight: "\"البرمجيات الحديثة صاخبة وغير فعالة معرفياً. قررت بناء أدواتي الخاصة.\"",
+                about_p3: "بصفتي أخصائيًا في علم الأعصاب التطبيقي، أحدد الهندسة المنطقية والتدفق المعرفي. أقود الذكاء الاصطناعي لكتابة الصيغة. لست هنا لأحل محل أي شخص، بل لأخرج أفكاري من الورق.",
+                title_project: "/// المشروع الحالي",
+                project_desc: "محرر نصوص خالٍ من المشتتات. مصمم للحفاظ على التدفق المعرفي واحترام البيولوجيا العصبية للانتباه البشري.",
+                stack_tech: "المكدس: لغة طبيعية، منطق، تقنيات ويب.",
+                stack_status: "الحالة: قيد التشغيل والاستخدام اليومي.",
+                btn_access: "دخول النظام",
+                btn_log: "مدونة المطور",
+                title_network: "/// شبكة",
+                link_hub: "المحور الشخصي",
+                link_mastodon_p: "ماستودون (شخصي)",
+                link_mastodon_w: "ماستودون (عمل)",
+                footer: "الكود هو شعر (حتى عندما تكتبه الآلات)"
+            }
+        };
+
+        function changeLang(lang) {
+            // Atualiza textos
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Atualiza botões (Visual)
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Configuração RTL para Árabe/Palestina
+            if (lang === 'ar') {
+                document.body.classList.add('rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.body.classList.remove('rtl');
+                document.documentElement.setAttribute('lang', lang);
+            }
+        }
+    </script>
 </body>
 </html>
