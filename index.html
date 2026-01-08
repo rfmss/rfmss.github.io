@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rfmss 🌟 an LLM whisperer</title>
-
+    <title>rfmss | LLM Orchestrator</title>
+    
     <style>
         /* --- ESTILO MESTRE (VIBE) --- */
         :root {
@@ -26,6 +26,7 @@
             background-color: var(--dark-bg);
             color: var(--text-main);
             
+            /* FUNDO DE FUMAÇA + GRADE */
             background-image: 
                 linear-gradient(rgba(204, 122, 0, 0.03) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(204, 122, 0, 0.03) 1px, transparent 1px),
@@ -46,18 +47,22 @@
 
         /* O VIDRO (CONTAINER PRINCIPAL) */
         .glass-panel {
-            position: relative;
+            position: relative; /* Importante para o SVG absoluto funcionar */
             max-width: 720px;
             width: 100%;
+            /* Fundo mais opaco para separar do grid */
             background: rgba(8, 4, 1, 0.85); 
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             padding: 50px 40px;
             border-radius: 8px;
+            
+            /* Sombra PESADA para separar do fundo */
             box-shadow: 
-                0 0 0 1px rgba(0,0,0, 0.8),
-                0 20px 50px rgba(0,0,0, 0.95);
-            overflow: hidden;
+                0 0 0 1px rgba(0,0,0, 0.8), /* Linha preta fina */
+                0 20px 50px rgba(0,0,0, 0.95); /* Sombra difusa */
+            
+            overflow: hidden; /* Garante que nada vaze */
         }
 
         /* --- A BORDA MÁGICA (SVG) --- */
@@ -67,8 +72,8 @@
             left: 0; 
             width: 100%; 
             height: 100%;
-            pointer-events: none;
-            z-index: 0;
+            pointer-events: none; /* Permite clicar através da borda */
+            z-index: 0; /* Fica atrás do texto */
             overflow: visible;
         }
 
@@ -76,15 +81,16 @@
             fill: none;
             stroke: url(#amberGradient); 
             stroke-width: 2;
-            rx: 8px;
+            rx: 8px; /* Arredondamento igual ao do container */
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 4px rgba(204, 122, 0, 0.6));
+            filter: drop-shadow(0 0 4px rgba(204, 122, 0, 0.6)); /* Glow na borda */
         }
 
+        /* Conteúdo precisa estar acima da borda SVG */
         .content-wrapper {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Garante que texto/botões fiquem clicáveis acima do SVG */
         }
 
         /* SELETOR DE IDIOMAS */
@@ -121,9 +127,6 @@
             color: #fff;
             letter-spacing: -2px;
             text-shadow: 0 0 10px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         h2 {
@@ -171,6 +174,7 @@
             font-style: italic;
         }
 
+        /* CARD DO PROJETO */
         .project-card {
             border: 1px solid #333;
             background: rgba(0,0,0,0.4);
@@ -208,6 +212,7 @@
             text-transform: uppercase;
         }
 
+        /* BOTÕES */
         .btn {
             display: inline-block;
             background: var(--amber);
@@ -232,10 +237,6 @@
             color: #fff;
             border: 1px solid #444;
             margin-left: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
         }
 
         .btn-outline:hover {
@@ -243,6 +244,7 @@
             background: rgba(255,255,255,0.05);
         }
 
+        /* REDES SOCIAIS */
         .social-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -285,6 +287,7 @@
             letter-spacing: 2px;
         }
 
+        /* RESPONSIVO */
         @media (max-width: 600px) {
             .glass-panel { padding: 30px 20px; }
             h1 { font-size: 2.2rem; }
@@ -329,8 +332,7 @@
             </div>
 
             <header>
-                <!-- ⬇️ RUBI REAL EM BASE64 NO TÍTULO ⬇️ -->
-                <h1>rfmss <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEIAAAAAAAaAAAaAAAAAAUAAAAAAAAAAAAAAAAAAAAA—AAAAAF-EGHJAJU-JETF AAAZTVAAZTIUUCGOAZT-R●GUPVLR3V VEIOAEACCCIIVVCMB A3Y-I AICVWOWVI KZUUUINVINEGAAAAALA AAAXEXYUTLAUNOUKESNVI YOVLGUIXGO FAPL3UK AIL TSED RGULL PIAIVV XDW PY9BQ" alt="Rubi Vermelho" style="height: 1.2em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(204, 122, 0, 0.8));"></h1>
+                <h1>rfmss</h1>
                 <span class="role" data-i18n="role_headline">Peço licença aos mestres da sintaxe.</span>
                 <span class="sub-role" data-i18n="role_sub">
                     Ex-Diretor de Arte (Rio) 💠 Professor de Português & Especialista em Neurociência (Vila de Pescadores 🇧🇷).
@@ -373,8 +375,7 @@
                 </ul>
                 
                 <a href="https://tot.undo.it" class="btn" target="_blank" data-i18n="btn_access">ACESSAR SISTEMA</a>
-                <!-- ⬇️ BOTÃO COM ÍCONE DO LEMMY (🐢) E TEXTO ATUALIZADO ⬇️ -->
-                <a href="https://sh.itjust.works/c/typeovertap" class="btn btn-outline" target="_blank" data-i18n="btn_log">🐢 DEVLOG NO LEMMY</a>
+                <a href="https://write.as/tot" class="btn btn-outline" target="_blank" data-i18n="btn_log">LER DEVLOG</a>
             </div>
 
             <h2 data-i18n="title_network">/// REDE (NETWORK)</h2>
@@ -428,7 +429,7 @@
                 stack_tech: "Stack: Linguagem Natural, Lógica, Tecnologias Web.",
                 stack_status: "Status: Operacional e em uso diário.",
                 btn_access: "ACESSAR SISTEMA",
-                btn_log: "🐢 DEVLOG NO LEMMY",
+                btn_log: "LER DEVLOG",
                 title_network: "/// REDE (NETWORK)",
                 link_mastodon_p: "Mastodon (Pessoal)",
                 link_mastodon_w: "Mastodon (Work)",
@@ -447,7 +448,7 @@
                 stack_tech: "Stack: Natural Language, Logic, Web Technologies.",
                 stack_status: "Status: Operational and in daily use.",
                 btn_access: "ACCESS SYSTEM",
-                btn_log: "🐢 DEVLOG ON LEMMY",
+                btn_log: "READ DEVLOG",
                 title_network: "/// NETWORK",
                 link_mastodon_p: "Mastodon (Personal)",
                 link_mastodon_w: "Mastodon (Work)",
@@ -460,13 +461,13 @@
                 about_p1: "No escribo código; <strong>converso con él.</strong>",
                 about_p2: "Quisiera pedir permiso y ofrecer mis respetos a todos los programadores que dedicaron años al estudio de la lógica, los algoritmos y la pantalla negra. Gracias a los cimientos que construyeron, hoy se abre una nueva puerta para personas como yo.",
                 highlight: "\"El software moderno es ruidoso y cognitivamente ineficiente. Decidí construir mis propias herramientas.\"",
-                about_p3: "Como Especialista en Neurociência Aplicada, defino la arquitectura lógica y el flujo cognitivo. Orquesto LLMs para escribir la sintaxis. No estoy aquí para reemplazar a nadie, sino para sacar mis ideas del papel.",
+                about_p3: "Como Especialista en Neurociencia Aplicada, defino la arquitectura lógica y el flujo cognitivo. Orquesto LLMs para escribir la sintaxis. No estoy aquí para reemplazar a nadie, sino para sacar mis ideas del papel.",
                 title_project: "/// PROYECTO ACTUAL",
                 project_desc: "Editor de texto libre de distracciones. Diseñado para mantener el flujo cognitivo y respetar la neurobiología de la atención humana.",
                 stack_tech: "Stack: Lenguaje Natural, Lógica, Tecnologías Web.",
                 stack_status: "Estado: Operacional y en uso diario.",
                 btn_access: "ACCEDER AL SISTEMA",
-                btn_log: "🐢 DEVLOG EN LEMMY",
+                btn_log: "LEER DEVLOG",
                 title_network: "/// RED",
                 link_mastodon_p: "Mastodon (Personal)",
                 link_mastodon_w: "Mastodon (Trabajo)",
@@ -485,7 +486,7 @@
                 stack_tech: "Stack: Langage Naturel, Logique, Technologies Web.",
                 stack_status: "Statut: Opérationnel et en utilisation quotidienne.",
                 btn_access: "ACCÉDER AU SYSTÈME",
-                btn_log: "🐢 DEVLOG SUR LEMMY",
+                btn_log: "LIRE DEVLOG",
                 title_network: "/// RÉSEAU",
                 link_mastodon_p: "Mastodon (Perso)",
                 link_mastodon_w: "Mastodon (Pro)",
@@ -504,7 +505,7 @@
                 stack_tech: "المكدس: لغة طبيعية، منطق، تقنيات ويب.",
                 stack_status: "الحالة: قيد التشغيل والاستخدام اليومي.",
                 btn_access: "دخول النظام",
-                btn_log: "🐢 سجل المطور على ليمي",
+                btn_log: "مدونة المطور",
                 title_network: "/// شبكة",
                 link_mastodon_p: "ماستودون (شخصي)",
                 link_mastodon_w: "ماستودون (عمل)",
@@ -513,6 +514,7 @@
         };
 
         function changeLang(lang) {
+            // Atualiza textos
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -521,9 +523,11 @@
                 }
             });
 
+            // Atualiza botões (Visual)
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
 
+            // Configuração RTL para Árabe/Palestina
             if (lang === 'ar') {
                 document.body.classList.add('rtl');
                 document.documentElement.setAttribute('lang', 'ar');
