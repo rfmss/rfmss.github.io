@@ -1,13 +1,35 @@
-# 🌐 Root Domain Controller
+# rfmss — tools, language and cognition
 
-> **System Status:** `ACTIVE` 🟢
-> **Routing:** `rfmss.is-a.dev` ➡️ `rfmss.github.io` ➡️ `ZEL OS`
+This repository acts as the entry point for my personal domain.
 
-### ⚠️ Traffic Notice
-This repository serves as the digital gateway for my personal domain.
-All incoming traffic is automatically rerouted to the active development environment:
+It routes visitors to the environments where my work is actively developed:
+tools built around language, cognition, privacy and local-first principles.
 
-### 🚀 Target: [ZEL OS (Writing Environment)](https://rfmss.github.io/ZEL)
+## Active destination
+
+→ **T∅T — Type over Tap**  
+An offline, self-contained writing environment focused on privacy, manual control and cognitive flow.  
+https://tot.undo.it/
+
+## What this domain represents
+
+This space exists to host and point to projects that explore:
+
+- Language as an interface  
+- LLMs as technical instruments (not platforms)  
+- Human cognition as a design constraint  
+- Offline-first and privacy-first architectures  
+- Federated and decentralised networks  
+
+It is not a product catalogue or a SaaS landing page.  
+It is a working surface.
+
+## Notes
+
+- No analytics or tracking  
+- No cloud dependencies as a default  
+- Redirection is intentional and minimal  
 
 ---
-*```EOF // End of Function```*
+
+EOF
