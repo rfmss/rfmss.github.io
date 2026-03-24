@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>rfmss 🔸 ferramentas, linguagem e LLMs</title>
-
+  <title>rfmss</title>
   <style>
     :root {
       --amber: #cc7a00;
-      --amber-glow: rgba(204, 122, 0, 0.4);
       --dark-bg: #080401;
-      --text-main: #d4d4d4;
       --font-mono: 'Courier New', Courier, monospace;
       --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
@@ -23,235 +20,33 @@
       align-items: center;
       font-family: var(--font-mono);
       background-color: var(--dark-bg);
-      color: var(--text-main);
-
-      background-image:
-        linear-gradient(rgba(204, 122, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(204, 122, 0, 0.03) 1px, transparent 1px),
-        radial-gradient(circle at 20% 30%, rgba(60, 20, 0, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(70, 25, 0, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(120, 50, 0, 0.15) 0%, transparent 60%);
-      background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%, 100% 100%;
-      background-attachment: fixed;
-
+      color: #d4d4d4;
       padding: 20px;
       box-sizing: border-box;
-      transition: all 0.3s ease;
     }
 
-    /* RTL Support */
-    body.rtl { direction: rtl; text-align: right; }
-    body.rtl .lang-switch { right: auto; left: 20px; }
-    body.rtl h2 { border-left: none; border-right: 3px solid var(--amber); padding-left: 0; padding-right: 15px; }
-
-    .glass-panel {
-      position: relative;
-      max-width: 720px;
+    .container {
+      max-width: 480px;
       width: 100%;
-      background: rgba(8, 4, 1, 0.85);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      padding: 50px 40px;
-      border-radius: 8px;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0, 0.8),
-        0 20px 50px rgba(0,0,0, 0.95);
-      overflow: hidden;
-    }
-
-    .border-svg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      overflow: visible;
-    }
-
-    .border-rect {
-      fill: none;
-      stroke: url(#amberGradient);
-      stroke-width: 2;
-      rx: 8px;
-      width: 100%;
-      height: 100%;
-      filter: drop-shadow(0 0 4px rgba(204, 122, 0, 0.6));
-    }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* LANG SWITCH */
-    .lang-switch {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      display: flex;
-      gap: 10px;
-      z-index: 100;
-    }
-
-    .lang-btn {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      opacity: 0.3;
-      filter: grayscale(100%);
-      cursor: pointer;
-      transition: 0.3s;
-      padding: 0;
-      line-height: 1;
-    }
-
-    .lang-btn:hover, .lang-btn.active {
-      opacity: 1;
-      filter: grayscale(0%);
-      transform: scale(1.2);
-    }
-
-    /* A11y focus */
-    .lang-btn:focus-visible,
-    .btn:focus-visible,
-    .social-link:focus-visible {
-      outline: 2px solid var(--amber);
-      outline-offset: 3px;
-      border-radius: 4px;
     }
 
     h1 {
-      font-size: 2.8rem;
-      margin: 0 0 10px 0;
+      font-size: 2.4rem;
+      margin: 0 0 30px 0;
       color: #fff;
       letter-spacing: -2px;
-      text-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    h2 {
-      font-size: 1.1rem;
-      color: var(--amber);
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-left: 3px solid var(--amber);
-      padding-left: 15px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .role {
-      color: var(--amber);
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-      text-shadow: 0 0 5px var(--amber-glow);
-    }
-
-    .sub-role {
-      font-family: var(--font-sans);
-      font-size: 0.9rem;
-      color: #888;
-    }
-
-    p {
-      font-family: var(--font-sans);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-bottom: 20px;
-      color: #ccc;
-    }
-
-    strong { color: #fff; }
-
-    .highlight-box {
-      background: rgba(204, 122, 0, 0.05);
-      padding: 20px;
-      border-left: 2px solid var(--amber);
-      font-family: var(--font-mono);
-      color: #e0e0e0;
-      margin: 30px 0;
-      font-style: italic;
-    }
-
-    .project-card {
-      border: 1px solid #333;
-      background: rgba(0,0,0,0.4);
-      padding: 25px;
-      margin-bottom: 40px;
-      transition: border-color 0.3s;
-    }
-
-    .project-card:hover { border-color: var(--amber); }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #333;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-      gap: 10px;
-    }
-
-    .project-title {
-      font-weight: bold;
-      color: #fff;
-      font-size: 1.2rem;
-    }
-
-    .status-badge {
-      font-size: 0.7rem;
-      background: #111;
-      color: var(--amber);
-      border: 1px solid var(--amber);
-      padding: 4px 8px;
-      border-radius: 2px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .btn {
-      display: inline-block;
-      background: var(--amber);
-      color: #000;
-      padding: 12px 24px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      transition: all 0.2s;
-      border: 1px solid var(--amber);
-    }
-
-    .btn:hover {
-      background: transparent;
-      color: var(--amber);
-      box-shadow: 0 0 15px var(--amber-glow);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 1px solid #444;
-      margin-left: 10px;
-    }
-
-    .btn-outline:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.05);
     }
 
     .social-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+      gap: 12px;
     }
 
     .social-link {
       background: rgba(0,0,0,0.3);
       border: 1px solid #333;
-      padding: 15px;
+      padding: 14px;
       text-decoration: none;
       color: #888;
       transition: 0.2s;
@@ -271,399 +66,55 @@
       font-size: 0.7rem;
       font-weight: bold;
       color: var(--amber);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
-    footer {
-      margin-top: 60px;
-      border-top: 1px solid #333;
-      padding-top: 20px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: #555;
-      letter-spacing: 2px;
-    }
-
-    @media (max-width: 600px) {
-      .glass-panel { padding: 30px 20px; }
-      h1 { font-size: 2.2rem; }
-      .project-header { flex-direction: column; align-items: flex-start; }
-      .btn-outline { margin-left: 0; margin-top: 10px; display: block; text-align: center; }
-      .btn { display: block; text-align: center; }
+    .social-link:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
     }
 
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; }
-      .lang-btn:hover, .lang-btn.active { transform: none; }
-      .border-rect { filter: none; }
-      animateTransform { display: none; }
     }
   </style>
 </head>
 
 <body>
-  <main class="glass-panel" aria-label="rfmss">
-    <svg class="border-svg" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <linearGradient id="amberGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#662900" stop-opacity="0.3" />
-          <stop offset="50%" stop-color="#cc7a00" stop-opacity="1" />
-          <stop offset="100%" stop-color="#662900" stop-opacity="0.3" />
-          <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="40s" repeatCount="indefinite" />
-        </linearGradient>
-      </defs>
-      <rect class="border-rect" x="0" y="0" width="100%" height="100%"></rect>
-    </svg>
+  <main class="container">
+    <h1>rfmss</h1>
 
-    <div class="content-wrapper">
-      <nav class="lang-switch" aria-label="Language selector">
-        <button type="button" class="lang-btn active" data-lang="pt" id="btn-pt" title="Português" aria-label="Português">🇧🇷</button>
-        <button type="button" class="lang-btn" data-lang="en" id="btn-en" title="English (UK)" aria-label="English (UK)">🇬🇧</button>
-        <button type="button" class="lang-btn" data-lang="es" id="btn-es" title="Español" aria-label="Español">🇪🇸</button>
-        <button type="button" class="lang-btn" data-lang="fr" id="btn-fr" title="Français" aria-label="Français">🇫🇷</button>
-        <button type="button" class="lang-btn" data-lang="ar" id="btn-ar" title="العربية" aria-label="العربية">🇵🇸</button>
-      </nav>
+    <div class="social-grid">
+      <a href="https://bsky.app/profile/rfmss.github.io" class="social-link" target="_blank" rel="noopener noreferrer">
+        <span>Bluesky</span>
+        <div>@rfmss.github.io</div>
+      </a>
 
-      <header>
-        <h1>rfmss</h1>
-        <span class="role" data-i18n="role_headline"></span>
-        <span class="sub-role" data-i18n="role_sub"></span>
-      </header>
+      <a href="https://wandering.shop/@rafa" class="social-link" target="_blank" rel="me noopener noreferrer">
+        <span>Mastodon</span>
+        <div>@rafa@wandering.shop</div>
+      </a>
 
-      <h2 data-i18n="title_about"></h2>
-      <section>
-        <p data-i18n-html="about_p1"></p>
-        <p data-i18n="about_p2"></p>
+      <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank" rel="me noopener noreferrer">
+        <span>Mastodon</span>
+        <div>@rfmss@hachyderm.io</div>
+      </a>
 
-        <div class="highlight-box" data-i18n="highlight"></div>
+      <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
+        <span>Lemmy</span>
+        <div>sh.itjust.works/u/rfmss</div>
+      </a>
 
-        <p data-i18n="about_p3"></p>
-        <p data-i18n="about_p4"></p>
-        <p data-i18n="about_p5"></p>
-      </section>
+      <a href="https://github.com/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
+        <span>GitHub</span>
+        <div>github.com/rfmss</div>
+      </a>
 
-      <h2 data-i18n="title_project"></h2>
-      <div class="project-card">
-        <div class="project-header">
-          <span class="project-title" data-i18n="project_title"></span>
-          <span class="status-badge" data-i18n="project_status"></span>
-        </div>
-
-        <p style="color:#bbb" data-i18n="project_desc"></p>
-
-        <ul style="color:#888; padding-left:20px; font-size:0.9rem; list-style-type:square;">
-          <li data-i18n="stack_tech"></li>
-          <li data-i18n="stack_status"></li>
-        </ul>
-
-        <a href="https://rfmss.github.io/eskrev" class="btn" target="_blank" rel="noopener noreferrer" data-i18n="btn_access"></a>
-        <a href="https://sh.itjust.works/c/typeovertap" class="btn btn-outline" target="_blank" rel="noopener noreferrer" data-i18n="btn_log"></a>
-      </div>
-
-      <h2 data-i18n="title_repos"></h2>
-      <section>
-        <div class="social-grid">
-          <a href="https://github.com/rfmss/eskrev" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>JavaScript</span>
-            <div>eskrev</div>
-          </a>
-          <a href="https://github.com/rfmss/bijuled" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>JavaScript</span>
-            <div>bijuled</div>
-          </a>
-          <a href="https://github.com/rfmss/FernandaTowers" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>HTML</span>
-            <div>FernandaTowers</div>
-          </a>
-          <a href="https://github.com/rfmss/p" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>HTML</span>
-            <div>p</div>
-          </a>
-          <a href="https://github.com/rfmss/dirlizanu" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>HTML</span>
-            <div>dirlizanu</div>
-          </a>
-          <a href="https://github.com/rfmss/nota" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>HTML</span>
-            <div>nota</div>
-          </a>
-          <a href="https://github.com/rfmss/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>GitHub</span>
-            <div>rfmss</div>
-          </a>
-          <a href="https://github.com/rfmss/rfmss.github.io" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>HTML</span>
-            <div>rfmss.github.io</div>
-          </a>
-        </div>
-      </section>
-
-      <h2 data-i18n="title_network"></h2>
-      <section>
-        <p data-i18n="network_intro"></p>
-
-        <div class="social-grid">
-          <a href="https://bsky.app/profile/rfmss.github.io" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>Bluesky</span>
-            <div>@rfmss.github.io</div>
-          </a>
-
-          <a href="https://wandering.shop/@rafa" class="social-link" target="_blank" rel="me noopener noreferrer">
-            <span data-i18n="link_mastodon_p"></span>
-            <div>@rafa@wandering.shop</div>
-          </a>
-
-          <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank" rel="me noopener noreferrer">
-            <span data-i18n="link_mastodon_w"></span>
-            <div>@rfmss@hachyderm.io</div>
-          </a>
-
-          <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
-            <span>Lemmy</span>
-            <div>sh.itjust.works/u/rfmss</div>
-          </a>
-
-          <a href="mailto:rfmss@disr.it" class="social-link">
-            <span>Email</span>
-            <div>rfmss@disr.it</div>
-          </a>
-        </div>
-      </section>
-
-      <footer data-i18n="footer"></footer>
+      <a href="mailto:rfmss@disr.it" class="social-link">
+        <span>Email</span>
+        <div>rfmss@disr.it</div>
+      </a>
     </div>
   </main>
-
-  <script>
-    "use strict";
-
-    /**
-     * i18n design:
-     * - data-i18n: uses textContent (safe)
-     * - data-i18n-html: uses innerHTML (ONLY for keys you explicitly mark)
-     */
-
-    const I18N = {
-      pt: {
-        meta_title: "rfmss 🔸 ferramentas, linguagem e LLMs",
-        role_headline: "Eu construo ferramentas usando linguagem, cognição e LLMs.",
-        role_sub: "Artes, História, Língua Portuguesa e Neurociência Cognitiva aplicadas à criação de software. Brasil.",
-
-        title_about: "/// SOBRE",
-        about_p1: "Eu não “programo” do jeito tradicional. <strong>Eu projeto sistemas e converso com a máquina até ela obedecer.</strong>",
-        about_p2: "Durante muito tempo, pessoas com formação profunda em linguagem, arte, história e cognição ficaram restritas à análise, à crítica ou ao ensino. Construir software exigia atravessar barreiras técnicas que não conversavam com esse repertório.",
-        highlight: "“LLMs transformaram linguagem em interface. Isso muda quem pode criar software.”",
-        about_p3: "Minha formação é interdisciplinar por natureza: Artes Plásticas, História, Ensino Religioso, Língua Portuguesa e Neurociência Cognitiva e Comportamental aplicada à Educação.",
-        about_p4: "Sempre trabalhei projetando sentido, atenção e fluxo — hoje traduzidos em arquitetura de sistemas.",
-        about_p5: "Uso LLMs como instrumentos técnicos: para escrever código, testar hipóteses e acelerar iterações, sem abrir mão de decisões humanas sobre ética, limites, privacidade e impacto cognitivo.",
-
-        title_project: "/// PROJETO ATUAL",
-        project_title: "T∅T — TYPE OVER TAP",
-        project_status: "v5.5 live",
-        project_desc: "Editor offline e autocontido para escrita privada: sem rastreamento, sem nuvem e com controle total do autor. Você escreve localmente, exporta manualmente e pode destruir tudo ao final.",
-        stack_tech: "Stack: linguagem, lógica e tecnologias web autocontidas.",
-        stack_status: "Status: operacional, em uso diário.",
-        btn_access: "ABRIR T∅T",
-        btn_log: "LER DEVLOG (LEMMY)",
-
-        title_repos: "/// REPOSITÓRIOS",
-        title_network: "/// ONDE O TRABALHO ACONTECE",
-        network_intro: "Este trabalho acontece em espaços abertos, descentralizados e federados. Não uso plataformas fechadas como eixo principal de produção intelectual.",
-        link_mastodon_p: "Mastodon (pessoal)",
-        link_mastodon_w: "Mastodon (trabalho)",
-
-        footer: "CODE IS POETRY — WHEN IT RESPECTS PEOPLE"
-      },
-
-      en: {
-        meta_title: "rfmss 🔸 tools, language and LLMs",
-        role_headline: "I build tools using language, cognition and LLMs.",
-        role_sub: "Arts, History, Portuguese Language and Cognitive Neuroscience applied to software creation. Brazil.",
-
-        title_about: "/// ABOUT",
-        about_p1: "I don’t code the traditional way. <strong>I design systems and talk to the machine until it behaves.</strong>",
-        about_p2: "For a long time, people with deep training in language, art, history and cognition were mostly confined to analysis, critique or teaching. Building software required crossing technical barriers that did not speak to this kind of background.",
-        highlight: "“LLMs turned language into an interface. That changes who gets to create software.”",
-        about_p3: "My background is inherently interdisciplinary: Fine Arts, History, Religious Studies, Portuguese Language and Cognitive & Behavioural Neuroscience applied to Education.",
-        about_p4: "I’ve always worked designing meaning, attention and flow — now translated directly into system architecture.",
-        about_p5: "I use LLMs as technical instruments: to write code, test hypotheses and accelerate iteration, without giving up human decisions about ethics, limits, privacy and cognitive impact.",
-
-        title_project: "/// CURRENT PROJECT",
-        project_title: "T∅T — TYPE OVER TAP",
-        project_status: "v5.5 live",
-        project_desc: "An offline, self-contained editor for private writing: no tracking, no cloud, full author control. You write locally, export manually and can destroy everything at the end.",
-        stack_tech: "Stack: language, logic and self-contained web technologies.",
-        stack_status: "Status: operational, in daily use.",
-        btn_access: "OPEN T∅T",
-        btn_log: "READ DEVLOG (LEMMY)",
-
-        title_repos: "/// REPOSITORIES",
-        title_network: "/// WHERE THE WORK HAPPENS",
-        network_intro: "This work happens in open, decentralised and federated spaces. I do not use closed platforms as the main axis of intellectual production.",
-        link_mastodon_p: "Mastodon (personal)",
-        link_mastodon_w: "Mastodon (work)",
-
-        footer: "CODE IS POETRY — WHEN IT RESPECTS PEOPLE"
-      },
-
-      es: {
-        meta_title: "rfmss 🔸 herramientas, lenguaje y LLMs",
-        role_headline: "Construyo herramientas usando lenguaje, cognición y LLMs.",
-        role_sub: "Artes, Historia, Lengua Portuguesa y Neurociencia Cognitiva aplicadas a la creación de software. Brasil.",
-
-        title_about: "/// SOBRE",
-        about_p1: "No programo de forma tradicional. <strong>Diseño sistemas y converso con la máquina hasta que obedezca.</strong>",
-        about_p2: "Durante mucho tiempo, las personas con formación profunda en lenguaje, arte, historia y cognición quedaron relegadas al análisis, la crítica o la enseñanza. Construir software implicaba atravesar barreras técnicas que no dialogaban con este tipo de trayectoria.",
-        highlight: "“Los LLMs convirtieron el lenguaje en interfaz. Eso cambia quién puede crear software.”",
-        about_p3: "Mi formación es inherentemente interdisciplinaria: Artes Plásticas, Historia, Enseñanza Religiosa, Lengua Portuguesa y Neurociencia Cognitiva y Conductual aplicada a la Educación.",
-        about_p4: "Siempre trabajé diseñando sentido, atención y flujo — hoy traducidos directamente en arquitectura de sistemas.",
-        about_p5: "Utilizo LLMs como instrumentos técnicos: para escribir código, probar hipótesis y acelerar iteraciones, sin renunciar a decisiones humanas sobre ética, límites, privacidad e impacto cognitivo.",
-
-        title_project: "/// PROYECTO ACTUAL",
-        project_title: "T∅T — TYPE OVER TAP",
-        project_status: "v5.5 live",
-        project_desc: "Editor offline y autocontenido para escritura privada: sin rastreo, sin nube y con control total del autor. Escribes localmente, exportas de forma manual y puedes destruirlo todo al final.",
-        stack_tech: "Stack: lenguaje, lógica y tecnologías web autocontenidas.",
-        stack_status: "Estado: operativo, en uso diario.",
-        btn_access: "ABRIR T∅T",
-        btn_log: "LEER DEVLOG (LEMMY)",
-
-        title_repos: "/// REPOSITORIOS",
-        title_network: "/// DONDE OCURRE EL TRABAJO",
-        network_intro: "Este trabajo ocurre en espacios abiertos, descentralizados y federados. No utilizo plataformas cerradas como eje principal de producción intelectual.",
-        link_mastodon_p: "Mastodon (personal)",
-        link_mastodon_w: "Mastodon (trabajo)",
-
-        footer: "EL CÓDIGO ES POESÍA — CUANDO RESPETA A LAS PERSONAS"
-      },
-
-      fr: {
-        meta_title: "rfmss 🔸 outils, langage et LLMs",
-        role_headline: "Je construis des outils à partir du langage, de la cognition et des LLMs.",
-        role_sub: "Arts, Histoire, Langue portugaise et Neurosciences cognitives appliquées à la création de logiciels. Brésil.",
-
-        title_about: "/// À PROPOS",
-        about_p1: "Je ne code pas de manière traditionnelle. <strong>Je conçois des systèmes et je dialogue avec la machine jusqu’à ce qu’elle obéisse.</strong>",
-        about_p2: "Pendant longtemps, les personnes ayant une formation approfondie en langage, en art, en histoire et en cognition étaient cantonnées à l’analyse, à la critique ou à l’enseignement. Construire des logiciels impliquait de franchir des barrières techniques qui ne dialoguaient pas avec ce type de parcours.",
-        highlight: "« Les LLMs ont transformé le langage en interface. Cela change qui peut créer des logiciels. »",
-        about_p3: "Mon parcours est interdisciplinaire : Arts plastiques, Histoire, Enseignement religieux, Langue portugaise et Neurosciences cognitives et comportementales appliquées à l’éducation.",
-        about_p4: "J’ai toujours travaillé à concevoir le sens, l’attention et le flux — aujourd’hui traduits directement en architecture de systèmes.",
-        about_p5: "J’utilise les LLMs comme instruments techniques : pour écrire du code, tester des hypothèses et accélérer les itérations, sans renoncer aux décisions humaines concernant l’éthique, les limites, la vie privée et l’impact cognitif.",
-
-        title_project: "/// PROJET ACTUEL",
-        project_title: "T∅T — TYPE OVER TAP",
-        project_status: "v5.5 live",
-        project_desc: "Éditeur hors ligne et autocontenu pour l’écriture privée : sans traçage, sans cloud, avec un contrôle total de l’auteur. Vous écrivez localement, exportez manuellement et pouvez tout détruire à la fin.",
-        stack_tech: "Stack : langage, logique et technologies web autocontenues.",
-        stack_status: "Statut : opérationnel, utilisé quotidiennement.",
-        btn_access: "OUVRIR T∅T",
-        btn_log: "LIRE LE DEVLOG (LEMMY)",
-
-        title_repos: "/// DÉPÔTS",
-        title_network: "/// LÀ OÙ LE TRAVAIL SE FAIT",
-        network_intro: "Ce travail se développe dans des espaces ouverts, décentralisés et fédérés. Je n’utilise pas les plateformes fermées comme axe principal de production intellectuelle.",
-        link_mastodon_p: "Mastodon (personnel)",
-        link_mastodon_w: "Mastodon (travail)",
-
-        footer: "LE CODE EST POÉSIE — LORSQU’IL RESPECTE LES PERSONNES"
-      },
-
-      ar: {
-        meta_title: "rfmss 🔸 أدوات، لغة ونماذج لغوية",
-        role_headline: "أبني أدوات باستخدام اللغة والإدراك والنماذج اللغوية.",
-        role_sub: "الفنون، التاريخ، اللغة البرتغالية وعلوم الأعصاب الإدراكية مطبّقة في إنشاء البرمجيات. البرازيل.",
-
-        title_about: "/// حول",
-        about_p1: "أنا لا أبرمج بالطريقة التقليدية. <strong>أصمم أنظمة وأتحاور مع الآلة حتى تلتزم.</strong>",
-        about_p2: "لفترة طويلة، كان الأشخاص ذوو التكوين العميق في اللغة والفن والتاريخ والإدراك محصورين في التحليل أو النقد أو التعليم. كان بناء البرمجيات يتطلب تجاوز حواجز تقنية لا تتقاطع مع هذا النوع من الخلفيات.",
-        highlight: "«حوّلت النماذج اللغوية اللغة إلى واجهة. وهذا يغيّر من يمكنه صناعة البرمجيات.»",
-        about_p3: "تكويني متعدد التخصصات: الفنون التشكيلية، التاريخ، التعليم الديني، اللغة البرتغالية، وعلوم الأعصاب الإدراكية والسلوكية المطبّقة على التعليم.",
-        about_p4: "لطالما عملت على تصميم المعنى والانتباه والتدفق — وهي اليوم تُترجم مباشرة إلى هندسة الأنظمة.",
-        about_p5: "أستخدم النماذج اللغوية كأدوات تقنية: لكتابة الشيفرة، واختبار الفرضيات، وتسريع التطوير، من دون التخلي عن القرارات الإنسانية المتعلقة بالأخلاق والحدود والخصوصية والأثر الإدراكي.",
-
-        title_project: "/// المشروع الحالي",
-        project_title: "T∅T — TYPE OVER TAP",
-        project_status: "v5.5 live",
-        project_desc: "محرر غير متصل بالإنترنت ومكتفٍ ذاتياً للكتابة الخاصة: بلا تتبع، بلا سحابة، وتحكم كامل للكاتب. تكتب محلياً، تُصدّر يدوياً، ويمكنك تدمير كل شيء في النهاية.",
-        stack_tech: "البنية: لغة، منطق، وتقنيات ويب مكتفية ذاتياً.",
-        stack_status: "الحالة: يعمل ويُستخدم يومياً.",
-        btn_access: "فتح T∅T",
-        btn_log: "قراءة سجل التطوير (Lemmy)",
-
-        title_repos: "/// المستودعات",
-        title_network: "/// حيث يحدث العمل",
-        network_intro: "يتم هذا العمل في فضاءات مفتوحة ولا مركزية وفيدرالية. لا أستخدم المنصات المغلقة كمحور أساسي للإنتاج الفكري.",
-        link_mastodon_p: "Mastodon (شخصي)",
-        link_mastodon_w: "Mastodon (عمل)",
-
-        footer: "الشفرة شعر — عندما تحترم الإنسان"
-      }
-    };
-
-    const LANG_META = {
-      pt: { htmlLang: "pt-BR", dir: "ltr" },
-      en: { htmlLang: "en-GB", dir: "ltr" },
-      es: { htmlLang: "es", dir: "ltr" },
-      fr: { htmlLang: "fr", dir: "ltr" },
-      ar: { htmlLang: "ar", dir: "rtl" }
-    };
-
-    const DEFAULT_LANG = "pt";
-    const STORAGE_KEY = "rfmss_lang";
-
-    function setDocLang(lang) {
-      const meta = LANG_META[lang] || LANG_META[DEFAULT_LANG];
-      document.documentElement.setAttribute("lang", meta.htmlLang);
-      document.documentElement.setAttribute("dir", meta.dir);
-
-      if (meta.dir === "rtl") document.body.classList.add("rtl");
-      else document.body.classList.remove("rtl");
-    }
-
-    function applyI18n(lang) {
-      const dict = I18N[lang] || I18N[DEFAULT_LANG];
-
-      // Title
-      if (dict.meta_title) document.title = dict.meta_title;
-
-      // Safe text nodes
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (key && dict[key] != null) el.textContent = dict[key];
-      });
-
-      // HTML nodes (explicit only)
-      document.querySelectorAll("[data-i18n-html]").forEach(el => {
-        const key = el.getAttribute("data-i18n-html");
-        if (key && dict[key] != null) el.innerHTML = dict[key];
-      });
-
-      // Active button
-      document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("active"));
-      const activeBtn = document.getElementById("btn-" + lang);
-      if (activeBtn) activeBtn.classList.add("active");
-
-      setDocLang(lang);
-    }
-
-    function setLang(lang) {
-      const safeLang = I18N[lang] ? lang : DEFAULT_LANG;
-      localStorage.setItem(STORAGE_KEY, safeLang);
-      applyI18n(safeLang);
-    }
-
-    function initLang() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      const lang = saved && I18N[saved] ? saved : DEFAULT_LANG;
-      applyI18n(lang);
-    }
-
-    // Events
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => setLang(btn.dataset.lang));
-    });
-
-    initLang();
-  </script>
 </body>
 </html>
