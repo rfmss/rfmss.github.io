@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rfmss</title>
   <style>
-    :root {
-      --bg: #b2c9c3;
-      --card-bg: #f4efe6;
-      --text: #1a1a1a;
-      --text-muted: #555;
-      --font-serif: Georgia, 'Times New Roman', serif;
-      --font-mono: 'Courier New', Courier, monospace;
+    * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-serif);
+      background-color: #b2c9c3;
+      color: #1a1a1a;
+      font-family: Georgia, 'Times New Roman', serif;
       padding: 60px 24px;
     }
 
@@ -38,132 +34,137 @@
     }
 
     .section {
-      background: var(--card-bg);
+      background: #f4efe6;
+      -webkit-border-radius: 12px;
       border-radius: 12px;
       padding: 28px;
       margin-bottom: 16px;
     }
 
-    .link-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .section-title {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #555;
+      margin-bottom: 4px;
     }
 
     .link-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: block;
       padding: 14px 0;
       border-bottom: 1px solid rgba(0,0,0,0.07);
       text-decoration: none;
-      color: var(--text);
-      font-family: var(--font-mono);
+      color: #1a1a1a;
+      font-family: 'Courier New', Courier, monospace;
       font-size: 0.9rem;
-      transition: opacity 0.15s;
     }
 
-    .link-item:last-child {
+    .link-item:first-of-type {
+      padding-top: 0;
+    }
+
+    .link-item:last-of-type {
       border-bottom: none;
       padding-bottom: 0;
     }
 
-    .link-item:first-child {
-      padding-top: 0;
+    .link-inner {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
     }
-
-    .link-item:hover { opacity: 0.55; }
 
     .link-label {
       font-size: 0.7rem;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: #555;
       letter-spacing: 0.05em;
+      display: block;
+      margin-top: 2px;
     }
 
     .link-arrow {
-      color: var(--text-muted);
+      color: #555;
       font-size: 0.85rem;
-    }
-
-    .section-title {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <main class="container">
+  <div class="container">
     <h1>rfmss</h1>
 
     <div class="section">
       <p class="section-title">redes</p>
-      <div class="link-list">
-        <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
+      <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner">
           <span>Bluesky <span class="link-label">@rfmss.github.io</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
+      <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
+        <div class="link-inner">
           <span>Mastodon <span class="link-label">@rafa@wandering.shop</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
+      <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
+        <div class="link-inner">
           <span>Mastodon <span class="link-label">@rfmss@hachyderm.io</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
+      <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner">
           <span>Lemmy <span class="link-label">sh.itjust.works/u/rfmss</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
+      <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner">
           <span>GitHub <span class="link-label">github.com/rfmss</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="mailto:rfmss@disr.it" class="link-item">
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
+      <a href="mailto:rfmss@disr.it" class="link-item">
+        <div class="link-inner">
           <span>Email <span class="link-label">rfmss@disr.it</span></span>
-          <span class="link-arrow">↗</span>
-        </a>
-      </div>
+          <span class="link-arrow">&#8599;</span>
+        </div>
+      </a>
     </div>
 
     <div class="section">
       <p class="section-title">projetos</p>
-      <div class="link-list">
-        <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>eskrev</span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>bijuled</span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>FernandaTowers</span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>p</span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>dirlizanu</span>
-          <span class="link-arrow">↗</span>
-        </a>
-        <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
-          <span>nota</span>
-          <span class="link-arrow">↗</span>
-        </a>
-      </div>
+      <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>eskrev</span><span class="link-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>bijuled</span><span class="link-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>FernandaTowers</span><span class="link-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>p</span><span class="link-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>dirlizanu</span><span class="link-arrow">&#8599;</span></div>
+      </a>
+      <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
+        <div class="link-inner"><span>nota</span><span class="link-arrow">&#8599;</span></div>
+      </a>
     </div>
-  </main>
+  </div>
 </body>
 </html>
