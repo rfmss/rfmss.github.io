@@ -6,7 +6,6 @@
   <title>rfmss</title>
   <style>
     * {
-      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -14,14 +13,14 @@
 
     body {
       min-height: 100vh;
-      background-color: #b2c9c3;
       color: #1a1a1a;
       font-family: Georgia, 'Times New Roman', serif;
-      padding: 60px 24px;
+      padding: 48px 24px;
+      transition: background-color 0.4s ease;
     }
 
     .container {
-      max-width: 520px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
@@ -29,47 +28,59 @@
       font-size: 3rem;
       font-weight: 700;
       line-height: 1.1;
-      margin-bottom: 48px;
+      margin-bottom: 40px;
       letter-spacing: -1px;
     }
 
+    /* ── two-column layout ── */
+    .grid {
+      display: -webkit-flex;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
     .section {
-      background: #f4efe6;
+      -webkit-flex: 1;
+      flex: 1;
+      background: var(--card);
       border-radius: 12px;
-      padding: 28px;
-      margin-bottom: 16px;
+      padding: 24px;
     }
 
     .section-title {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       color: #555;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .link-item {
       display: block;
-      padding: 14px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(0,0,0,0.07);
       text-decoration: none;
       color: #1a1a1a;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .link-item:first-of-type { padding-top: 0; }
     .link-item:last-of-type  { border-bottom: none; padding-bottom: 0; }
 
     .link-inner {
+      display: -webkit-flex;
       display: flex;
+      -webkit-justify-content: space-between;
       justify-content: space-between;
+      -webkit-align-items: center;
       align-items: center;
     }
 
     .link-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       color: #555;
       letter-spacing: 0.05em;
@@ -81,6 +92,32 @@
       display: block;
       color: #555;
     }
+
+    /* ── palette switcher ── */
+    .palette-strip {
+      display: -webkit-flex;
+      display: flex;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: transform 0.15s, border-color 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .swatch:active { transform: scale(0.88); }
+    .swatch.active { border-color: #1a1a1a; }
+
+    @media (max-width: 480px) {
+      .grid { -webkit-flex-direction: column; flex-direction: column; }
+      h1 { font-size: 2.2rem; }
+    }
   </style>
 </head>
 
@@ -88,79 +125,134 @@
   <div class="container">
     <h1>rfmss</h1>
 
-    <div class="section">
-      <p class="section-title">redes</p>
+    <div class="palette-strip" id="palette-strip"></div>
 
-      <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner">
-          <span>Bluesky <span class="link-label">@rfmss.github.io</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
+    <div class="grid">
+      <div class="section" id="section-redes">
+        <p class="section-title">redes</p>
 
-      <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
-        <div class="link-inner">
-          <span>Mastodon <span class="link-label">@rafa@wandering.shop</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
+        <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner">
+            <span>Bluesky <span class="link-label">@rfmss.github.io</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
 
-      <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
-        <div class="link-inner">
-          <span>Mastodon <span class="link-label">@rfmss@hachyderm.io</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
+        <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <div class="link-inner">
+            <span>Mastodon <span class="link-label">@rafa@wandering.shop</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
 
-      <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner">
-          <span>Lemmy <span class="link-label">sh.itjust.works/u/rfmss</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
+        <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <div class="link-inner">
+            <span>Mastodon <span class="link-label">@rfmss@hachyderm.io</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
 
-      <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner">
-          <span>GitHub <span class="link-label">github.com/rfmss</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
+        <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner">
+            <span>Lemmy <span class="link-label">sh.itjust.works/u/rfmss</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
 
-      <a href="mailto:rfmss@disr.it" class="link-item">
-        <div class="link-inner">
-          <span>Email <span class="link-label">rfmss@disr.it</span></span>
-          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
-        </div>
-      </a>
-    </div>
+        <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner">
+            <span>GitHub <span class="link-label">github.com/rfmss</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
 
-    <div class="section">
-      <p class="section-title">projetos</p>
+        <a href="mailto:rfmss@disr.it" class="link-item">
+          <div class="link-inner">
+            <span>Email <span class="link-label">rfmss@disr.it</span></span>
+            <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
+          </div>
+        </a>
+      </div>
 
-      <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>eskrev</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+      <div class="section" id="section-projetos">
+        <p class="section-title">projetos</p>
 
-      <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>bijuled</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+        <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>eskrev</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
 
-      <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>FernandaTowers</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+        <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>bijuled</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
 
-      <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>p</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+        <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>FernandaTowers</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
 
-      <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>dirlizanu</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+        <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>p</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
 
-      <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>nota</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
-      </a>
+        <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>dirlizanu</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
+
+        <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
+          <div class="link-inner"><span>nota</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
+        </a>
+      </div>
     </div>
   </div>
+
+  <script>
+    // Paleta Anthropic — warm muted tones
+    var PALETTES = [
+      { bg: '#b2c9c3', card: '#f4efe6' }, // sage (default)
+      { bg: '#c9bfb0', card: '#f5f0e8' }, // warm sand
+      { bg: '#b8c4ce', card: '#eef2f5' }, // mist blue
+      { bg: '#c4bac9', card: '#f2eef5' }, // soft lavender
+      { bg: '#c9c4b0', card: '#f5f2e8' }, // warm stone
+      { bg: '#b8c9b8', card: '#eef5ee' }, // deeper sage
+      { bg: '#cec0b4', card: '#f5ede8' }, // warm clay
+    ];
+
+    var KEY = 'rfmss_palette';
+
+    function applyPalette(idx, save) {
+      var p = PALETTES[idx];
+      document.body.style.backgroundColor = p.bg;
+      document.documentElement.style.setProperty('--card', p.card);
+      document.querySelectorAll('.section').forEach(function(s) {
+        s.style.backgroundColor = p.card;
+      });
+      document.querySelectorAll('.swatch').forEach(function(sw, i) {
+        sw.classList.toggle('active', i === idx);
+      });
+      if (save) localStorage.setItem(KEY, idx);
+    }
+
+    function buildSwatches() {
+      var strip = document.getElementById('palette-strip');
+      PALETTES.forEach(function(p, i) {
+        var sw = document.createElement('div');
+        sw.className = 'swatch';
+        sw.style.backgroundColor = p.bg;
+        sw.style.border = '2px solid rgba(0,0,0,0.15)';
+        sw.addEventListener('click', function() { applyPalette(i, true); });
+        strip.appendChild(sw);
+      });
+    }
+
+    buildSwatches();
+
+    // Load saved or pick random on first visit
+    var saved = localStorage.getItem(KEY);
+    if (saved !== null && PALETTES[+saved]) {
+      applyPalette(+saved, false);
+    } else {
+      var rand = Math.floor(Math.random() * PALETTES.length);
+      applyPalette(rand, true);
+    }
+  </script>
 </body>
 </html>
