@@ -6,72 +6,93 @@
   <title>rfmss</title>
   <style>
     :root {
-      --amber: #cc7a00;
-      --dark-bg: #080401;
+      --bg: #b2c9c3;
+      --card-bg: #f4efe6;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --font-serif: Georgia, 'Times New Roman', serif;
       --font-mono: 'Courier New', Courier, monospace;
-      --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: var(--font-mono);
-      background-color: var(--dark-bg);
-      color: #d4d4d4;
-      padding: 20px;
-      box-sizing: border-box;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-serif);
+      padding: 60px 24px;
     }
 
     .container {
-      max-width: 480px;
-      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
     }
 
     h1 {
-      font-size: 2.4rem;
-      margin: 0 0 30px 0;
-      color: #fff;
-      letter-spacing: -2px;
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 48px;
+      letter-spacing: -1px;
     }
 
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
+    .section {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 16px;
     }
 
-    .social-link {
-      background: rgba(0,0,0,0.3);
-      border: 1px solid #333;
-      padding: 14px;
-      text-decoration: none;
-      color: #888;
-      transition: 0.2s;
+    .link-list {
       display: flex;
       flex-direction: column;
+      gap: 0;
+    }
+
+    .link-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      text-decoration: none;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      transition: opacity 0.15s;
+    }
+
+    .link-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .link-item:first-child {
+      padding-top: 0;
+    }
+
+    .link-item:hover { opacity: 0.55; }
+
+    .link-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .link-arrow {
+      color: var(--text-muted);
       font-size: 0.85rem;
     }
 
-    .social-link:hover {
-      border-color: var(--amber);
-      background: rgba(204, 122, 0, 0.05);
-      color: #fff;
-    }
-
-    .social-link span {
-      text-transform: uppercase;
+    .section-title {
+      font-family: var(--font-mono);
       font-size: 0.7rem;
-      font-weight: bold;
-      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
       margin-bottom: 4px;
-    }
-
-    .social-link:focus-visible {
-      outline: 2px solid var(--amber);
-      outline-offset: 3px;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -84,68 +105,64 @@
   <main class="container">
     <h1>rfmss</h1>
 
-    <div class="social-grid">
-      <a href="https://bsky.app/profile/rfmss.github.io" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>Bluesky</span>
-        <div>@rfmss.github.io</div>
-      </a>
-
-      <a href="https://wandering.shop/@rafa" class="social-link" target="_blank" rel="me noopener noreferrer">
-        <span>Mastodon</span>
-        <div>@rafa@wandering.shop</div>
-      </a>
-
-      <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank" rel="me noopener noreferrer">
-        <span>Mastodon</span>
-        <div>@rfmss@hachyderm.io</div>
-      </a>
-
-      <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>Lemmy</span>
-        <div>sh.itjust.works/u/rfmss</div>
-      </a>
-
-      <a href="https://github.com/rfmss" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>GitHub</span>
-        <div>github.com/rfmss</div>
-      </a>
-
-      <a href="mailto:rfmss@disr.it" class="social-link">
-        <span>Email</span>
-        <div>rfmss@disr.it</div>
-      </a>
+    <div class="section">
+      <p class="section-title">redes</p>
+      <div class="link-list">
+        <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>Bluesky <span class="link-label">@rfmss.github.io</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <span>Mastodon <span class="link-label">@rafa@wandering.shop</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
+          <span>Mastodon <span class="link-label">@rfmss@hachyderm.io</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>Lemmy <span class="link-label">sh.itjust.works/u/rfmss</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>GitHub <span class="link-label">github.com/rfmss</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="mailto:rfmss@disr.it" class="link-item">
+          <span>Email <span class="link-label">rfmss@disr.it</span></span>
+          <span class="link-arrow">↗</span>
+        </a>
+      </div>
     </div>
 
-    <div class="social-grid" style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #222;">
-      <a href="https://rfmss.github.io/eskrev" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>eskrev</div>
-      </a>
-
-      <a href="https://rfmss.github.io/bijuled" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>bijuled</div>
-      </a>
-
-      <a href="https://rfmss.github.io/FernandaTowers" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>FernandaTowers</div>
-      </a>
-
-      <a href="https://rfmss.github.io/p" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>p</div>
-      </a>
-
-      <a href="https://rfmss.github.io/dirlizanu" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>dirlizanu</div>
-      </a>
-
-      <a href="https://rfmss.github.io/nota" class="social-link" target="_blank" rel="noopener noreferrer">
-        <span>site</span>
-        <div>nota</div>
-      </a>
+    <div class="section">
+      <p class="section-title">projetos</p>
+      <div class="link-list">
+        <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>eskrev</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>bijuled</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>FernandaTowers</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>p</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>dirlizanu</span>
+          <span class="link-arrow">↗</span>
+        </a>
+        <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
+          <span>nota</span>
+          <span class="link-arrow">↗</span>
+        </a>
+      </div>
     </div>
   </main>
 </body>
