@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>rfmss</title>
-  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     * {
       -webkit-box-sizing: border-box;
@@ -36,7 +35,6 @@
 
     .section {
       background: #f4efe6;
-      -webkit-border-radius: 12px;
       border-radius: 12px;
       padding: 28px;
       margin-bottom: 16px;
@@ -61,27 +59,12 @@
       font-size: 0.9rem;
     }
 
-    .link-item:first-of-type {
-      padding-top: 0;
-    }
-
-    .link-item:last-of-type {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
+    .link-item:first-of-type { padding-top: 0; }
+    .link-item:last-of-type  { border-bottom: none; padding-bottom: 0; }
 
     .link-inner {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
       display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
       justify-content: space-between;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-      -ms-flex-align: center;
       align-items: center;
     }
 
@@ -94,11 +77,9 @@
       margin-top: 2px;
     }
 
-    .link-arrow {
+    .link-arrow svg {
+      display: block;
       color: #555;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
     }
   </style>
 </head>
@@ -109,63 +90,75 @@
 
     <div class="section">
       <p class="section-title">redes</p>
+
       <a href="https://bsky.app/profile/rfmss.github.io" class="link-item" target="_blank" rel="noopener noreferrer">
         <div class="link-inner">
           <span>Bluesky <span class="link-label">@rfmss.github.io</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
+
       <a href="https://wandering.shop/@rafa" class="link-item" target="_blank" rel="me noopener noreferrer">
         <div class="link-inner">
           <span>Mastodon <span class="link-label">@rafa@wandering.shop</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
+
       <a href="https://hachyderm.io/@rfmss" class="link-item" target="_blank" rel="me noopener noreferrer">
         <div class="link-inner">
           <span>Mastodon <span class="link-label">@rfmss@hachyderm.io</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
+
       <a href="https://sh.itjust.works/u/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
         <div class="link-inner">
           <span>Lemmy <span class="link-label">sh.itjust.works/u/rfmss</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
+
       <a href="https://github.com/rfmss" class="link-item" target="_blank" rel="noopener noreferrer">
         <div class="link-inner">
           <span>GitHub <span class="link-label">github.com/rfmss</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
+
       <a href="mailto:rfmss@disr.it" class="link-item">
         <div class="link-inner">
           <span>Email <span class="link-label">rfmss@disr.it</span></span>
-          <span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span>
+          <span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span>
         </div>
       </a>
     </div>
 
     <div class="section">
       <p class="section-title">projetos</p>
+
       <a href="https://rfmss.github.io/eskrev" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>eskrev</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>eskrev</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
+
       <a href="https://rfmss.github.io/bijuled" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>bijuled</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>bijuled</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
+
       <a href="https://rfmss.github.io/FernandaTowers" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>FernandaTowers</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>FernandaTowers</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
+
       <a href="https://rfmss.github.io/p" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>p</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>p</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
+
       <a href="https://rfmss.github.io/dirlizanu" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>dirlizanu</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>dirlizanu</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
+
       <a href="https://rfmss.github.io/nota" class="link-item" target="_blank" rel="noopener noreferrer">
-        <div class="link-inner"><span>nota</span><span class="link-arrow"><i class="ph ph-arrow-square-out"></i></span></div>
+        <div class="link-inner"><span>nota</span><span class="link-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg></span></div>
       </a>
     </div>
   </div>
