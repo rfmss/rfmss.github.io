@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="rfmss">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#8fb3ae">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="icon-sage.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-sage.png">
+  <script>(function(){var P=[{n:'terra',h:'#cd7b5f'},{n:'olive',h:'#6e7a4e'},{n:'rose',h:'#c4708a'},{n:'lavender',h:'#9b8fc4'},{n:'blue',h:'#6b9ab8'},{n:'sage',h:'#8fb3ae'}];var c=P[Math.floor(Math.random()*P.length)];var q=document.querySelector.bind(document);var e;e=q('meta[name="theme-color"]');if(e)e.setAttribute('content',c.h);e=q('link[rel="apple-touch-icon-precomposed"]');if(e)e.setAttribute('href','icon-'+c.n+'.png');e=q('link[rel="apple-touch-icon"]');if(e)e.setAttribute('href','icon-'+c.n+'.png');var s=document.createElement('style');s.innerHTML='html,body{background:'+c.h+'!important}';document.head.appendChild(s);window._pal=c;})();</script>
   <title>rfmss</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -197,8 +206,7 @@
   </div>
 
   <script>
-    var BG = ['#b2c9c3','#c9bfb0','#b8c4ce','#c4bac9','#c9c4b0','#b8c9b8','#cec0b4'];
-    document.body.style.backgroundColor = BG[Math.floor(Math.random() * BG.length)];
+    if (window._pal) document.body.style.background = window._pal.h;
   </script>
 </body>
 </html>
