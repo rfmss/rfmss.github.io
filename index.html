@@ -1,381 +1,792 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="rfmss">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="theme-color" content="#8fb3ae">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="icon-sage.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-sage.png">
-  <script>(function(){var P=[{n:'terra',h:'#cd7b5f'},{n:'olive',h:'#6e7a4e'},{n:'rose',h:'#c4708a'},{n:'lavender',h:'#9b8fc4'},{n:'blue',h:'#6b9ab8'},{n:'sage',h:'#8fb3ae'}];var c=P[Math.floor(Math.random()*P.length)];var q=document.querySelector.bind(document);var e;e=q('meta[name="theme-color"]');if(e)e.setAttribute('content',c.h);e=q('link[rel="apple-touch-icon-precomposed"]');if(e)e.setAttribute('href','icon-'+c.n+'.png');e=q('link[rel="apple-touch-icon"]');if(e)e.setAttribute('href','icon-'+c.n+'.png');var s=document.createElement('style');s.innerHTML='html,body{background:'+c.h+'!important}';document.head.appendChild(s);window._pal=c;try{localStorage.setItem('rfmss_pal',JSON.stringify(c));}catch(x){}if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}})();</script>
-  <title>rfmss</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      min-height: 100vh;
-      color: #1a1a1a;
-      font-family: Georgia, 'Times New Roman', serif;
-      padding: 52px 24px 96px;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      font-size: 3.8rem;
-      font-weight: 700;
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 36px;
-    }
-
-    /* ── Featured jogos ── */
-    .featured-link {
-      display: block;
-      background: rgba(255,255,255,0.58);
-      border-radius: 14px;
-      padding: 20px 22px;
-      text-decoration: none;
-      color: #111;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 24px;
-      -webkit-transition: background 0.15s;
-      transition: background 0.15s;
-    }
-    .featured-link:hover { background: rgba(255,255,255,0.78); }
-
-    .link-inner {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-              justify-content: space-between;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-    }
-
-    .link-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.52);
-      letter-spacing: 0.05em;
-      display: block;
-      margin-top: 3px;
-      font-weight: 400;
-    }
-
-    .link-arrow svg { display: block; color: rgba(0,0,0,0.28); }
-
-    /* ── Bento grid ── */
-    .section-label {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(0,0,0,0.52);
-      margin-bottom: 12px;
-    }
-
-    .bento {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-              flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .bento-card {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-              justify-content: space-between;
-      background: rgba(255,255,255,0.58);
-      border-radius: 14px;
-      text-decoration: none;
-      color: #111;
-      -webkit-transition: background 0.15s, -webkit-transform 0.15s;
-      transition: background 0.15s, transform 0.15s;
-      /* default: 3 columns */
-      width: calc(33.333% - 7px);
-      padding: 22px 18px 22px;
-      min-height: 78px;
-    }
-
-    .bento-card:hover {
-      background: rgba(255,255,255,0.78);
-      -webkit-transform: translateY(-2px);
-              transform: translateY(-2px);
-    }
-
-    .bento-name {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.3;
-    }
-
-    .bento-icon {
-      color: rgba(0,0,0,0.45);
-      -webkit-flex-shrink: 0;
-              flex-shrink: 0;
-      margin-left: 10px;
-      display: block;
-    }
-
-    /* ── Fixed footer — social bar ── */
-    .social-footer {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(20,18,16,0.88);
-      -webkit-backdrop-filter: blur(12px);
-              backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 0 24px;
-      height: 60px;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-              justify-content: center;
-      gap: 6px;
-    }
-
-    .social-link {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      gap: 7px;
-      text-decoration: none;
-      color: rgba(255,255,255,0.55);
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.6rem;
-      padding: 8px 10px;
-      border-radius: 10px;
-      -webkit-transition: background 0.15s, color 0.15s;
-      transition: background 0.15s, color 0.15s;
-      white-space: nowrap;
-    }
-
-    .social-link:hover {
-      background: rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.92);
-    }
-
-    .social-link svg { display: block; flex-shrink: 0; }
-
-    .social-handle { display: none; }
-
-    @media (min-width: 520px) {
-      .social-handle { display: inline; }
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 560px) {
-      body { padding: 36px 16px 88px; }
-      .bento-card {
-        width: calc(50% - 5px);
-        min-height: 70px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="rfmss" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#8fb3ae" />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="apple-touch-icon-precomposed"
+      sizes="180x180"
+      href="icon-sage.png"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="icon-sage.png" />
+    <script>
+      (function () {
+        var P = [
+          { n: "terra", h: "#cd7b5f" },
+          { n: "olive", h: "#6e7a4e" },
+          { n: "rose", h: "#c4708a" },
+          { n: "lavender", h: "#9b8fc4" },
+          { n: "blue", h: "#6b9ab8" },
+          { n: "sage", h: "#8fb3ae" },
+        ];
+        var c = P[Math.floor(Math.random() * P.length)];
+        var q = document.querySelector.bind(document);
+        var e;
+        e = q('meta[name="theme-color"]');
+        if (e) e.setAttribute("content", c.h);
+        e = q('link[rel="apple-touch-icon-precomposed"]');
+        if (e) e.setAttribute("href", "icon-" + c.n + ".png");
+        e = q('link[rel="apple-touch-icon"]');
+        if (e) e.setAttribute("href", "icon-" + c.n + ".png");
+        var s = document.createElement("style");
+        s.innerHTML = "html,body{background:" + c.h + "!important}";
+        document.head.appendChild(s);
+        window._pal = c;
+        try {
+          localStorage.setItem("rfmss_pal", JSON.stringify(c));
+        } catch (x) {}
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js");
+        }
+      })();
+    </script>
+    <title>rfmss</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      .bento-name { font-size: 0.7rem; }
-    }
 
-    @media (max-width: 340px) {
-      .bento-card { width: 100%; }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>rfmss</h1>
+      body {
+        min-height: 100vh;
+        color: #1a1a1a;
+        font-family: Georgia, "Times New Roman", serif;
+        padding: 52px 24px 96px;
+      }
 
-    <!-- Featured -->
-    <a href="https://rfmss.github.io/Lore" class="featured-link" target="_blank" rel="noopener noreferrer" style="margin-bottom:12px">
-      <div class="link-inner">
-        <span>
-          LORE
-          <span class="link-label">Uma história em tempo real · rosebud</span>
-        </span>
-        <span class="link-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg>
-        </span>
+      .container {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 3.8rem;
+        font-weight: 700;
+        letter-spacing: -2px;
+        line-height: 1;
+        margin-bottom: 36px;
+      }
+
+      /* ── Featured jogos ── */
+      .featured-link {
+        display: block;
+        background: rgba(255, 255, 255, 0.58);
+        border-radius: 14px;
+        padding: 20px 22px;
+        text-decoration: none;
+        color: #111;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        -webkit-transition: background 0.15s;
+        transition: background 0.15s;
+      }
+      .featured-link:hover {
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .link-inner {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .link-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.52);
+        letter-spacing: 0.05em;
+        display: block;
+        margin-top: 3px;
+        font-weight: 400;
+      }
+
+      .link-arrow svg {
+        display: block;
+        color: rgba(0, 0, 0, 0.28);
+      }
+
+      /* ── Bento grid ── */
+      .section-label {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: rgba(0, 0, 0, 0.52);
+        margin-bottom: 12px;
+      }
+
+      .bento {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .bento-card {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.58);
+        border-radius: 14px;
+        text-decoration: none;
+        color: #111;
+        -webkit-transition:
+          background 0.15s,
+          -webkit-transform 0.15s;
+        transition:
+          background 0.15s,
+          transform 0.15s;
+        /* default: 3 columns */
+        width: calc(33.333% - 7px);
+        padding: 22px 18px 22px;
+        min-height: 78px;
+      }
+
+      .bento-card:hover {
+        background: rgba(255, 255, 255, 0.78);
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px);
+      }
+
+      .bento-name {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
+
+      .bento-icon {
+        color: rgba(0, 0, 0, 0.45);
+        -webkit-flex-shrink: 0;
+        flex-shrink: 0;
+        margin-left: 10px;
+        display: block;
+      }
+
+      /* ── Fixed footer — social bar ── */
+      .social-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(20, 18, 16, 0.88);
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0 24px;
+        height: 60px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .social-link {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        gap: 7px;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.55);
+        font-family: "Courier New", Courier, monospace;
+        font-size: 0.6rem;
+        padding: 8px 10px;
+        border-radius: 10px;
+        -webkit-transition:
+          background 0.15s,
+          color 0.15s;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        white-space: nowrap;
+      }
+
+      .social-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .social-link svg {
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .social-handle {
+        display: none;
+      }
+
+      @media (min-width: 520px) {
+        .social-handle {
+          display: inline;
+        }
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 560px) {
+        body {
+          padding: 36px 16px 88px;
+        }
+        .bento-card {
+          width: calc(50% - 5px);
+          min-height: 70px;
+        }
+        .bento-name {
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (max-width: 340px) {
+        .bento-card {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>rfmss</h1>
+
+      <!-- Featured -->
+      <a
+        href="https://rfmss.github.io/kilo"
+        class="featured-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="margin-bottom: 12px"
+      >
+        <div class="link-inner">
+          <span>
+            TETRIS
+            <span class="link-label">O clássico jogo de blocos</span>
+          </span>
+          <span class="link-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a
+        href="https://rfmss.github.io/biscoito"
+        class="featured-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        style="margin-bottom: 12px"
+      >
+        <div class="link-inner">
+          <span>
+            BISCOITO DA SORTE
+            <span class="link-label"
+              >Um biscoito por dia · sua expectativa de vida</span
+            >
+          </span>
+          <span class="link-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a
+        href="https://rfmss.github.io/jogos"
+        class="featured-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="link-inner">
+          <span>
+            JOGOS
+            <span class="link-label">Sala de jogos com voz</span>
+          </span>
+          <span class="link-arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              fill="currentColor"
+              viewBox="0 0 256 256"
+            >
+              <path
+                d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"
+              />
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Projects bento -->
+      <p class="section-label">Projetos</p>
+      <div class="bento">
+        <!-- BIJULED -->
+        <a
+          href="https://rfmss.github.io/bijuled"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Bijuled</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M10.5 3 8 9l4 13 4-13-2.5-6" />
+              <path
+                d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z"
+              />
+              <path d="M2 9h20" /></svg
+          ></span>
+        </a>
+
+        <!-- BLOCO -->
+        <a
+          href="https://rfmss.github.io/bloco"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Bloco</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"
+              />
+              <path d="M2 6h4" />
+              <path d="M2 10h4" />
+              <path d="M2 14h4" />
+              <path d="M2 18h4" />
+              <path
+                d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"
+              /></svg
+          ></span>
+        </a>
+
+        <!-- CALCULADORA -->
+        <a
+          href="https://rfmss.github.io/calculadora"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Calculadora</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="16" height="20" x="4" y="2" rx="2" />
+              <line x1="8" x2="16" y1="6" y2="6" />
+              <line x1="16" x2="16" y1="14" y2="18" />
+              <path d="M16 10h.01" />
+              <path d="M12 10h.01" />
+              <path d="M8 10h.01" />
+              <path d="M12 14h.01" />
+              <path d="M8 14h.01" />
+              <path d="M12 18h.01" />
+              <path d="M8 18h.01" /></svg
+          ></span>
+        </a>
+
+        <!-- DIRLIZANU -->
+        <a
+          href="https://rfmss.github.io/dirlizanu"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Dirlizanu</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect width="18" height="18" x="3" y="3" rx="2" />
+              <path d="M8 12h8" />
+              <path d="m12 16 4-4-4-4" /></svg
+          ></span>
+        </a>
+
+        <!-- ESKREV — logo oficial -->
+        <a
+          href="https://rfmss.github.io/eskrev"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Eskrev</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 686 689"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="41"
+            >
+              <path
+                d="m192.01 33-152.17 586.3s-17.9 34.46 8.95 35.81 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"
+              /></svg
+          ></span>
+        </a>
+
+        <!-- FERNANDATOWERS -->
+        <a
+          href="https://rfmss.github.io/FernandaTowers"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Fernanda Towers</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m12.296 3.464 3.02 3.956" />
+              <path
+                d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3z"
+              />
+              <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              <path d="m6.18 5.276 3.1 3.899" /></svg
+          ></span>
+        </a>
+
+        <!-- TETRIS -->
+        <a
+          href="https://rfmss.github.io/kilo"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Tetris</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="8" height="8" rx="1" />
+              <rect x="14" y="2" width="8" height="8" rx="1" />
+              <rect x="2" y="14" width="8" height="8" rx="1" />
+              <rect x="14" y="14" width="8" height="8" rx="1" /></svg
+          ></span>
+        </a>
+
+        <!-- NOTA -->
+        <a
+          href="https://rfmss.github.io/nota"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Nota</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M4 11a9 9 0 0 1 9 9" />
+              <path d="M4 4a16 16 0 0 1 16 16" />
+              <circle cx="5" cy="19" r="1" /></svg
+          ></span>
+        </a>
+
+        <!-- P -->
+        <a
+          href="https://rfmss.github.io/p"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Caça-Palavra</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m14 11 4-4 4 4" />
+              <path d="M18 16V7" />
+              <path d="m2 16 4.039-9.69a.5.5 0 0 1 .923 0L11 16" />
+              <path d="M3.304 13h6.392" /></svg
+          ></span>
+        </a>
+
+        <!-- POMODORO -->
+        <a
+          href="https://rfmss.github.io/pomodoro"
+          class="bento-card"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="bento-name">Pomodoro</span>
+          <span class="bento-icon"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="10" x2="14" y1="2" y2="2" />
+              <line x1="12" x2="15" y1="14" y2="11" />
+              <circle cx="12" cy="14" r="8" /></svg
+          ></span>
+        </a>
       </div>
-    </a>
-
-    <a href="https://rfmss.github.io/biscoito" class="featured-link" target="_blank" rel="noopener noreferrer" style="margin-bottom:12px">
-      <div class="link-inner">
-        <span>
-          BISCOITO DA SORTE
-          <span class="link-label">Um biscoito por dia · sua expectativa de vida</span>
-        </span>
-        <span class="link-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg>
-        </span>
-      </div>
-    </a>
-
-    <a href="https://rfmss.github.io/jogos" class="featured-link" target="_blank" rel="noopener noreferrer">
-      <div class="link-inner">
-        <span>
-          JOGOS
-          <span class="link-label">Sala de jogos com voz</span>
-        </span>
-        <span class="link-arrow">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg>
-        </span>
-      </div>
-    </a>
-
-    <!-- Projects bento -->
-    <p class="section-label">Projetos</p>
-    <div class="bento">
-
-      <!-- BIJULED -->
-      <a href="https://rfmss.github.io/bijuled" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Bijuled</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3 8 9l4 13 4-13-2.5-6"/><path d="M17 3a2 2 0 0 1 1.6.8l3 4a2 2 0 0 1 .013 2.382l-7.99 10.986a2 2 0 0 1-3.247 0l-7.99-10.986A2 2 0 0 1 2.4 7.8l2.998-3.997A2 2 0 0 1 7 3z"/><path d="M2 9h20"/></svg></span>
-      </a>
-
-      <!-- BLOCO -->
-      <a href="https://rfmss.github.io/bloco" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Bloco</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg></span>
-      </a>
-
-      <!-- CALCULADORA -->
-      <a href="https://rfmss.github.io/calculadora" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Calculadora</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
-      </a>
-
-      <!-- DIRLIZANU -->
-      <a href="https://rfmss.github.io/dirlizanu" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Dirlizanu</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 12h8"/><path d="m12 16 4-4-4-4"/></svg></span>
-      </a>
-
-      <!-- ESKREV — logo oficial -->
-      <a href="https://rfmss.github.io/eskrev" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Eskrev</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 686 689" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="41">
-          <path d="m192.01 33-152.17 586.3s-17.9 34.46 8.95 35.81 40.28-35.81 40.28-35.81l80.57-246.15 398.32-205.88-274.5 259.44-74.59 112.03 434.13 98.47"/>
-        </svg></span>
-      </a>
-
-      <!-- FERNANDATOWERS -->
-      <a href="https://rfmss.github.io/FernandaTowers" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Fernanda Towers</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.296 3.464 3.02 3.956"/><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3z"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m6.18 5.276 3.1 3.899"/></svg></span>
-      </a>
-
-      <!-- LORE -->
-      <a href="https://rfmss.github.io/Lore" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Lore</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8"/><path d="M8 14h4"/></svg></span>
-      </a>
-
-      <!-- NOTA -->
-      <a href="https://rfmss.github.io/nota" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Nota</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></span>
-      </a>
-
-      <!-- P -->
-      <a href="https://rfmss.github.io/p" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Caça-Palavra</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 11 4-4 4 4"/><path d="M18 16V7"/><path d="m2 16 4.039-9.69a.5.5 0 0 1 .923 0L11 16"/><path d="M3.304 13h6.392"/></svg></span>
-      </a>
-
-      <!-- POMODORO -->
-      <a href="https://rfmss.github.io/pomodoro" class="bento-card" target="_blank" rel="noopener noreferrer">
-        <span class="bento-name">Pomodoro</span>
-        <span class="bento-icon"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg></span>
-      </a>
-
     </div>
-  </div>
 
-  <!-- Fixed social footer -->
-  <footer class="social-footer">
+    <!-- Fixed social footer -->
+    <footer class="social-footer">
+      <!-- Bluesky -->
+      <a
+        href="https://bsky.app/profile/rfmss.github.io"
+        class="social-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Bluesky @rfmss.github.io"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M64 18.75C88.75 37.06 115.19 74.43 128 94.58C140.81 74.43 167.25 37.06 192 18.75C209.94 6.56 240 -0.94 240 32.5C240 39.13 236.25 85.56 234.06 93.13C226.5 120 199 128 173.87 123.19C228.94 132.13 242.25 163.69 213.75 195.19C158.25 262.69 134.5 182.07 128 160.56C121.5 182.07 97.75 262.69 42.25 195.19C13.75 163.69 27.06 132.13 82.13 123.19C57 128 29.5 120 21.94 93.13C19.75 85.56 16 39.13 16 32.5C16 -0.94 46.06 6.56 64 18.75Z"
+          />
+        </svg>
+        <span class="social-handle">bsky</span>
+      </a>
 
-    <!-- Bluesky -->
-    <a href="https://bsky.app/profile/rfmss.github.io" class="social-link" target="_blank" rel="noopener noreferrer" title="Bluesky @rfmss.github.io">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M64 18.75C88.75 37.06 115.19 74.43 128 94.58C140.81 74.43 167.25 37.06 192 18.75C209.94 6.56 240 -0.94 240 32.5C240 39.13 236.25 85.56 234.06 93.13C226.5 120 199 128 173.87 123.19C228.94 132.13 242.25 163.69 213.75 195.19C158.25 262.69 134.5 182.07 128 160.56C121.5 182.07 97.75 262.69 42.25 195.19C13.75 163.69 27.06 132.13 82.13 123.19C57 128 29.5 120 21.94 93.13C19.75 85.56 16 39.13 16 32.5C16 -0.94 46.06 6.56 64 18.75Z"/>
-      </svg>
-      <span class="social-handle">bsky</span>
-    </a>
+      <!-- Mastodon wandering.shop -->
+      <a
+        href="https://wandering.shop/@rafa"
+        class="social-link"
+        target="_blank"
+        rel="me noopener noreferrer"
+        title="Mastodon @rafa@wandering.shop"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"
+          />
+        </svg>
+        <span class="social-handle">mastodon</span>
+      </a>
 
-    <!-- Mastodon wandering.shop -->
-    <a href="https://wandering.shop/@rafa" class="social-link" target="_blank" rel="me noopener noreferrer" title="Mastodon @rafa@wandering.shop">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"/>
-      </svg>
-      <span class="social-handle">mastodon</span>
-    </a>
+      <!-- Mastodon hachyderm.io -->
+      <a
+        href="https://hachyderm.io/@rfmss"
+        class="social-link"
+        target="_blank"
+        rel="me noopener noreferrer"
+        title="Mastodon @rfmss@hachyderm.io"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"
+          />
+        </svg>
+        <span class="social-handle">hachyderm</span>
+      </a>
 
-    <!-- Mastodon hachyderm.io -->
-    <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank" rel="me noopener noreferrer" title="Mastodon @rfmss@hachyderm.io">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"/>
-      </svg>
-      <span class="social-handle">hachyderm</span>
-    </a>
+      <!-- Lemmy -->
+      <a
+        href="https://sh.itjust.works/u/rfmss"
+        class="social-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Lemmy sh.itjust.works/u/rfmss"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.43a8,8,0,1,0,13,9.22A80,80,0,0,1,144,192a8,8,0,0,0,0-16,64,64,0,1,1,64-64,65.15,65.15,0,0,1-1.81,15.27A8,8,0,0,0,207.82,128,80,80,0,0,0,64,112a64,64,0,0,1,53.25,45.92ZM232,208H216V192a8,8,0,0,0-16,0v16H184a8,8,0,0,0,0,16h16v16a8,8,0,0,0,16,0V224h16a8,8,0,0,0,0-16Z"
+          />
+        </svg>
+        <span class="social-handle">lemmy</span>
+      </a>
 
-    <!-- Lemmy -->
-    <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank" rel="noopener noreferrer" title="Lemmy sh.itjust.works/u/rfmss">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.43a8,8,0,1,0,13,9.22A80,80,0,0,1,144,192a8,8,0,0,0,0-16,64,64,0,1,1,64-64,65.15,65.15,0,0,1-1.81,15.27A8,8,0,0,0,207.82,128,80,80,0,0,0,64,112a64,64,0,0,1,53.25,45.92ZM232,208H216V192a8,8,0,0,0-16,0v16H184a8,8,0,0,0,0,16h16v16a8,8,0,0,0,16,0V224h16a8,8,0,0,0,0-16Z"/>
-      </svg>
-      <span class="social-handle">lemmy</span>
-    </a>
+      <!-- GitHub -->
+      <a
+        href="https://github.com/rfmss"
+        class="social-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="GitHub github.com/rfmss"
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24,40,40,0,0,0-40-40,8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
+          />
+        </svg>
+        <span class="social-handle">github</span>
+      </a>
 
-    <!-- GitHub -->
-    <a href="https://github.com/rfmss" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub github.com/rfmss">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24,40,40,0,0,0-40-40,8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/>
-      </svg>
-      <span class="social-handle">github</span>
-    </a>
+      <!-- Email -->
+      <a href="mailto:rfmss@disr.it" class="social-link" title="rfmss@disr.it">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 256 256"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"
+          />
+        </svg>
+        <span class="social-handle">email</span>
+      </a>
+    </footer>
 
-    <!-- Email -->
-    <a href="mailto:rfmss@disr.it" class="social-link" title="rfmss@disr.it">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/>
-      </svg>
-      <span class="social-handle">email</span>
-    </a>
-
-  </footer>
-
-  <script>
-    if (window._pal) document.body.style.background = window._pal.h;
-  </script>
-</body>
+    <script>
+      if (window._pal) document.body.style.background = window._pal.h;
+    </script>
+  </body>
 </html>
