@@ -1,4 +1,4 @@
-var CACHE = 'rfmss-v3';
+var CACHE = 'rfmss-v4';
 var URLS = [
   '/',
   '/jogos/',

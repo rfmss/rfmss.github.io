@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-title" content="rfmss" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="theme-color" content="#8fb3ae" />
-  <meta name="description" content="rfmss — cognitive creative developer. Ferramentas pequenas, offline e teimosamente humanas: Escrevaral, Bijuled, Notas, Pomodoro e outras fábulas interativas." />
+  <meta name="description" content="rfmss — pesquisa aplicada em escrita e cognição. Investigo o que o escritor brasileiro precisa e transformo o estudo em ferramentas: Escrevaral, Bijuled, Notas do Rafa, Pomodoro e mais." />
   <meta property="og:title" content="rfmss" />
-  <meta property="og:description" content="Ferramentas pequenas, offline e teimosamente humanas." />
+  <meta property="og:description" content="Investigo o que o escritor brasileiro precisa — e transformo o estudo em ferramenta." />
   <meta property="og:url" content="https://rafa.pro.br/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
@@ -24,7 +24,7 @@
     "@type": "Person",
     "name": "rfmss",
     "url": "https://rafa.pro.br/",
-    "jobTitle": "Cognitive Creative Developer",
+    "jobTitle": "Pesquisador em escrita e cognição · Vibecoder",
     "sameAs": [
       "https://github.com/rfmss",
       "https://bsky.app/profile/rafa.pro.br",
@@ -156,54 +156,25 @@
       max-width: 34ch;
     }
 
-    /* ── Raposa fabulista ── */
-    .fox-row {
-      display: flex;
-      align-items: flex-end;
-      gap: 14px;
-      margin-top: 34px;
-      min-height: 64px;
-    }
-    .fox-btn {
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-      line-height: 0;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform 0.2s ease;
-    }
-    .fox-btn img { width: 58px; height: 58px; display: block; }
-    .fox-btn:hover { transform: rotate(-6deg) scale(1.08); }
-    .fox-bubble {
-      position: relative;
-      background: var(--card-hover);
-      border: 1px solid var(--line);
-      border-radius: 14px 14px 14px 3px;
-      padding: 12px 16px;
-      max-width: 46ch;
-      font-size: 0.92rem;
-      font-style: italic;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      pointer-events: none;
-    }
-    .fox-bubble.on { opacity: 1; transform: none; pointer-events: auto; }
-    .fox-bubble .moral-tag {
+    .credentials {
       font-family: var(--mono);
-      font-style: normal;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--use-accent);
-      display: block;
-      margin-bottom: 4px;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+      color: var(--ink-faint);
+      max-width: 52ch;
+      margin-top: 18px;
+      padding-left: 14px;
+      border-left: 2px solid var(--use-accent);
     }
-    .fox-bubble a { color: var(--use-accent); font-style: normal; font-family: var(--mono); font-size: 0.72rem; text-decoration: none; }
-    .fox-bubble a:hover { text-decoration: underline; }
+    .lede-sub {
+      font-size: 0.98rem;
+      font-style: italic;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 44ch;
+      margin-top: 18px;
+    }
 
     /* ── Seções ── */
     .section-label {
@@ -350,25 +321,16 @@
 
     <!-- ── Hero ── -->
     <header class="hero">
-      <p class="eyebrow">cognitive creative developer</p>
+      <p class="eyebrow">pesquisa aplicada · escrita e cognição</p>
       <h1>rfmss<span class="dot">.</span></h1>
-      <p class="lede">Era uma vez um dev que fazia ferramentas pequenas, offline e teimosamente humanas. Elas moram aqui.</p>
-
-      <div class="fox-row">
-        <button class="fox-btn" id="fox" aria-label="Pedir uma moral do dia à raposa" title="A raposa tem uma moral pra você">
-          <img src="assets/fox.webp" alt="" width="58" height="58" />
-        </button>
-        <div class="fox-bubble" id="fox-bubble" role="status" aria-live="polite">
-          <span class="moral-tag">moral do dia</span>
-          <span id="fox-moral"></span><br />
-          <a href="/biscoito/">quer mais? abra um biscoito →</a>
-        </div>
-      </div>
+      <p class="lede">Investigo o que o escritor brasileiro precisa — e transformo o estudo em ferramenta.</p>
+      <p class="credentials">Língua Portuguesa · História · Artes · Ensino Religioso · esp. em Neurociência Cognitiva e Comportamental na Educação</p>
+      <p class="lede-sub">Hoje, vibecodo: cada artefato aqui nasce desses estudos, é usado por mim primeiro e testado antes de chegar a você.</p>
     </header>
 
     <main>
       <!-- ── Capítulos ── -->
-      <h2 class="section-label">capítulos principais</h2>
+      <h2 class="section-label">o que eu uso todo dia</h2>
       <nav class="chapters" aria-label="Projetos principais">
 
         <a class="chapter reveal" href="https://escrevaral.com" target="_blank" rel="noopener noreferrer">
@@ -376,7 +338,7 @@
           <span>
             <span class="chapter-name">Escrevaral</span>
             <span class="chapter-desc">Oficina literária offline — editor, análise gramatical do PT-BR regra a regra, prova de autoria. Sem nuvem, sem custo.</span>
-            <span class="chapter-moral"><b>moral</b>a página em branco perde para quem aparece todo dia.</span>
+            <span class="chapter-moral"><b>de verdade</b>escrevo nele todos os dias — a análise gramatical nasceu das minhas próprias dúvidas.</span>
           </span>
           <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
         </a>
@@ -386,7 +348,7 @@
           <span>
             <span class="chapter-name">Bijuled</span>
             <span class="chapter-desc">Match-3 com Fluent Emojis animados — 50 fases, criaturas especiais, rádio MPB de fundo. Também em APK.</span>
-            <span class="chapter-moral"><b>moral</b>junte três iguais e até a raiva vira ponto.</span>
+            <span class="chapter-moral"><b>de verdade</b>testado até virar APK: cada fase, cada cascata, cada emoji.</span>
           </span>
           <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
         </a>
@@ -395,8 +357,8 @@
           <span class="chapter-emoji"><img src="assets/memo.png" alt="" loading="lazy" /></span>
           <span>
             <span class="chapter-name">Notas do Rafa</span>
-            <span class="chapter-desc">Caderno público de ideias rápidas — o que passa pela cabeça, anotado antes que fuja.</span>
-            <span class="chapter-moral"><b>moral</b>pensamento solto é passarinho; anotado, é ninho.</span>
+            <span class="chapter-desc">Diário de sobrevivência da pandemia — 366 cenas em formato de roteiro de cinema, extraídas do <em>Fio do Verso</em>.</span>
+            <span class="chapter-moral"><b>de verdade</b>escrito com dor, sem IA, um dia por vez — um escritor no fim do mundo.</span>
           </span>
           <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
         </a>
@@ -406,14 +368,14 @@
           <span>
             <span class="chapter-name">Pomodoro</span>
             <span class="chapter-desc">Timer de foco sem enfeite: trabalha, pausa, repete. O tomate faz o resto.</span>
-            <span class="chapter-moral"><b>moral</b>o tempo rende para quem o fatia.</span>
+            <span class="chapter-moral"><b>de verdade</b>o tempo deste site inteiro foi fatiado por ele — mordida a mordida.</span>
           </span>
           <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
         </a>
       </nav>
 
       <!-- ── Mais projetos ── -->
-      <h2 class="section-label">outras fábulas</h2>
+      <h2 class="section-label">mais ferramentas</h2>
       <nav class="shelf reveal" aria-label="Outros projetos">
         <a href="/biscoito/">🥠 biscoito da sorte</a>
         <a href="/kilo/">tetris</a>
@@ -429,7 +391,7 @@
 
       <p class="colophon reveal">
         feito à mão em pt-BR · sem framework, sem build, sem tracking além de <a href="https://www.goatcounter.com" rel="noopener noreferrer">contagem anônima</a><br />
-        emojis por <a href="https://github.com/microsoft/fluentui-emoji" rel="noopener noreferrer">Fluent Emoji</a> (MIT) · raposa fabulista por conta da casa
+        cada ferramenta é usada e testada por mim antes de chegar aqui · emojis por <a href="https://github.com/microsoft/fluentui-emoji" rel="noopener noreferrer">Fluent Emoji</a> (MIT)
       </p>
     </main>
   </div>
@@ -463,35 +425,6 @@
   </footer>
 
   <script>
-    // ── Moral do dia (determinística pela data — a raposa não muda de ideia) ──
-    var MORAIS = [
-      "quem planta pixel colhe brinquedo.",
-      "a uva que a raposa alcança é a que ela escreve.",
-      "ferramenta boa é a que funciona sem sinal de wifi.",
-      "quem faz pequeno todo dia acorda com uma obra.",
-      "o atalho mais curto entre duas ideias é uma nota.",
-      "não há vento bom pra quem não abre o editor.",
-      "o jogo ensina errando; a vida, idem.",
-      "quem espera o tempo passar, perde o tomate.",
-      "código sem dono também é jardim.",
-      "a pressa é inimiga da cascata perfeita.",
-      "todo grande projeto já foi um rabisco com vergonha.",
-      "a raposa não corre atrás de tudo: escolhe uma uva por dia.",
-      "offline também é um lugar bonito de se morar.",
-      "quem nomeia bem as coisas já resolveu metade delas."
-    ];
-    (function () {
-      var fox = document.getElementById("fox");
-      var bubble = document.getElementById("fox-bubble");
-      var moralEl = document.getElementById("fox-moral");
-      var d = new Date();
-      var seed = d.getFullYear() * 366 + (d.getMonth() + 1) * 31 + d.getDate();
-      moralEl.textContent = MORAIS[seed % MORAIS.length];
-      fox.addEventListener("click", function () {
-        bubble.classList.toggle("on");
-      });
-    })();
-
     // ── Reveal escalonado ──
     (function () {
       var els = document.querySelectorAll(".reveal");
