@@ -1,35 +1,36 @@
-# rfmss — tools, language and cognition
+# rfmss. — Rafael Massena
 
-This repository acts as the entry point for my personal domain.
+Código-fonte de [rafa.pro.br](https://rafa.pro.br), portfólio de Rafael Massena —
+Rafa Mass como identidade pública e `rfmss` como identificador técnico.
 
-It routes visitors to the environments where my work is actively developed:
-tools built around language, cognition, privacy and local-first principles.
+## Trabalho principal
 
-## Active destination
+O site apresenta o [Escrevaral](https://escrevaral.com), uma oficina gratuita e
+offline-first para escritores brasileiros. O projeto explora processamento do
+português brasileiro por regras auditáveis, privacidade local e ferramentas de
+escrita sem conta obrigatória.
 
-→ **T∅T — Type over Tap**  
-An offline, self-contained writing environment focused on privacy, manual control and cognitive flow.  
-https://tot.undo.it/
+## Implementação
 
-## What this domain represents
+- HTML, CSS e JavaScript vanilla;
+- nenhuma etapa de build ou framework;
+- fontes do sistema, sem fontes externas;
+- temas claro e escuro e suporte a `prefers-reduced-motion`;
+- manifesto e service worker para uso offline;
+- domínio personalizado por `CNAME`;
+- métricas de visita anônimas pelo GoatCounter, sem cookies de publicidade.
 
-This space exists to host and point to projects that explore:
+## Desenvolvimento local
 
-- Language as an interface  
-- LLMs as technical instruments (not platforms)  
-- Human cognition as a design constraint  
-- Offline-first and privacy-first architectures  
-- Federated and decentralised networks  
+Como o service worker exige uma origem HTTP, visualize o site com um servidor
+local em vez de abrir o HTML diretamente:
 
-It is not a product catalogue or a SaaS landing page.  
-It is a working surface.
+```bash
+python -m http.server 4173
+```
 
-## Notes
+Depois, abra <http://localhost:4173>.
 
-- No analytics or tracking  
-- No cloud dependencies as a default  
-- Redirection is intentional and minimal  
+## Contato
 
----
-
-EOF
+[rafamass@proton.me](mailto:rafamass@proton.me)
