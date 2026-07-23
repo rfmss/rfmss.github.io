@@ -8,9 +8,9 @@
   <meta name="apple-mobile-web-app-title" content="rfmss" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="theme-color" content="#8fb3ae" />
-  <meta name="description" content="rfmss — pesquisa aplicada em escrita e cognição. Investigo o que o escritor brasileiro precisa e transformo o estudo em ferramentas: Escrevaral, Bijuled, Notas do Rafa, Pomodoro e mais." />
-  <meta property="og:title" content="rfmss" />
-  <meta property="og:description" content="Investigo o que o escritor brasileiro precisa — e transformo o estudo em ferramenta." />
+  <meta name="description" content="Rafael Massena (Rafa Mass) — escritor, educador e criador do Escrevaral, uma plataforma offline-first para escrita e análise do português brasileiro." />
+  <meta property="og:title" content="Rafael Massena · Rafa Mass · rfmss" />
+  <meta property="og:description" content="Escrita, educação e ferramentas auditáveis para o português brasileiro. Conheça o Escrevaral." />
   <meta property="og:url" content="https://rafa.pro.br/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
@@ -22,9 +22,12 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "rfmss",
+    "name": "Rafael Massena",
+    "alternateName": ["Rafa Mass", "rfmss"],
     "url": "https://rafa.pro.br/",
-    "jobTitle": "Pesquisador em escrita e cognição · Vibecoder",
+    "jobTitle": "Escritor, educador e desenvolvedor do Escrevaral",
+    "email": "mailto:rafamass@proton.me",
+    "nationality": "Brasileiro",
     "sameAs": [
       "https://github.com/rfmss",
       "https://bsky.app/profile/rafa.pro.br",
@@ -34,408 +37,392 @@
   }
   </script>
   <script>
-    (function () {
-      var P = [
-        { n: "terra",    h: "#cd7b5f", d: "#e0977b" },
-        { n: "olive",    h: "#6e7a4e", d: "#9aa871" },
-        { n: "rose",     h: "#c4708a", d: "#d893aa" },
-        { n: "lavender", h: "#9b8fc4", d: "#b3a8d6" },
-        { n: "blue",     h: "#6b9ab8", d: "#8fb6cf" },
-        { n: "sage",     h: "#8fb3ae", d: "#aecbc7" }
-      ];
-      var c = P[Math.floor(Math.random() * P.length)];
-      var q = document.querySelector.bind(document);
-      var e = q('meta[name="theme-color"]');
-      if (e) e.setAttribute("content", c.h);
-      e = q('link[rel="apple-touch-icon-precomposed"]');
-      if (e) e.setAttribute("href", "icon-" + c.n + ".png");
-      e = q('link[rel="apple-touch-icon"]');
-      if (e) e.setAttribute("href", "icon-" + c.n + ".png");
-      document.documentElement.style.setProperty("--accent", c.h);
-      document.documentElement.style.setProperty("--accent-dark", c.d);
-      window._pal = c;
-      try { localStorage.setItem("rfmss_pal", JSON.stringify(c)); } catch (x) {}
-      if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
-    })();
+    document.documentElement.classList.add("js");
   </script>
   <script data-goatcounter="https://rfmss.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  <title>rfmss · cognitive creative developer</title>
+  <title>Rafael Mass · escritor, educador e criador do Escrevaral</title>
   <style>
     :root {
       --accent: #8fb3ae;
       --accent-dark: #aecbc7;
       --paper: #f6f1e7;
       --ink: #1c1a17;
-      --ink-soft: rgba(28, 26, 23, 0.62);
-      --ink-faint: rgba(28, 26, 23, 0.38);
+      --soft: rgba(28, 26, 23, 0.66);
+      --faint: rgba(28, 26, 23, 0.43);
       --card: rgba(255, 255, 255, 0.55);
-      --card-hover: rgba(255, 255, 255, 0.85);
-      --line: rgba(28, 26, 23, 0.1);
+      --card-hover: rgba(255, 255, 255, 0.82);
+      --line: rgba(28, 26, 23, 0.12);
       --serif: Georgia, "Times New Roman", "Iowan Old Style", serif;
       --mono: "Courier New", Courier, monospace;
     }
+
+    html {
+      --use-accent: var(--accent);
+      scroll-behavior: smooth;
+    }
+
     @media (prefers-color-scheme: dark) {
       :root {
         --paper: #16130f;
         --ink: #ece5d8;
-        --ink-soft: rgba(236, 229, 216, 0.6);
-        --ink-faint: rgba(236, 229, 216, 0.36);
+        --soft: rgba(236, 229, 216, 0.68);
+        --faint: rgba(236, 229, 216, 0.44);
         --card: rgba(255, 255, 255, 0.045);
-        --card-hover: rgba(255, 255, 255, 0.09);
-        --line: rgba(236, 229, 216, 0.12);
+        --card-hover: rgba(255, 255, 255, 0.085);
+        --line: rgba(236, 229, 216, 0.13);
       }
       html { --use-accent: var(--accent-dark); }
-    }
-    html { --use-accent: var(--accent); }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body { background: var(--paper); }
-
-    body {
-      min-height: 100vh;
-      color: var(--ink);
-      font-family: var(--serif);
-      padding: 0 24px 120px;
-      overflow-x: hidden;
-    }
-    /* wash de cor da paleta no topo — assinatura rfmss, versão sutil */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -30vh -20vw auto -20vw;
-      height: 75vh;
-      background: radial-gradient(ellipse at 50% 0%, var(--use-accent) 0%, transparent 62%);
-      opacity: 0.16;
-      pointer-events: none;
-      z-index: 0;
-    }
-    @media (prefers-color-scheme: dark) {
       body::before { opacity: 0.1; }
     }
 
-    ::selection { background: var(--use-accent); color: var(--paper); }
-
-    a { color: inherit; }
-    :focus-visible { outline: 2px solid var(--use-accent); outline-offset: 3px; border-radius: 4px; }
-
-    .wrap { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
-
-    /* ── Hero ── */
-    .hero { padding: 9vh 0 40px; }
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); }
+    body {
+      min-height: 100vh;
+      padding: 0 24px 72px;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: var(--serif);
     }
-    .eyebrow::before {
+    body::before {
       content: "";
-      width: 26px;
-      height: 1px;
-      background: var(--use-accent);
-      display: inline-block;
+      position: fixed;
+      inset: -30vh -20vw auto;
+      height: 75vh;
+      background: radial-gradient(ellipse at 50% 0%, var(--use-accent), transparent 62%);
+      opacity: 0.15;
+      pointer-events: none;
     }
-    h1 {
-      font-size: clamp(4rem, 14vw, 7.5rem);
-      font-weight: 700;
-      letter-spacing: -0.045em;
-      line-height: 0.95;
-      margin: 18px 0 26px;
+    ::selection { color: var(--paper); background: var(--use-accent); }
+    a { color: inherit; }
+    button, textarea { font: inherit; }
+    :focus-visible {
+      outline: 3px solid var(--use-accent);
+      outline-offset: 4px;
+      border-radius: 4px;
     }
-    h1 .dot { color: var(--use-accent); }
-    .lede {
-      font-size: clamp(1.05rem, 2.6vw, 1.3rem);
-      font-style: italic;
-      line-height: 1.55;
-      color: var(--ink-soft);
-      max-width: 34ch;
+    .skip {
+      position: absolute;
+      z-index: 10;
+      top: -60px;
+      left: 12px;
+      padding: 10px;
+      color: var(--paper);
+      background: var(--ink);
     }
+    .skip:focus { top: 12px; }
+    .wrap { position: relative; max-width: 920px; margin: auto; }
 
-    .lede-sub {
-      font-size: 0.98rem;
-      font-style: italic;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      max-width: 58ch;
-      margin-top: 20px;
-      padding-left: 14px;
-      border-left: 2px solid var(--use-accent);
-    }
-
-    /* ── Seções ── */
-    .section-label {
+    /* Hero: the technical signature reveals the person behind it. */
+    .hero { padding: 9vh 0 44px; }
+    .eyebrow, .label, .kicker, .tag, .status {
+      color: var(--faint);
       font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--ink-faint);
-      margin: 56px 0 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
-    .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .eyebrow { display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--use-accent); }
+    h1 {
+      margin: 20px 0 12px;
+      font-size: clamp(3.5rem, 13vw, 7.5rem);
+      letter-spacing: -0.055em;
+      line-height: 0.9;
+    }
+    .dot, .accent { color: var(--use-accent); }
+    .human-name { margin: 0 0 22px; font-size: clamp(1.25rem, 4vw, 2rem); }
+    .lede {
+      max-width: 42ch;
+      margin: 0;
+      color: var(--soft);
+      font-size: clamp(1.12rem, 2.8vw, 1.45rem);
+      line-height: 1.5;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+    .button {
+      padding: 12px 18px;
+      border: 1px solid var(--use-accent);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      text-decoration: none;
+    }
+    .button.primary { color: #16130f; background: var(--use-accent); font-weight: bold; }
+    .status { display: inline-flex; align-items: center; gap: 8px; margin: 22px 0 0; letter-spacing: 0.08em; text-transform: none; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--use-accent); }
 
-    /* ── Capítulos (featured) ── */
-    .chapters { display: flex; flex-direction: column; gap: 12px; }
-    .chapter {
-      display: grid;
-      grid-template-columns: 64px 1fr auto;
-      gap: 18px;
-      align-items: center;
+    .label { display: flex; align-items: center; gap: 12px; margin: 64px 0 20px; }
+    .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .featured {
+      padding: clamp(22px, 5vw, 42px);
+      border: 1px solid var(--line);
+      border-radius: 22px;
       background: var(--card);
+    }
+    .featured h2 { margin: 6px 0 14px; font-size: clamp(2rem, 7vw, 3.8rem); letter-spacing: -0.04em; }
+    .featured-intro { max-width: 65ch; font-size: 1.13rem; line-height: 1.65; }
+    .evidence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 28px 0; }
+    .evidence div { padding-top: 12px; border-top: 2px solid var(--use-accent); }
+    .evidence strong { display: block; font-size: 1.5rem; }
+    .evidence span { color: var(--soft); font-size: 0.82rem; line-height: 1.4; }
+    .details, .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .detail, .project-card { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+    .detail h3, .project-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
+    .detail p, .project-card p { margin: 0; color: var(--soft); line-height: 1.6; }
+    .featured-link { display: inline-block; margin-top: 26px; font-family: var(--mono); font-weight: bold; text-underline-offset: 5px; }
+
+    /* A small local rule turns the portfolio into evidence, not a claim. */
+    .lab {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.75fr);
+      gap: 0;
+      margin-top: 18px;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 22px 24px;
-      text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      background: var(--paper);
     }
-    .chapter:hover {
-      background: var(--card-hover);
-      border-color: var(--use-accent);
-      transform: translateY(-3px);
+    .lab-editor, .lab-result { padding: clamp(18px, 4vw, 30px); }
+    .lab-editor { border-right: 1px solid var(--line); }
+    .lab label { display: block; margin-bottom: 10px; font-family: var(--mono); font-size: 0.72rem; }
+    .lab textarea {
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 1.2rem;
+      line-height: 1.55;
     }
-    .chapter-emoji { width: 64px; height: 64px; }
-    .chapter-emoji img { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18)); }
-    .chapter-name {
-      display: block;
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 3px;
-    }
-    .chapter-desc { display: block; font-size: 0.88rem; line-height: 1.5; color: var(--ink-soft); }
-    .chapter-moral {
-      display: block;
-      font-size: 0.78rem;
-      font-style: italic;
-      color: var(--ink-faint);
-      margin-top: 7px;
-    }
-    .chapter-moral b { color: var(--use-accent); font-weight: 400; font-style: normal; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 5px; }
-    .chapter-arrow { color: var(--ink-faint); transition: transform 0.2s ease, color 0.2s ease; }
-    .chapter:hover .chapter-arrow { transform: translateX(4px); color: var(--use-accent); }
-
-    /* ── Mais projetos ── */
-    .shelf { display: flex; flex-wrap: wrap; gap: 8px; }
-    .shelf a {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      color: var(--ink-soft);
-      background: var(--card);
-      border: 1px solid var(--line);
+    .lab textarea:focus-visible { outline-offset: 8px; }
+    .lab button {
+      margin-top: 12px;
+      padding: 9px 14px;
+      border: 1px solid var(--use-accent);
       border-radius: 999px;
-      padding: 9px 16px;
-      transition: all 0.18s ease;
-    }
-    .shelf a:hover {
-      color: var(--paper);
-      background: var(--use-accent);
-      border-color: var(--use-accent);
-      transform: translateY(-2px);
-    }
-
-    /* ── Colofão ── */
-    .colophon {
-      margin-top: 64px;
+      color: var(--ink);
+      background: transparent;
       font-family: var(--mono);
-      font-size: 0.66rem;
-      letter-spacing: 0.08em;
-      color: var(--ink-faint);
-      line-height: 1.8;
+      font-size: 0.72rem;
+      cursor: pointer;
     }
-    .colophon a { color: var(--ink-soft); }
+    .lab-result { background: color-mix(in srgb, var(--use-accent) 10%, transparent); }
+    .lab-result h3 { margin: 10px 0; font-size: 1.1rem; }
+    .lab-result p { margin: 0; color: var(--soft); line-height: 1.55; }
+    .rule-code { margin-top: 16px !important; font-family: var(--mono); font-size: 0.7rem; }
 
-    /* ── Footer social ── */
-    .social-footer {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(20, 18, 16, 0.88);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 0 24px;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      text-decoration: none;
-      color: rgba(255, 255, 255, 0.55);
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: background 0.15s, color 0.15s;
-      white-space: nowrap;
-    }
-    .social-link:hover { background: rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.92); }
-    .social-link svg { display: block; flex-shrink: 0; }
-    .social-handle { display: none; }
-    @media (min-width: 520px) { .social-handle { display: inline; } }
+    .project-card { position: relative; min-height: 180px; padding-right: 112px; transition: background 0.2s, transform 0.2s; }
+    .project-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+    .project-card img { position: absolute; right: 18px; bottom: 16px; width: 78px; height: 78px; object-fit: contain; filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.16)); }
+    .project-card h3 a { text-underline-offset: 4px; }
+    .small-links { margin-top: 18px; color: var(--soft); font-family: var(--mono); font-size: 0.75rem; line-height: 1.9; }
 
-    /* ── Reveal ── */
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+    .timeline { padding-left: 24px; border-left: 1px solid var(--line); }
+    .role { position: relative; margin: 0 0 32px; }
+    .role::before { content: ""; position: absolute; top: 7px; left: -29px; width: 9px; height: 9px; border-radius: 50%; background: var(--use-accent); }
+    .role h3 { margin: 0; font-size: 1.15rem; }
+    .role .when { margin: 6px 0 10px; color: var(--faint); font-family: var(--mono); font-size: 0.72rem; }
+    .role p { margin: 0; color: var(--soft); line-height: 1.6; }
+    .education { columns: 2; column-gap: 36px; padding-left: 20px; }
+    .education li { break-inside: avoid; margin-bottom: 13px; color: var(--soft); line-height: 1.45; }
+    .english { max-width: 68ch; color: var(--soft); font-style: italic; line-height: 1.65; }
+    .colophon { margin-top: 64px; color: var(--faint); font-family: var(--mono); font-size: 0.68rem; line-height: 1.8; }
+    .footer { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 0.74rem; }
+    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.55s, transform 0.55s; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 620px) {
+      body { padding: 0 16px 56px; }
+      .hero { padding-top: 7vh; }
+      .evidence, .details, .project-grid, .lab { grid-template-columns: 1fr; }
+      .lab-editor { border-right: 0; border-bottom: 1px solid var(--line); }
+      .education { columns: 1; }
+      .featured { border-radius: 18px; }
+      .actions { align-items: stretch; }
+      .button { flex: 1 1 auto; text-align: center; }
+      .project-card { min-height: 165px; padding-right: 98px; }
+      .project-card img { width: 65px; height: 65px; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 560px) {
-      body { padding: 0 16px 110px; }
-      .hero { padding-top: 7vh; }
-      .chapter { grid-template-columns: 46px 1fr; padding: 18px; }
-      .chapter-emoji { width: 46px; height: 46px; }
-      .chapter-arrow { display: none; }
-      .chapter-name { font-size: 1.2rem; }
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .js .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <div class="wrap">
-
-    <!-- ── Hero ── -->
     <header class="hero">
-      <p class="eyebrow">pesquisa aplicada · escrita e cognição</p>
+      <p class="eyebrow">Rafa Mass · Brasil</p>
       <h1>rfmss<span class="dot">.</span></h1>
-      <p class="lede">Investigo o que o escritor brasileiro precisa — e transformo o estudo em ferramenta.</p>
-      <p class="lede-sub">O arco: um festival universitário de melhor roteiro, francês em Genebra, lexicografia digital ao lado de Bechara na Academia Brasileira de Letras, oito anos de publicidade no Rio — e, quando o mundo fechou, a educação, das Letras à neurociência cognitiva. Escrevi para sobreviver; do que sobrou, faço ferramentas. Uso cada uma primeiro, e só então ofereço.</p>
+      <p class="human-name">é Rafael Massena.</p>
+      <p class="lede">Escritor, educador e criador de ferramentas para o português brasileiro — entre linguagem, cognição e código.</p>
+      <div class="actions">
+        <a class="button primary" href="https://escrevaral.com">Conheça o Escrevaral →</a>
+        <a class="button" href="mailto:rafamass@proton.me">Contato profissional</a>
+      </div>
+      <p class="status">Disponível para oportunidades remotas em linguagem, escrita e educação.</p>
     </header>
 
-    <main>
-      <!-- ── Capítulos ── -->
-      <h2 class="section-label">o que eu uso todo dia</h2>
-      <nav class="chapters" aria-label="Projetos principais">
+    <main id="conteudo">
+      <section aria-labelledby="escrevaral-titulo">
+        <p class="label">trabalho principal</p>
+        <article class="featured reveal">
+          <p class="kicker">gratuito · privado · offline-first</p>
+          <h2 id="escrevaral-titulo">Escrevaral<span class="accent">.</span></h2>
+          <p class="featured-intro">Uma oficina para escritores brasileiros, construída em HTML, CSS e JavaScript vanilla. Reúne editor, análise gramatical, estilo e ritmo, laboratório de rima e métrica e verificação técnica de autoria — sem exigir conta nem enviar manuscritos para fora do dispositivo.</p>
+          <div class="evidence" aria-label="Evidências do projeto">
+            <div><strong>1.900+</strong><span>casos na bancada gramatical</span></div>
+            <div><strong>offline-first</strong><span>PWA e aplicativo Android assinado</span></div>
+            <div><strong>regras auditáveis</strong><span>análise explicável, não uma caixa-preta</span></div>
+          </div>
+          <div class="details">
+            <div class="detail"><h3>Português verificável</h3><p>As análises são baseadas em regras que podem ser inspecionadas e corrigidas. A bancada usa obras de Clarice Lispector, Machado de Assis e Guimarães Rosa no controle de falsos positivos.</p></div>
+            <div class="detail"><h3>Privacidade por arquitetura</h3><p>O trabalho acontece localmente e continua disponível sem conexão. Não há conta obrigatória nem coleta externa dos manuscritos.</p></div>
+          </div>
 
-        <a class="chapter reveal" href="https://escrevaral.com" target="_blank" rel="noopener noreferrer">
-          <span class="chapter-emoji"><img src="assets/writing.png" alt="" loading="lazy" /></span>
-          <span>
-            <span class="chapter-name">Escrevaral</span>
-            <span class="chapter-desc">Oficina literária offline — editor, análise gramatical do PT-BR regra a regra, prova de autoria. Sem nuvem, sem custo.</span>
-            <span class="chapter-moral"><b>de verdade</b>escrevo nele todos os dias — a análise gramatical nasceu das minhas próprias dúvidas.</span>
-          </span>
-          <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
-        </a>
+          <div class="lab" aria-labelledby="lab-title">
+            <div class="lab-editor">
+              <label for="sample">Uma regra, aqui e agora</label>
+              <textarea id="sample" spellcheck="false">Fazem dez anos que escrevo todos os dias.</textarea>
+              <button id="analyze" type="button">analisar localmente</button>
+            </div>
+            <div class="lab-result" aria-live="polite">
+              <span class="tag">miniatura demonstrativa</span>
+              <h3 id="lab-title">Concordância impessoal</h3>
+              <p id="feedback">Ao indicar tempo decorrido, o verbo “fazer” é impessoal: “Faz dez anos…”. Nada sai desta página.</p>
+              <p class="rule-code" id="trace">regra: fazer + duração → singular</p>
+            </div>
+          </div>
+          <a class="featured-link" href="https://escrevaral.com">Abrir a oficina completa →</a>
+        </article>
+      </section>
 
-        <a class="chapter reveal" href="/bijuled/">
-          <span class="chapter-emoji"><img src="assets/robot.webp" alt="" loading="lazy" /></span>
-          <span>
-            <span class="chapter-name">Bijuled</span>
-            <span class="chapter-desc">Match-3 com Fluent Emojis animados — 50 fases, criaturas especiais, rádio MPB de fundo. Também em APK.</span>
-            <span class="chapter-moral"><b>de verdade</b>testado até virar APK: cada fase, cada cascata, cada emoji.</span>
-          </span>
-          <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
-        </a>
+      <section aria-labelledby="projetos-titulo">
+        <h2 class="label" id="projetos-titulo">projetos autorais e jogos</h2>
+        <div class="project-grid">
+          <article class="project-card reveal">
+            <span class="tag">projeto autoral · 2020</span>
+            <h3><a href="https://fiodoverso.wordpress.com">Fio do Verso</a></h3>
+            <p>360 textos originais em 366 dias — crônicas, ficção curta, poesia e cordel — e o podcast ficcional narrado <em>Eles Que Ouçam</em>.</p>
+            <img src="assets/fox.webp" alt="" loading="lazy" />
+          </article>
+          <article class="project-card reveal">
+            <span class="tag">jogo</span>
+            <h3><a href="/bijuled/">Bijuled</a></h3>
+            <p>Match-3 com emojis animados, 50 fases, criaturas especiais e rádio brasileira.</p>
+            <img src="assets/robot.webp" alt="" loading="lazy" />
+          </article>
+          <article class="project-card reveal">
+            <span class="tag">arquivo autoral</span>
+            <h3><a href="/nota/">Notas do Rafa</a></h3>
+            <p>Cenas em formato de roteiro escritas durante a pandemia, extraídas do Fio do Verso.</p>
+            <img src="assets/memo.png" alt="" loading="lazy" />
+          </article>
+          <article class="project-card reveal">
+            <span class="tag">ferramenta</span>
+            <h3><a href="/pomodoro/">Pomodoro</a></h3>
+            <p>Um timer de foco direto: trabalha, pausa, repete. Sem conta e sem distração.</p>
+            <img src="assets/tomato.png" alt="" loading="lazy" />
+          </article>
+        </div>
+        <p class="small-links">experimentos: <a href="/biscoito/">biscoito da sorte</a> · <a href="/kilo/">tetris</a> · <a href="/jogos/">jogos com voz</a> · <a href="/radio/">rádio</a> · <a href="/bloco/">bloco</a> · <a href="/calculadora/">calculadora</a></p>
+      </section>
 
-        <a class="chapter reveal" href="/nota/">
-          <span class="chapter-emoji"><img src="assets/memo.png" alt="" loading="lazy" /></span>
-          <span>
-            <span class="chapter-name">Notas do Rafa</span>
-            <span class="chapter-desc">Diário de sobrevivência da pandemia — 366 cenas em formato de roteiro de cinema, extraídas do <em>Fio do Verso</em>.</span>
-            <span class="chapter-moral"><b>de verdade</b>escrito com dor, sem IA, um dia por vez — um escritor no fim do mundo.</span>
-          </span>
-          <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
-        </a>
+      <section aria-labelledby="experiencia-titulo">
+        <h2 class="label" id="experiencia-titulo">experiência</h2>
+        <div class="timeline">
+          <article class="role"><h3>Fundador e desenvolvedor · Escrevaral</h3><p class="when">remoto · em desenvolvimento</p><p>Projeto independente de processamento do português brasileiro, escrita e privacidade local.</p></article>
+          <article class="role"><h3>Professor do Ensino Médio</h3><p class="when">Brasil · 2023–2024</p><p>Planejamento de aulas, avaliação de trabalhos e devolutivas escritas, com formação em linguagem, literatura e artes visuais.</p></article>
+          <article class="role"><h3>Copywriter e diretor de arte</h3><p class="when">Rio de Janeiro · 2009–2019</p><p>Dez anos de criação para televisão, mídia impressa e digital, com trabalhos para Rede Globo, Record TV, L’Oréal, Vale e General Motors.</p></article>
+        </div>
+      </section>
 
-        <a class="chapter reveal" href="/pomodoro/">
-          <span class="chapter-emoji"><img src="assets/tomato.png" alt="" loading="lazy" /></span>
-          <span>
-            <span class="chapter-name">Pomodoro</span>
-            <span class="chapter-desc">Timer de foco sem enfeite: trabalha, pausa, repete. O tomate faz o resto.</span>
-            <span class="chapter-moral"><b>de verdade</b>o tempo deste site inteiro foi fatiado por ele — mordida a mordida.</span>
-          </span>
-          <span class="chapter-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></span>
-        </a>
-      </nav>
+      <section aria-labelledby="formacao-titulo">
+        <h2 class="label" id="formacao-titulo">formação</h2>
+        <ul class="education">
+          <li>Especialização em Neurociência Educacional — Faculdade Unypública, 2024</li>
+          <li>Especialização em Metodologia do Ensino de História — UNINTER, 2024</li>
+          <li>Especialização em Docência do Ensino Religioso — UNINTER, 2024</li>
+          <li>Formação Pedagógica em Artes Visuais — UNINTER, 2023</li>
+          <li>Licenciatura em Letras — UNINTER, 2023</li>
+          <li>Bacharelado em Artes Plásticas — UFES, 2008</li>
+        </ul>
+      </section>
 
-      <!-- ── Mais projetos ── -->
-      <h2 class="section-label">mais ferramentas</h2>
-      <nav class="shelf reveal" aria-label="Outros projetos">
-        <a href="/biscoito/">🥠 biscoito da sorte</a>
-        <a href="/kilo/">tetris</a>
-        <a href="/jogos/">jogos com voz</a>
-        <a href="/radio/">rádio brasil</a>
-        <a href="/goodtimes/">goodtimes radio</a>
-        <a href="/bloco/">bloco</a>
-        <a href="/calculadora/">calculadora</a>
-        <a href="/dirlizanu/">slide puzzle</a>
-        <a href="/p/">caça-palavras</a>
-        <a href="/FernandaTowers/">fernanda towers</a>
-      </nav>
+      <section aria-labelledby="english-title">
+        <h2 class="label" id="english-title">in English</h2>
+        <p class="english" lang="en">Brazilian writer and educator, native Portuguese speaker, and creator of Escrevaral. Available for remote opportunities in Brazilian Portuguese language and quality evaluation, data annotation, writing, editing, and online education. Functional English for reading and writing.</p>
+      </section>
 
-      <p class="colophon reveal">
-        feito à mão em pt-BR · sem framework, sem build, sem tracking além de <a href="https://www.goatcounter.com" rel="noopener noreferrer">contagem anônima</a><br />
-        cada ferramenta é usada e testada por mim antes de chegar aqui · emojis por <a href="https://github.com/microsoft/fluentui-emoji" rel="noopener noreferrer">Fluent Emoji</a> (MIT)
-      </p>
+      <p class="colophon">feito à mão em pt-BR · sem framework, sem build · PWA offline · contagem anônima por <a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a></p>
     </main>
+    <footer class="footer">
+      <a href="mailto:rafamass@proton.me">rafamass@proton.me</a>
+      <a href="https://github.com/rfmss" rel="me">GitHub · rfmss</a>
+      <a href="https://bsky.app/profile/rafa.pro.br" rel="me">Bluesky</a>
+      <a href="https://wandering.shop/@rafa" rel="me">Mastodon</a>
+    </footer>
   </div>
 
-  <!-- ── Footer social ── -->
-  <footer class="social-footer">
-    <a href="https://bsky.app/profile/rafa.pro.br" class="social-link" target="_blank" rel="noopener noreferrer" title="Bluesky @rafa.pro.br">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M64 18.75C88.75 37.06 115.19 74.43 128 94.58C140.81 74.43 167.25 37.06 192 18.75C209.94 6.56 240 -0.94 240 32.5C240 39.13 236.25 85.56 234.06 93.13C226.5 120 199 128 173.87 123.19C228.94 132.13 242.25 163.69 213.75 195.19C158.25 262.69 134.5 182.07 128 160.56C121.5 182.07 97.75 262.69 42.25 195.19C13.75 163.69 27.06 132.13 82.13 123.19C57 128 29.5 120 21.94 93.13C19.75 85.56 16 39.13 16 32.5C16 -0.94 46.06 6.56 64 18.75Z"/></svg>
-      <span class="social-handle">bsky</span>
-    </a>
-    <a href="https://wandering.shop/@rafa" class="social-link" target="_blank" rel="me noopener noreferrer" title="Mastodon @rafa@wandering.shop">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"/></svg>
-      <span class="social-handle">mastodon</span>
-    </a>
-    <a href="https://hachyderm.io/@rfmss" class="social-link" target="_blank" rel="me noopener noreferrer" title="Mastodon @rfmss@hachyderm.io">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M221.1,70.42a72.74,72.74,0,0,0-6.38-31.63C203.86,15.51,180.63,3.57,155.13,2.13,150.38,1.87,145.5,2,140.74,2h-.19c-4.76,0-9.64-.15-14.39.11C101.16,3.57,77.93,15.51,67.07,38.79a72.74,72.74,0,0,0-6.38,31.63C60.43,80.55,60.25,90.7,60.4,100.6c.22,15.87,1.61,31.61,7.67,46.5a79.11,79.11,0,0,0,47,45.36c18.54,6.22,39.5,7.28,58.62,2.23a8.25,8.25,0,0,0,.93-.32,74.82,74.82,0,0,0,16.72-7.64,1,1,0,0,0,.44-1.18l-3.5-11.2a1,1,0,0,0-1.26-.66,105.12,105.12,0,0,1-15.6,5.39c-16.41,4.12-34.14,3.59-50.19-1.4a63.29,63.29,0,0,1-37.6-36.33c-.2-.52-.39-1-.56-1.56,0,0,26.44,6.44,59.89,7.13,10.46.2,20.86-.14,31.29-.89,18.77-1.38,38.65-4.38,52.9-17.46C237,119.87,221.38,80.44,221.1,70.42Zm-37.9,60.33a1,1,0,0,1-.54.87c-8.16,4-17.42,5.18-26.49,5.78-10.33.68-20.74,1-31.1.77-15.27-.35-35.08-2.46-35.08-2.46,0,7.49.47,14.62.47,14.62L87,150.09S83,136.76,83,116.58V89.72c0-20.07,13.15-26,13.15-26l.09,0a104.68,104.68,0,0,1,27.76-8.64A120.75,120.75,0,0,1,144.49,54c29.29,0,44.84,11.56,44.84,11.56S203,72,203,89.72v33.12A7.09,7.09,0,0,1,183.2,130.75Z"/></svg>
-      <span class="social-handle">hachyderm</span>
-    </a>
-    <a href="https://sh.itjust.works/u/rfmss" class="social-link" target="_blank" rel="noopener noreferrer" title="Lemmy sh.itjust.works/u/rfmss">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.43a8,8,0,1,0,13,9.22A80,80,0,0,1,144,192a8,8,0,0,0,0-16,64,64,0,1,1,64-64,65.15,65.15,0,0,1-1.81,15.27A8,8,0,0,0,207.82,128,80,80,0,0,0,64,112a64,64,0,0,1,53.25,45.92ZM232,208H216V192a8,8,0,0,0-16,0v16H184a8,8,0,0,0,0,16h16v16a8,8,0,0,0,16,0V224h16a8,8,0,0,0,0-16Z"/></svg>
-      <span class="social-handle">lemmy</span>
-    </a>
-    <a href="https://github.com/rfmss" class="social-link" target="_blank" rel="noopener noreferrer" title="GitHub github.com/rfmss">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24,40,40,0,0,0-40-40,8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></svg>
-      <span class="social-handle">github</span>
-    </a>
-    <a href="mailto:rfmss@disr.it" class="social-link" title="rfmss@disr.it">
-      <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>
-      <span class="social-handle">email</span>
-    </a>
-  </footer>
-
   <script>
-    // ── Reveal escalonado ──
     (function () {
-      var els = document.querySelectorAll(".reveal");
-      if (!("IntersectionObserver" in window)) {
-        for (var i = 0; i < els.length; i++) els[i].classList.add("in");
-        return;
-      }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) {
-            en.target.classList.add("in");
-            io.unobserve(en.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      var delay = 0;
-      els.forEach(function (el) {
-        el.style.transitionDelay = (delay % 4) * 90 + "ms";
-        delay++;
-        io.observe(el);
+      var palettes = [
+        { name: "terra", hex: "#cd7b5f", dark: "#e0977b" },
+        { name: "olive", hex: "#6e7a4e", dark: "#9aa871" },
+        { name: "rose", hex: "#c4708a", dark: "#d893aa" },
+        { name: "lavender", hex: "#9b8fc4", dark: "#b3a8d6" },
+        { name: "blue", hex: "#6b9ab8", dark: "#8fb6cf" },
+        { name: "sage", hex: "#8fb3ae", dark: "#aecbc7" }
+      ];
+      var palette = palettes[Math.floor(Math.random() * palettes.length)];
+      var root = document.documentElement;
+      var theme = document.querySelector('meta[name="theme-color"]');
+      var icons = document.querySelectorAll('link[rel^="apple-touch-icon"]');
+
+      root.style.setProperty("--accent", palette.hex);
+      root.style.setProperty("--accent-dark", palette.dark);
+      if (theme) theme.setAttribute("content", palette.hex);
+      icons.forEach(function (icon) { icon.setAttribute("href", "icon-" + palette.name + ".png"); });
+
+      var input = document.getElementById("sample");
+      var button = document.getElementById("analyze");
+      var feedback = document.getElementById("feedback");
+      var trace = document.getElementById("trace");
+      button.addEventListener("click", function () {
+        var match = input.value.match(/\bfazem\s+((?:um|uma|dois|duas|tr[eê]s|dez|\d+)\s+(?:dias?|meses?|anos?))/i);
+        if (match) {
+          feedback.textContent = "Sugestão: “Faz " + match[1] + "…”. Ao indicar tempo decorrido, o verbo fazer é impessoal.";
+          trace.textContent = "regra acionada: fazer + duração → singular";
+        } else {
+          feedback.textContent = "Nenhuma ocorrência desta regra foi encontrada. A miniatura procura apenas ‘fazem’ seguido de duração.";
+          trace.textContent = "regra inspecionada: fazer + duração → singular";
+        }
       });
+
+      var reveals = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window)) {
+        reveals.forEach(function (element) { element.classList.add("in"); });
+      } else {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        reveals.forEach(function (element, index) {
+          element.style.transitionDelay = (index % 4) * 90 + "ms";
+          observer.observe(element);
+        });
+      }
+
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
     })();
   </script>
 </body>

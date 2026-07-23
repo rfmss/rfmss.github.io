@@ -1,50 +1,57 @@
-var CACHE = 'rfmss-v4';
-var URLS = [
-  '/',
-  '/jogos/',
-  '/eskrev/',
-  '/bijuled/',
-  '/FernandaTowers/',
-  '/p/',
-  '/dirlizanu/',
-  '/nota/',
-  '/pomodoro/',
-  '/bloco/',
-  '/calculadora/',
-  '/manifest.json'
+var CACHE = 'rfmss-v6';
+var HOME = '/';
+var CORE = [
+  HOME,
+  '/index.html',
+  '/manifest.json',
+  '/assets/fox.webp',
+  '/assets/robot.webp',
+  '/assets/memo.png',
+  '/assets/tomato.png',
+  '/icon-sage.png',
+  '/icon-sage-192.png',
+  '/icon-sage-512.png'
 ];
 
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open(CACHE).then(function(cache) {
-      return Promise.all(URLS.map(function(url) {
-        return fetch(url).then(function(r) {
-          if (r.ok) return cache.put(url, r);
-        }).catch(function() {});
-      }));
-    }).then(function() { return self.skipWaiting(); })
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE)
+      .then(function(cache) { return cache.addAll(CORE); })
+      .then(function() { return self.skipWaiting(); })
   );
 });
 
-self.addEventListener('activate', function(e) {
-  e.waitUntil(
-    caches.keys().then(function(keys) {
-      return Promise.all(keys.filter(function(k) { return k !== CACHE; }).map(function(k) { return caches.delete(k); }));
-    }).then(function() { return self.clients.claim(); })
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys()
+      .then(function(keys) {
+        return Promise.all(keys
+          .filter(function(key) { return key !== CACHE; })
+          .map(function(key) { return caches.delete(key); }));
+      })
+      .then(function() { return self.clients.claim(); })
   );
 });
 
-self.addEventListener('fetch', function(e) {
-  if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then(function(cached) {
-      var net = fetch(e.request).then(function(r) {
-        if (r.ok) {
-          caches.open(CACHE).then(function(c) { c.put(e.request, r.clone()); });
+self.addEventListener('fetch', function(event) {
+  if (event.request.method !== 'GET' || new URL(event.request.url).origin !== self.location.origin) return;
+
+  event.respondWith(
+    caches.match(event.request).then(function(cached) {
+      var network = fetch(event.request).then(function(response) {
+        if (response.ok) {
+          var copy = response.clone();
+          event.waitUntil(caches.open(CACHE).then(function(cache) {
+            return cache.put(event.request, copy);
+          }));
         }
-        return r;
-      }).catch(function() {});
-      return cached || net;
+        return response;
+      });
+
+      if (event.request.mode === 'navigate') {
+        return network.catch(function() { return cached || caches.match(HOME); });
+      }
+      return cached || network;
     })
   );
 });
