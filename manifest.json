@@ -1,11 +1,11 @@
 {
-  "name": "Rafael Mass · rfmss",
-  "short_name": "rfmss",
-  "description": "Portfólio de Rafael Massena (Rafa Mass): escrita, educação e ferramentas para o português brasileiro.",
+  "name": "Rafa Mass · portfólio autoral",
+  "short_name": "Rafa Mass",
+  "description": "Portfólio de Rafael Massena: escrita, educação e ferramentas locais construídas no Brasil.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#8fb3ae",
-  "theme_color": "#8fb3ae",
+  "background_color": "#171a1d",
+  "theme_color": "#171a1d",
   "icons": [
     {
       "src": "icon-sage.png",
