@@ -7,7 +7,7 @@
  * No external fonts, images, JavaScript or global reset are required.
  */
 
-[data-rm-blueprint] {
+:where([data-rm-blueprint]) {
   --rm-stage: #171a1d;
   --rm-stage-deep: #0f1113;
   --rm-paper: #f3eee4;
