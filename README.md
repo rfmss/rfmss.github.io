@@ -36,7 +36,14 @@ A fotografia editorial fornecida pelo autor foi convertida em um SVG autocontido
 
 - [Escrevaral](https://escrevaral.com) — oficina local para escrita e português brasileiro;
 - [Dirlizanu](https://rfmss.github.io/dirlizanu/) — quebra-cabeça deslizante com matrizes auditadas;
-- [Boletos Mil](https://rfmss.github.io/boletosmil/) — organização doméstica local-first.
+- [Boletos Mil](https://rfmss.github.io/boletosmil/) — organização doméstica local-first;
+- [Pomodoro](https://rfmss.github.io/pomodoro/) — timer livre e ciclo local com retomada de sessão.
+
+## Prévias
+
+As imagens do catálogo representam as interfaces reais dos produtos. Dirlizanu e Pomodoro usam SVGs locais, vetoriais e compatíveis com o cache offline.
+
+Leia [PREVIAS-PROJETOS.md](docs/PREVIAS-PROJETOS.md).
 
 ## Arquitetura
 
@@ -45,11 +52,15 @@ index.html                            conteúdo e estrutura semântica
 assets/css/rafamass-blueprint.css    fundações reutilizáveis da assinatura
 assets/css/portfolio.css             composição geral do portfólio
 assets/css/profile-refinement.css    perfil, redes e estados de ponteiro
+assets/css/project-previews.css      enquadramento das imagens dos produtos
 assets/js/portfolio.js               demonstração local, revelações e PWA
 assets/perfil-rafa.svg               retrato otimizado de Rafael Massena
 assets/boletosmil.svg                marca técnica do projeto
+assets/dirlizanu-preview.svg         prévia da interface do jogo
+assets/pomodoro-preview.svg          prévia da interface do timer
 docs/ASSINATURA-VISUAL.md            sistema visual
 docs/PERFIL-E-REDES.md               identidade, canais e interação
+docs/PREVIAS-PROJETOS.md             manutenção dos quadros
 manifest.json                         metadados da PWA
 sw.js                                 cache offline
 ```
@@ -83,8 +94,9 @@ Não abra o arquivo diretamente pelo sistema de arquivos: o service worker preci
 2. Descreva a função antes de listar tecnologias.
 3. Use até cinco sinais técnicos curtos.
 4. Reserve o vermelhão para um único ponto de atenção.
-5. Teste em 320, 375, 768, 1024 e telas com pouca altura.
-6. Atualize `CORE` em `sw.js` ao adicionar assets.
+5. Gere uma prévia baseada na interface real.
+6. Teste em 320, 375, 768, 1024 e telas com pouca altura.
+7. Atualize `CORE` em `sw.js` ao adicionar assets.
 
 ## Licença
 
