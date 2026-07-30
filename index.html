@@ -1,23 +1,27 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="rfmss" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="theme-color" content="#8fb3ae" />
-  <meta name="description" content="Rafael Massena (Rafa Mass) — escritor, educador e criador do Escrevaral, uma plataforma offline-first para escrita e análise do português brasileiro." />
-  <meta property="og:title" content="Rafael Massena · Rafa Mass · rfmss" />
-  <meta property="og:description" content="Escrita, educação e ferramentas auditáveis para o português brasileiro. Conheça o Escrevaral." />
-  <meta property="og:url" content="https://rafa.pro.br/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-  <link rel="canonical" href="https://rafa.pro.br/" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="icon-sage.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="icon-sage.png" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rafa Mass">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#171a1d">
+  <meta name="description" content="Rafael Massena — escritor, educador e desenvolvedor de ferramentas digitais para escrita, língua portuguesa e organização pessoal.">
+  <meta property="og:title" content="Rafa Mass · Rafael Massena">
+  <meta property="og:description" content="Escrevaral, Dirlizanu, Boletos Mil e outros projetos autorais construídos no Brasil.">
+  <meta property="og:url" content="https://rafa.pro.br/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <link rel="canonical" href="https://rafa.pro.br/">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-sage.png">
+  <link rel="stylesheet" href="assets/css/rafamass-blueprint.css">
+  <link rel="stylesheet" href="assets/css/portfolio.css">
+  <link rel="stylesheet" href="assets/css/profile-refinement.css">
+  <link rel="stylesheet" href="assets/css/project-previews.css">
+  <script>document.documentElement.classList.add('js');</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,10 +29,12 @@
     "name": "Rafael Massena",
     "alternateName": ["Rafa Mass", "rfmss"],
     "url": "https://rafa.pro.br/",
-    "jobTitle": "Escritor, educador e desenvolvedor do Escrevaral",
+    "jobTitle": "Escritor, educador e desenvolvedor de ferramentas digitais",
     "email": "mailto:rafamass@proton.me",
     "nationality": "Brasileiro",
+    "knowsAbout": ["escrita", "português brasileiro", "educação", "neurociência educacional", "aplicações offline-first"],
     "sameAs": [
+      "http://lattes.cnpq.br/4850442759129345",
       "https://github.com/rfmss",
       "https://bsky.app/profile/rafa.pro.br",
       "https://wandering.shop/@rafa",
@@ -36,394 +42,223 @@
     ]
   }
   </script>
-  <script>
-    document.documentElement.classList.add("js");
-  </script>
   <script data-goatcounter="https://rfmss.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-  <title>Rafael Mass · escritor, educador e criador do Escrevaral</title>
-  <style>
-    :root {
-      --accent: #8fb3ae;
-      --accent-dark: #aecbc7;
-      --paper: #f6f1e7;
-      --ink: #1c1a17;
-      --soft: rgba(28, 26, 23, 0.66);
-      --faint: rgba(28, 26, 23, 0.43);
-      --card: rgba(255, 255, 255, 0.55);
-      --card-hover: rgba(255, 255, 255, 0.82);
-      --line: rgba(28, 26, 23, 0.12);
-      --serif: Georgia, "Times New Roman", "Iowan Old Style", serif;
-      --mono: "Courier New", Courier, monospace;
-    }
-
-    html {
-      --use-accent: var(--accent);
-      scroll-behavior: smooth;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --paper: #16130f;
-        --ink: #ece5d8;
-        --soft: rgba(236, 229, 216, 0.68);
-        --faint: rgba(236, 229, 216, 0.44);
-        --card: rgba(255, 255, 255, 0.045);
-        --card-hover: rgba(255, 255, 255, 0.085);
-        --line: rgba(236, 229, 216, 0.13);
-      }
-      html { --use-accent: var(--accent-dark); }
-      body::before { opacity: 0.1; }
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; background: var(--paper); }
-    body {
-      min-height: 100vh;
-      padding: 0 24px 72px;
-      overflow-x: hidden;
-      color: var(--ink);
-      font-family: var(--serif);
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -30vh -20vw auto;
-      height: 75vh;
-      background: radial-gradient(ellipse at 50% 0%, var(--use-accent), transparent 62%);
-      opacity: 0.15;
-      pointer-events: none;
-    }
-    ::selection { color: var(--paper); background: var(--use-accent); }
-    a { color: inherit; }
-    button, textarea { font: inherit; }
-    :focus-visible {
-      outline: 3px solid var(--use-accent);
-      outline-offset: 4px;
-      border-radius: 4px;
-    }
-    .skip {
-      position: absolute;
-      z-index: 10;
-      top: -60px;
-      left: 12px;
-      padding: 10px;
-      color: var(--paper);
-      background: var(--ink);
-    }
-    .skip:focus { top: 12px; }
-    .wrap { position: relative; max-width: 920px; margin: auto; }
-
-    /* Hero: the technical signature reveals the person behind it. */
-    .hero { padding: 9vh 0 44px; }
-    .eyebrow, .label, .kicker, .tag, .status {
-      color: var(--faint);
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-    .eyebrow { display: flex; align-items: center; gap: 10px; }
-    .eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--use-accent); }
-    h1 {
-      margin: 20px 0 12px;
-      font-size: clamp(3.5rem, 13vw, 7.5rem);
-      letter-spacing: -0.055em;
-      line-height: 0.9;
-    }
-    .dot, .accent { color: var(--use-accent); }
-    .human-name { margin: 0 0 22px; font-size: clamp(1.25rem, 4vw, 2rem); }
-    .lede {
-      max-width: 42ch;
-      margin: 0;
-      color: var(--soft);
-      font-size: clamp(1.12rem, 2.8vw, 1.45rem);
-      line-height: 1.5;
-    }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-    .button {
-      padding: 12px 18px;
-      border: 1px solid var(--use-accent);
-      border-radius: 999px;
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      text-decoration: none;
-    }
-    .button.primary { color: #16130f; background: var(--use-accent); font-weight: bold; }
-    .status { display: inline-flex; align-items: center; gap: 8px; margin: 22px 0 0; letter-spacing: 0.08em; text-transform: none; }
-    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--use-accent); }
-
-    .label { display: flex; align-items: center; gap: 12px; margin: 64px 0 20px; }
-    .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-    .featured {
-      padding: clamp(22px, 5vw, 42px);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: var(--card);
-    }
-    .featured h2 { margin: 6px 0 14px; font-size: clamp(2rem, 7vw, 3.8rem); letter-spacing: -0.04em; }
-    .featured-intro { max-width: 65ch; font-size: 1.13rem; line-height: 1.65; }
-    .evidence { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 28px 0; }
-    .evidence div { padding-top: 12px; border-top: 2px solid var(--use-accent); }
-    .evidence strong { display: block; font-size: 1.5rem; }
-    .evidence span { color: var(--soft); font-size: 0.82rem; line-height: 1.4; }
-    .details, .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .detail, .project-card { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
-    .detail h3, .project-card h3 { margin: 0 0 8px; font-size: 1.05rem; }
-    .detail p, .project-card p { margin: 0; color: var(--soft); line-height: 1.6; }
-    .featured-link { display: inline-block; margin-top: 26px; font-family: var(--mono); font-weight: bold; text-underline-offset: 5px; }
-
-    /* A small local rule turns the portfolio into evidence, not a claim. */
-    .lab {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.75fr);
-      gap: 0;
-      margin-top: 18px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--paper);
-    }
-    .lab-editor, .lab-result { padding: clamp(18px, 4vw, 30px); }
-    .lab-editor { border-right: 1px solid var(--line); }
-    .lab label { display: block; margin-bottom: 10px; font-family: var(--mono); font-size: 0.72rem; }
-    .lab textarea {
-      width: 100%;
-      min-height: 92px;
-      resize: vertical;
-      border: 0;
-      color: var(--ink);
-      background: transparent;
-      font-size: 1.2rem;
-      line-height: 1.55;
-    }
-    .lab textarea:focus-visible { outline-offset: 8px; }
-    .lab button {
-      margin-top: 12px;
-      padding: 9px 14px;
-      border: 1px solid var(--use-accent);
-      border-radius: 999px;
-      color: var(--ink);
-      background: transparent;
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      cursor: pointer;
-    }
-    .lab-result { background: color-mix(in srgb, var(--use-accent) 10%, transparent); }
-    .lab-result h3 { margin: 10px 0; font-size: 1.1rem; }
-    .lab-result p { margin: 0; color: var(--soft); line-height: 1.55; }
-    .rule-code { margin-top: 16px !important; font-family: var(--mono); font-size: 0.7rem; }
-
-    .project-card { position: relative; min-height: 180px; padding-right: 112px; transition: background 0.2s, transform 0.2s; }
-    .project-card:hover { background: var(--card-hover); transform: translateY(-2px); }
-    .project-card img { position: absolute; right: 18px; bottom: 16px; width: 78px; height: 78px; object-fit: contain; filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.16)); }
-    .project-card h3 a { text-underline-offset: 4px; }
-    .small-links { margin-top: 18px; color: var(--soft); font-family: var(--mono); font-size: 0.75rem; line-height: 1.9; }
-
-    .timeline { padding-left: 24px; border-left: 1px solid var(--line); }
-    .role { position: relative; margin: 0 0 32px; }
-    .role::before { content: ""; position: absolute; top: 7px; left: -29px; width: 9px; height: 9px; border-radius: 50%; background: var(--use-accent); }
-    .role h3 { margin: 0; font-size: 1.15rem; }
-    .role .when { margin: 6px 0 10px; color: var(--faint); font-family: var(--mono); font-size: 0.72rem; }
-    .role p { margin: 0; color: var(--soft); line-height: 1.6; }
-    .education { columns: 2; column-gap: 36px; padding-left: 20px; }
-    .education li { break-inside: avoid; margin-bottom: 13px; color: var(--soft); line-height: 1.45; }
-    .english { max-width: 68ch; color: var(--soft); font-style: italic; line-height: 1.65; }
-    .colophon { margin-top: 64px; color: var(--faint); font-family: var(--mono); font-size: 0.68rem; line-height: 1.8; }
-    .footer { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 0.74rem; }
-    .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.55s, transform 0.55s; }
-    .js .reveal.in { opacity: 1; transform: none; }
-
-    @media (max-width: 620px) {
-      body { padding: 0 16px 56px; }
-      .hero { padding-top: 7vh; }
-      .evidence, .details, .project-grid, .lab { grid-template-columns: 1fr; }
-      .lab-editor { border-right: 0; border-bottom: 1px solid var(--line); }
-      .education { columns: 1; }
-      .featured { border-radius: 18px; }
-      .actions { align-items: stretch; }
-      .button { flex: 1 1 auto; text-align: center; }
-      .project-card { min-height: 165px; padding-right: 98px; }
-      .project-card img { width: 65px; height: 65px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .js .reveal { opacity: 1; transform: none; }
-    }
-  </style>
+  <title>Rafa Mass · Rafael Massena</title>
 </head>
-<body>
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <div class="wrap">
-    <header class="hero">
-      <p class="eyebrow">Rafa Mass · Brasil</p>
-      <h1>rfmss<span class="dot">.</span></h1>
-      <p class="human-name">é Rafael Massena.</p>
-      <p class="lede">Escritor, educador e criador de ferramentas para o português brasileiro — entre linguagem, cognição e código.</p>
-      <div class="actions">
-        <a class="button primary" href="https://escrevaral.com">Conheça o Escrevaral →</a>
-        <a class="button" href="mailto:rafamass@proton.me">Contato profissional</a>
+<body data-rm-blueprint>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="site-shell">
+    <div class="technical-rail" aria-hidden="true">
+      <span>RF/MSS — PORTFÓLIO AUTORAL</span>
+      <span>BRASIL · LINGUAGEM · SISTEMAS LOCAIS</span>
+      <span>ATUALIZADO / 2026</span>
+    </div>
+
+    <header class="hero rm-surface" id="inicio">
+      <span class="blueprint-line horizontal" aria-hidden="true"></span>
+      <span class="blueprint-line vertical" aria-hidden="true"></span>
+
+      <div class="hero-copy">
+        <p class="hero-kicker">Escritor · educador · desenvolvedor</p>
+        <h1>Rafa<span>Mass</span></h1>
+        <p class="hero-name">é Rafael Massena.</p>
+        <p class="hero-lede">Desenvolvo projetos para escrita, língua portuguesa, educação e organização pessoal. Trabalho com aplicações locais, auditáveis, acessíveis e sem dependência obrigatória de nuvem.</p>
+
+        <div class="hero-actions">
+          <a class="action-link primary rm-command" href="https://escrevaral.com">Abrir Escrevaral</a>
+          <a class="action-link rm-command" href="#projetos">Ver projetos</a>
+          <a class="action-link rm-command" href="mailto:rafamass@proton.me">Contato profissional</a>
+        </div>
+
+        <p class="hero-status">Disponível para trabalhos remotos em língua portuguesa, escrita, avaliação de qualidade e educação.</p>
       </div>
-      <p class="status">Disponível para oportunidades remotas em linguagem, escrita e educação.</p>
+
+      <aside class="hero-profile" aria-label="Foto, currículo e redes sociais de Rafael Massena">
+        <figure class="profile-photo-frame">
+          <img src="assets/perfil-rafa.svg" alt="Retrato ilustrado de Rafael Massena, com óculos e barba, em estilo editorial blueprint" width="320" height="320">
+          <figcaption>RAFAEL MASSENA · BRASIL</figcaption>
+        </figure>
+
+        <div class="social-directory">
+          <section class="social-group" aria-labelledby="rafa-links-title">
+            <h2 id="rafa-links-title">Rafael Massena</h2>
+            <div class="social-links">
+              <a href="http://lattes.cnpq.br/4850442759129345">Lattes</a>
+              <a href="https://github.com/rfmss" rel="me">GitHub · @rfmss</a>
+              <a href="https://bsky.app/profile/rafa.pro.br" rel="me">Bluesky · @rafa.pro.br</a>
+              <a href="https://wandering.shop/@rafa" rel="me">Mastodon · @rafa</a>
+            </div>
+          </section>
+
+          <section class="social-group escrevaral-social" aria-labelledby="escrevaral-links-title">
+            <h2 id="escrevaral-links-title">Escrevaral <span>@escrevaral</span></h2>
+            <div class="social-links compact">
+              <a href="https://www.instagram.com/escrevaral/">Instagram</a>
+              <a href="https://www.threads.com/@escrevaral">Threads</a>
+              <a href="https://www.tiktok.com/@escrevaral">TikTok</a>
+              <a href="https://www.youtube.com/@escrevaral">YouTube</a>
+              <a href="https://bsky.app/profile/escrevaral.bsky.social">Bluesky</a>
+              <a href="https://x.com/escrevaral">X</a>
+            </div>
+          </section>
+        </div>
+      </aside>
     </header>
 
+    <nav class="section-nav rm-meta-strip" aria-label="Seções do portfólio">
+      <a href="#escrevaral">Escrevaral</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#trajetoria">Experiência</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
     <main id="conteudo">
-      <section aria-labelledby="escrevaral-titulo">
-        <p class="label">trabalho principal</p>
-        <article class="featured reveal">
-          <p class="kicker">gratuito · privado · offline-first</p>
-          <h2 id="escrevaral-titulo">Escrevaral<span class="accent">.</span></h2>
-          <p class="featured-intro">Uma oficina para escritores brasileiros, construída em HTML, CSS e JavaScript vanilla. Reúne editor, análise gramatical, estilo e ritmo, laboratório de rima e métrica e verificação técnica de autoria — sem exigir conta nem enviar manuscritos para fora do dispositivo.</p>
-          <div class="evidence" aria-label="Evidências do projeto">
-            <div><strong>1.900+</strong><span>casos na bancada gramatical</span></div>
-            <div><strong>offline-first</strong><span>PWA e aplicativo Android assinado</span></div>
-            <div><strong>regras auditáveis</strong><span>análise explicável, não uma caixa-preta</span></div>
+      <section class="content-section" id="escrevaral" aria-labelledby="escrevaral-title">
+        <header class="section-heading">
+          <div>
+            <span class="section-kicker">Projeto principal // oficina de escrita</span>
+            <h2>Escrevaral: escrita brasileira.</h2>
           </div>
-          <div class="details">
-            <div class="detail"><h3>Português verificável</h3><p>As análises são baseadas em regras que podem ser inspecionadas e corrigidas. A bancada usa obras de Clarice Lispector, Machado de Assis e Guimarães Rosa no controle de falsos positivos.</p></div>
-            <div class="detail"><h3>Privacidade por arquitetura</h3><p>O trabalho acontece localmente e continua disponível sem conexão. Não há conta obrigatória nem coleta externa dos manuscritos.</p></div>
+          <p>Aplicação local para escrever, revisar e analisar textos em português brasileiro, com regras verificáveis e funcionamento offline.</p>
+        </header>
+
+        <article class="case-study rm-surface reveal">
+          <div class="case-header">
+            <div>
+              <span class="project-code">PROJETO 01 · GRATUITO · OFFLINE-FIRST</span>
+              <h3 id="escrevaral-title">Escrevaral.</h3>
+              <p class="case-intro">Oficina de escrita em HTML, CSS e JavaScript vanilla. Reúne editor, gramática, estilo, ritmo, métrica, voz e autoria sem exigir conta nem enviar manuscritos para fora do dispositivo.</p>
+            </div>
+            <div class="case-register" aria-label="Dados técnicos do Escrevaral">
+              <div><span>Casos de teste</span><strong>1.900+</strong></div>
+              <div><span>Arquitetura</span><strong>PWA local</strong></div>
+              <div><span>Análise</span><strong>Auditável</strong></div>
+            </div>
           </div>
 
-          <div class="lab" aria-labelledby="lab-title">
-            <div class="lab-editor">
-              <label for="sample">Uma regra, aqui e agora</label>
+          <div class="evidence-grid" aria-label="Princípios do projeto">
+            <div class="evidence-card"><strong>Regras verificáveis</strong><span>As análises podem ser inspecionadas, corrigidas e testadas.</span></div>
+            <div class="evidence-card"><strong>Dados no dispositivo</strong><span>O texto permanece no aparelho e a conta não é obrigatória.</span></div>
+            <div class="evidence-card"><strong>Decisão humana</strong><span>A ferramenta apresenta evidências; quem escreve mantém a decisão final.</span></div>
+          </div>
+
+          <div class="analysis-bench" aria-labelledby="bench-title">
+            <div class="bench-input">
+              <label for="sample">Teste local // concordância impessoal</label>
               <textarea id="sample" spellcheck="false">Fazem dez anos que escrevo todos os dias.</textarea>
-              <button id="analyze" type="button">analisar localmente</button>
+              <button class="bench-button rm-command" id="analyze" type="button">Analisar localmente</button>
             </div>
-            <div class="lab-result" aria-live="polite">
-              <span class="tag">miniatura demonstrativa</span>
-              <h3 id="lab-title">Concordância impessoal</h3>
+            <div class="bench-output" aria-live="polite">
+              <span class="meta-label">Demonstração</span>
+              <h4 id="bench-title">Resultado da regra</h4>
               <p id="feedback">Ao indicar tempo decorrido, o verbo “fazer” é impessoal: “Faz dez anos…”. Nada sai desta página.</p>
-              <p class="rule-code" id="trace">regra: fazer + duração → singular</p>
+              <p class="rule-trace" id="trace">regra pronta // fazer + duração → singular</p>
             </div>
           </div>
-          <a class="featured-link" href="https://escrevaral.com">Abrir a oficina completa →</a>
+
+          <div class="project-actions" style="margin-top: 28px">
+            <a class="rm-command" href="https://escrevaral.com">Abrir aplicação</a>
+            <a class="rm-command" href="https://github.com/rfmss/escrevaral">Ver código</a>
+          </div>
         </article>
       </section>
 
-      <section aria-labelledby="projetos-titulo">
-        <h2 class="label" id="projetos-titulo">projetos autorais e jogos</h2>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <span class="tag">projeto autoral · 2020</span>
-            <h3><a href="https://fiodoverso.wordpress.com">Fio do Verso</a></h3>
-            <p>360 textos originais em 366 dias — crônicas, ficção curta, poesia e cordel — e o podcast ficcional narrado <em>Eles Que Ouçam</em>.</p>
-            <img src="assets/fox.webp" alt="" loading="lazy" />
+      <section class="content-section" id="projetos" aria-labelledby="projects-title">
+        <header class="section-heading">
+          <div>
+            <span class="section-kicker">Portfólio de produtos</span>
+            <h2 id="projects-title">Projetos autorais e ferramentas.</h2>
+          </div>
+          <p>Aplicações independentes construídas com foco em uso real, privacidade local, acessibilidade e manutenção simples.</p>
+        </header>
+
+        <div class="featured-projects">
+          <article class="project-card rm-surface reveal">
+            <span class="project-code">PROJETO 02 · JOGO · MIT</span>
+            <h3>Dirlizanu.</h3>
+            <p>Quebra-cabeça deslizante com campanha, cinquenta desafios, matrizes 4 × 4 e 5 × 5 e verificação automática de solução.</p>
+            <div class="project-visual project-preview-frame">
+              <img class="project-preview" src="assets/dirlizanu-preview.svg" alt="Prévia do Dirlizanu com tabuleiro cyan, blocos claros e peça 15 vermelha" width="720" height="420">
+            </div>
+            <div class="project-signals"><span>10 capítulos</span><span>50 desafios</span><span>4 × 4 / 5 × 5</span><span>offline</span></div>
+            <div class="project-actions">
+              <a class="rm-command" href="https://rfmss.github.io/dirlizanu/">Jogar</a>
+              <a class="rm-command" href="https://github.com/rfmss/dirlizanu">Repositório</a>
+            </div>
           </article>
-          <article class="project-card reveal">
-            <span class="tag">jogo</span>
-            <h3><a href="/bijuled/">Bijuled</a></h3>
-            <p>Match-3 com emojis animados, 50 fases, criaturas especiais e rádio brasileira.</p>
-            <img src="assets/robot.webp" alt="" loading="lazy" />
-          </article>
-          <article class="project-card reveal">
-            <span class="tag">arquivo autoral</span>
-            <h3><a href="/nota/">Notas do Rafa</a></h3>
-            <p>Cenas em formato de roteiro escritas durante a pandemia, extraídas do Fio do Verso.</p>
-            <img src="assets/memo.png" alt="" loading="lazy" />
-          </article>
-          <article class="project-card reveal">
-            <span class="tag">ferramenta</span>
-            <h3><a href="/pomodoro/">Pomodoro</a></h3>
-            <p>Um timer de foco direto: trabalha, pausa, repete. Sem conta e sem distração.</p>
-            <img src="assets/tomato.png" alt="" loading="lazy" />
+
+          <article class="project-card rm-surface reveal">
+            <span class="project-code">PROJETO 03 · ORGANIZAÇÃO DOMÉSTICA · MIT</span>
+            <h3>Boletos Mil.</h3>
+            <p>Organizador local de contas, parcelas e comprovantes. Funciona no navegador sem cadastro, integração bancária ou nuvem obrigatória.</p>
+            <div class="project-visual" aria-hidden="true">
+              <div class="receipt-miniature">
+                <img class="receipt-icon" src="assets/boletosmil.svg" alt="">
+                <div class="receipt-line"></div><div class="receipt-line"></div><div class="receipt-line short"></div><span class="receipt-seal">✓</span>
+              </div>
+            </div>
+            <div class="project-signals"><span>dados no aparelho</span><span>backup JSON</span><span>sem conta</span><span>PWA</span></div>
+            <div class="project-actions">
+              <a class="rm-command" href="https://rfmss.github.io/boletosmil/">Abrir aplicação</a>
+              <a class="rm-command" href="https://github.com/rfmss/boletosmil">Repositório</a>
+            </div>
           </article>
         </div>
-        <p class="small-links">experimentos: <a href="/biscoito/">biscoito da sorte</a> · <a href="/kilo/">tetris</a> · <a href="/jogos/">jogos com voz</a> · <a href="/radio/">rádio</a> · <a href="/bloco/">bloco</a> · <a href="/calculadora/">calculadora</a></p>
+
+        <div class="archive-grid" aria-label="Outros projetos">
+          <article class="archive-card reveal"><div><span class="project-code">PROJETO 04 · 2020</span><h3><a href="https://fiodoverso.wordpress.com">Fio do Verso</a></h3><p>Crônicas, ficção, poesia e cordel publicados durante um ano.</p></div><img src="assets/fox.webp" alt="" loading="lazy"></article>
+          <article class="archive-card reveal"><div><span class="project-code">JOGO 05</span><h3><a href="/bijuled/">Bijuled</a></h3><p>Match-3 com cinquenta fases, criaturas especiais e rádio brasileira.</p></div><img src="assets/robot.webp" alt="" loading="lazy"></article>
+          <article class="archive-card reveal"><div><span class="project-code">ARQUIVO 06</span><h3><a href="/nota/">Notas do Rafa</a></h3><p>Cenas em formato de roteiro escritas durante a pandemia.</p></div><img src="assets/memo.png" alt="" loading="lazy"></article>
+          <article class="archive-card reveal"><div><span class="project-code">FERRAMENTA 07 · PWA</span><h3><a href="https://rfmss.github.io/pomodoro/">Pomodoro</a></h3><p>Timer livre e ciclo Pomodoro local, com retomada após bloqueio de tela e funcionamento offline.</p></div><img src="assets/pomodoro-preview.svg" alt="Prévia do Pomodoro Blueprint com relógio 25:00 e selo de tomate" loading="lazy" width="512" height="512"></article>
+        </div>
+        <p class="experiment-links">Outros experimentos: <a href="/biscoito/">biscoito da sorte</a> · <a href="/kilo/">tetris</a> · <a href="/jogos/">jogos com voz</a> · <a href="/radio/">rádio</a> · <a href="/bloco/">bloco</a> · <a href="/calculadora/">calculadora</a></p>
       </section>
 
-      <section aria-labelledby="experiencia-titulo">
-        <h2 class="label" id="experiencia-titulo">experiência</h2>
-        <div class="timeline">
-          <article class="role"><h3>Fundador e desenvolvedor · Escrevaral</h3><p class="when">remoto · em desenvolvimento</p><p>Projeto independente de processamento do português brasileiro, escrita e privacidade local.</p></article>
-          <article class="role"><h3>Professor do Ensino Médio</h3><p class="when">Brasil · 2023–2024</p><p>Planejamento de aulas, avaliação de trabalhos e devolutivas escritas, com formação em linguagem, literatura e artes visuais.</p></article>
-          <article class="role"><h3>Copywriter e diretor de arte</h3><p class="when">Rio de Janeiro · 2009–2019</p><p>Dez anos de criação para televisão, mídia impressa e digital, com trabalhos para Rede Globo, Record TV, L’Oréal, Vale e General Motors.</p></article>
+      <section class="content-section" id="trajetoria" aria-labelledby="trajectory-title">
+        <header class="section-heading">
+          <div><span class="section-kicker">Currículo</span><h2 id="trajectory-title">Experiência e formação.</h2></div>
+          <p>Atuação em escrita, direção de arte, educação e desenvolvimento de produtos digitais.</p>
+        </header>
+
+        <div class="profile-dossier rm-dossier reveal">
+          <div class="profile-columns">
+            <div class="timeline">
+              <article class="timeline-entry"><h3>Fundador e desenvolvedor · Escrevaral</h3><p class="timeline-when">REMOTO · EM DESENVOLVIMENTO</p><p>Projeto independente para escrita, análise do português brasileiro, autoria e privacidade local.</p></article>
+              <article class="timeline-entry"><h3>Professor do Ensino Médio</h3><p class="timeline-when">BRASIL · 2023–2024</p><p>Planejamento de aulas, avaliação de trabalhos e devolutivas escritas.</p></article>
+              <article class="timeline-entry"><h3>Copywriter e diretor de arte</h3><p class="timeline-when">RIO DE JANEIRO · 2009–2019</p><p>Criação para televisão, mídia impressa e digital.</p></article>
+              <a class="lattes-link rm-command" href="http://lattes.cnpq.br/4850442759129345">Abrir Currículo Lattes</a>
+            </div>
+            <div>
+              <span class="project-code">FORMAÇÃO</span>
+              <ul class="education-list">
+                <li>Especialização em Neurociência Educacional — Faculdade Unypública, 2024</li>
+                <li>Especialização em Metodologia do Ensino de História — UNINTER, 2024</li>
+                <li>Especialização em Docência do Ensino Religioso — UNINTER, 2024</li>
+                <li>Formação Pedagógica em Artes Visuais — UNINTER, 2023</li>
+                <li>Licenciatura em Letras — UNINTER, 2023</li>
+                <li>Bacharelado em Artes Plásticas — UFES, 2008</li>
+              </ul>
+              <p class="english-note" lang="en">Brazilian writer and educator, native Portuguese speaker, and creator of Escrevaral. Available for remote work in Brazilian Portuguese language evaluation, writing, editing, data annotation and online education.</p>
+            </div>
+          </div>
         </div>
       </section>
-
-      <section aria-labelledby="formacao-titulo">
-        <h2 class="label" id="formacao-titulo">formação</h2>
-        <ul class="education">
-          <li>Especialização em Neurociência Educacional — Faculdade Unypública, 2024</li>
-          <li>Especialização em Metodologia do Ensino de História — UNINTER, 2024</li>
-          <li>Especialização em Docência do Ensino Religioso — UNINTER, 2024</li>
-          <li>Formação Pedagógica em Artes Visuais — UNINTER, 2023</li>
-          <li>Licenciatura em Letras — UNINTER, 2023</li>
-          <li>Bacharelado em Artes Plásticas — UFES, 2008</li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="english-title">
-        <h2 class="label" id="english-title">in English</h2>
-        <p class="english" lang="en">Brazilian writer and educator, native Portuguese speaker, and creator of Escrevaral. Available for remote opportunities in Brazilian Portuguese language and quality evaluation, data annotation, writing, editing, and online education. Functional English for reading and writing.</p>
-      </section>
-
-      <p class="colophon">feito à mão em pt-BR · sem framework, sem build · PWA offline · contagem anônima por <a href="https://www.goatcounter.com" rel="noopener noreferrer">GoatCounter</a></p>
     </main>
-    <footer class="footer">
-      <a href="mailto:rafamass@proton.me">rafamass@proton.me</a>
-      <a href="https://github.com/rfmss" rel="me">GitHub · rfmss</a>
-      <a href="https://bsky.app/profile/rafa.pro.br" rel="me">Bluesky</a>
-      <a href="https://wandering.shop/@rafa" rel="me">Mastodon</a>
+
+    <footer class="site-footer rm-surface" id="contato">
+      <div class="footer-lockup">
+        <div><strong>Contato profissional.</strong><p class="footer-meta">PT-BR · HTML/CSS/JS · PWA OFFLINE · <span id="currentYear">2026</span></p></div>
+        <div class="footer-links">
+          <a class="rm-command" href="mailto:rafamass@proton.me">E-mail</a>
+          <a class="rm-command" href="http://lattes.cnpq.br/4850442759129345">Lattes</a>
+          <a class="rm-command" href="https://github.com/rfmss" rel="me">GitHub</a>
+          <a class="rm-command" href="https://bsky.app/profile/rafa.pro.br" rel="me">Bluesky</a>
+        </div>
+      </div>
     </footer>
   </div>
 
-  <script>
-    (function () {
-      var palettes = [
-        { name: "terra", hex: "#cd7b5f", dark: "#e0977b" },
-        { name: "olive", hex: "#6e7a4e", dark: "#9aa871" },
-        { name: "rose", hex: "#c4708a", dark: "#d893aa" },
-        { name: "lavender", hex: "#9b8fc4", dark: "#b3a8d6" },
-        { name: "blue", hex: "#6b9ab8", dark: "#8fb6cf" },
-        { name: "sage", hex: "#8fb3ae", dark: "#aecbc7" }
-      ];
-      var palette = palettes[Math.floor(Math.random() * palettes.length)];
-      var root = document.documentElement;
-      var theme = document.querySelector('meta[name="theme-color"]');
-      var icons = document.querySelectorAll('link[rel^="apple-touch-icon"]');
-
-      root.style.setProperty("--accent", palette.hex);
-      root.style.setProperty("--accent-dark", palette.dark);
-      if (theme) theme.setAttribute("content", palette.hex);
-      icons.forEach(function (icon) { icon.setAttribute("href", "icon-" + palette.name + ".png"); });
-
-      var input = document.getElementById("sample");
-      var button = document.getElementById("analyze");
-      var feedback = document.getElementById("feedback");
-      var trace = document.getElementById("trace");
-      button.addEventListener("click", function () {
-        var match = input.value.match(/\bfazem\s+((?:um|uma|dois|duas|tr[eê]s|dez|\d+)\s+(?:dias?|meses?|anos?))/i);
-        if (match) {
-          feedback.textContent = "Sugestão: “Faz " + match[1] + "…”. Ao indicar tempo decorrido, o verbo fazer é impessoal.";
-          trace.textContent = "regra acionada: fazer + duração → singular";
-        } else {
-          feedback.textContent = "Nenhuma ocorrência desta regra foi encontrada. A miniatura procura apenas ‘fazem’ seguido de duração.";
-          trace.textContent = "regra inspecionada: fazer + duração → singular";
-        }
-      });
-
-      var reveals = document.querySelectorAll(".reveal");
-      if (!("IntersectionObserver" in window)) {
-        reveals.forEach(function (element) { element.classList.add("in"); });
-      } else {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-        reveals.forEach(function (element, index) {
-          element.style.transitionDelay = (index % 4) * 90 + "ms";
-          observer.observe(element);
-        });
-      }
-
-      if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
-    })();
-  </script>
+  <script src="assets/js/portfolio.js"></script>
 </body>
 </html>

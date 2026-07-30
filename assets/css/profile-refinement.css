@@ -1,0 +1,250 @@
+/*
+ * rafa.pro.br — profile, social directory and interaction refinement
+ * Keeps the Blueprint language while making the portfolio more direct.
+ */
+
+a[href],
+button,
+[role="button"],
+.rm-command {
+  cursor: pointer;
+}
+
+textarea,
+input {
+  cursor: text;
+}
+
+.hero {
+  min-height: auto;
+  grid-template-columns: minmax(0, 1.18fr) minmax(330px, .82fr);
+  align-items: start;
+}
+
+.hero-copy,
+.hero-profile {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-name {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.hero-lede {
+  max-width: 58ch;
+}
+
+.hero-profile {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 12px;
+  border: 2px solid var(--rm-ink);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(54,167,210,.12) 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, rgba(54,167,210,.1) 31px 32px),
+    var(--rm-cyan-pale);
+  box-shadow: 7px 9px 0 var(--rm-ink);
+}
+
+.hero-profile::before,
+.hero-profile::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+}
+
+.hero-profile::before {
+  top: 7px;
+  left: 7px;
+  border-top: 2px solid var(--rm-vermilion);
+  border-left: 2px solid var(--rm-vermilion);
+}
+
+.hero-profile::after {
+  right: 7px;
+  bottom: 7px;
+  border-right: 2px solid var(--rm-ink);
+  border-bottom: 2px solid var(--rm-ink);
+}
+
+.profile-photo-frame {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--rm-ink);
+  background: var(--rm-paper);
+  box-shadow: 3px 4px 0 rgba(22,24,23,.32);
+}
+
+.profile-photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.profile-photo-frame figcaption {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  padding: 7px 8px;
+  color: var(--rm-paper);
+  background: rgba(22,24,23,.88);
+  font: 700 8px/1.2 var(--rm-font-technical);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.social-directory {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.social-group {
+  padding: 12px;
+  border: 1px solid rgba(22,24,23,.42);
+  background: rgba(243,238,228,.88);
+}
+
+.social-group h2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 9px;
+  color: var(--rm-ink);
+  font: 800 10px/1.2 var(--rm-font-technical);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.social-group h2 span {
+  color: #087da9;
+  font-size: 8px;
+}
+
+.social-links {
+  display: grid;
+  gap: 6px;
+}
+
+.social-links.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.social-links a {
+  min-width: 0;
+  padding: 8px 9px;
+  color: var(--rm-ink);
+  border: 1px solid rgba(22,24,23,.3);
+  background: var(--rm-paper-high);
+  font: 700 8px/1.25 var(--rm-font-technical);
+  letter-spacing: .04em;
+  text-align: left;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition:
+    transform var(--rm-motion-fast) ease,
+    border-color var(--rm-motion-fast) ease,
+    background var(--rm-motion-fast) ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  border-color: var(--rm-cyan-strong);
+  background: #fff;
+  transform: translateY(-1px);
+}
+
+.social-links a:active {
+  transform: translateY(1px);
+}
+
+.lattes-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 9px 13px;
+  color: var(--rm-ink);
+  font-size: 9px;
+  text-decoration: none;
+}
+
+.section-heading h2,
+.case-study h3,
+.project-card h3,
+.site-footer strong {
+  text-wrap: balance;
+}
+
+@media (max-width: 1040px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, .78fr);
+    gap: 28px;
+    padding-inline: clamp(30px, 5vw, 60px);
+  }
+
+  .hero h1 {
+    font-size: clamp(4.5rem, 12vw, 7.5rem);
+  }
+
+  .social-links.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-profile {
+    width: min(100%, 720px);
+    grid-template-columns: minmax(220px, .82fr) minmax(0, 1.18fr);
+    justify-self: center;
+  }
+
+  .profile-photo-frame {
+    align-self: start;
+  }
+}
+
+@media (max-width: 680px) {
+  .hero-profile {
+    width: 100%;
+    grid-template-columns: 1fr;
+    padding: 9px;
+  }
+
+  .profile-photo-frame {
+    width: min(100%, 420px);
+    justify-self: center;
+  }
+
+  .social-directory {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .social-links.compact {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .social-links a {
+    font-size: 7.5px;
+  }
+}

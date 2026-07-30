@@ -1,0 +1,46 @@
+/* Product previews derived from the actual public interfaces. */
+
+.project-preview-frame {
+  padding: clamp(8px, 1.6vw, 14px);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 27px, rgba(134,199,223,.055) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, rgba(134,199,223,.045) 27px 28px),
+    var(--rm-stage-deep);
+}
+
+.project-preview {
+  width: 100%;
+  height: auto;
+  min-height: 210px;
+  display: block;
+  border: 1px solid rgba(134,199,223,.28);
+  background: var(--rm-stage-deep);
+  object-fit: cover;
+}
+
+.archive-card img[src$="pomodoro-preview.svg"] {
+  padding: 0;
+  border: 1px solid rgba(54,167,210,.34);
+  background: var(--rm-stage-deep);
+  object-fit: cover;
+}
+
+@media (max-width: 680px) {
+  .project-preview {
+    min-height: 190px;
+  }
+}
+
+@media (max-width: 420px) {
+  .project-preview {
+    min-height: 160px;
+  }
+
+  .archive-card img[src$="pomodoro-preview.svg"] {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-top: 12px;
+  }
+}
