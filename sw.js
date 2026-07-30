@@ -1,4 +1,4 @@
-var CACHE = 'rfmss-blueprint-v1';
+var CACHE = 'rfmss-blueprint-v2';
 var HOME = '/';
 var CORE = [
   HOME,
@@ -6,7 +6,9 @@ var CORE = [
   '/manifest.json',
   '/assets/css/rafamass-blueprint.css',
   '/assets/css/portfolio.css',
+  '/assets/css/profile-refinement.css',
   '/assets/js/portfolio.js',
+  '/assets/perfil-rafa.svg',
   '/assets/boletosmil.svg',
   '/assets/fox.webp',
   '/assets/robot.webp',
