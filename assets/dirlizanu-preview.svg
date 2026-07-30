@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Dirlizanu</title>
+  <desc id="desc">Prévia do quebra-cabeça Dirlizanu com tabuleiro cyan, blocos claros e peça 15 vermelha.</desc>
+  <defs>
+    <pattern id="stage-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#86c7df" stroke-opacity=".1"/>
+    </pattern>
+    <pattern id="paper-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#161817" fill-opacity=".08"/>
+    </pattern>
+    <linearGradient id="key" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbf8f1"/>
+      <stop offset="1" stop-color="#e5dccd"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6a2c"/>
+      <stop offset="1" stop-color="#ff5a19"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="420" fill="#0f1113"/>
+  <rect width="720" height="420" fill="url(#stage-grid)"/>
+  <rect x="22" y="20" width="676" height="380" fill="none" stroke="#86c7df" stroke-opacity=".22"/>
+
+  <g transform="translate(74 34)">
+    <rect x="8" y="10" width="572" height="342" rx="24" fill="#161817" opacity=".45"/>
+    <rect width="572" height="342" rx="24" fill="#f3eee4" stroke="#36a7d2" stroke-width="3"/>
+    <rect width="572" height="342" rx="24" fill="url(#paper-dots)"/>
+    <rect x="11" y="11" width="550" height="320" rx="16" fill="none" stroke="#36a7d2" stroke-opacity=".34"/>
+
+    <text x="30" y="35" fill="#087da9" font-family="Courier New, monospace" font-size="10" font-weight="700" letter-spacing="2">MATRIZ MÓVEL // DESAFIO 04</text>
+    <text x="30" y="59" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">LINHA DE FORÇA</text>
+    <text x="477" y="35" fill="#161817" fill-opacity=".6" font-family="Courier New, monospace" font-size="8" font-weight="700" text-anchor="end">ENCAIXES 16</text>
+    <text x="542" y="35" fill="#161817" fill-opacity=".6" font-family="Courier New, monospace" font-size="8" font-weight="700" text-anchor="end">ESTADO PRONTO</text>
+
+    <g transform="translate(126 73)">
+      <rect x="8" y="8" width="324" height="252" rx="18" fill="#161817" opacity=".34"/>
+      <rect width="324" height="252" rx="18" fill="#36a7d2" stroke="#161817" stroke-width="3"/>
+      <path d="M16 16h292v220H16z" fill="none" stroke="#86c7df" stroke-width="2" opacity=".7"/>
+
+      <g font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" text-anchor="middle">
+        <g fill="url(#key)" stroke="#161817" stroke-opacity=".34">
+          <rect x="16" y="16" width="66" height="52" rx="10"/><rect x="88" y="16" width="66" height="52" rx="10"/><rect x="160" y="16" width="66" height="52" rx="10"/><rect x="232" y="16" width="66" height="52" rx="10"/>
+          <rect x="16" y="76" width="66" height="52" rx="10"/><rect x="88" y="76" width="66" height="52" rx="10"/><rect x="160" y="76" width="66" height="52" rx="10"/><rect x="232" y="76" width="66" height="52" rx="10"/>
+          <rect x="16" y="136" width="66" height="52" rx="10"/><rect x="88" y="136" width="66" height="52" rx="10"/><rect x="160" y="136" width="66" height="52" rx="10"/><rect x="232" y="136" width="66" height="52" rx="10"/>
+          <rect x="16" y="196" width="66" height="52" rx="10"/><rect x="88" y="196" width="66" height="52" rx="10"/><rect x="160" y="196" width="66" height="52" rx="10"/>
+        </g>
+        <g fill="#161817">
+          <text x="49" y="50">1</text><text x="121" y="50">2</text><text x="193" y="50">3</text><text x="265" y="50">4</text>
+          <text x="49" y="110">5</text><text x="121" y="110">6</text><text x="193" y="110">7</text><text x="265" y="110">8</text>
+          <text x="49" y="170">9</text><text x="121" y="170">10</text><text x="193" y="170">11</text><text x="265" y="170">12</text>
+          <text x="49" y="230">13</text><text x="121" y="230">14</text>
+        </g>
+        <rect x="160" y="196" width="66" height="52" rx="10" fill="url(#signal)" stroke="#cf3d0a"/>
+        <text x="193" y="230" fill="#fff8f1">15</text>
+        <rect x="232" y="196" width="66" height="52" rx="10" fill="#2f9bc5" stroke="#86c7df" stroke-dasharray="3 4"/>
+      </g>
+    </g>
+
+    <path d="M34 319h110M428 319h110" stroke="#36a7d2" stroke-width="2"/>
+    <text x="30" y="310" fill="#161817" fill-opacity=".58" font-family="Courier New, monospace" font-size="7" font-weight="700" letter-spacing="1">ARRASTE UMA LINHA ALINHADA AO VAZIO.</text>
+    <text x="542" y="310" fill="#161817" fill-opacity=".58" font-family="Courier New, monospace" font-size="7" font-weight="700" letter-spacing="1" text-anchor="end">SOLUÇÃO AUDITADA.</text>
+  </g>
+</svg>
