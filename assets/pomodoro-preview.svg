@@ -1,75 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
   <title id="title">Pomodoro RafaMass Blueprint</title>
-  <desc id="desc">Prévia do Pomodoro com relógio 25:00 e módulo lateral de progresso com selo de tomate.</desc>
+  <desc id="desc">Prévia do Pomodoro com relógio 25:00 e módulo lateral de progresso com ícone de temporizador.</desc>
   <defs>
-    <pattern id="stage-grid" width="28" height="28" patternUnits="userSpaceOnUse">
-      <path d="M28 0H0V28" fill="none" stroke="#86c7df" stroke-opacity=".1"/>
-    </pattern>
-    <pattern id="paper-dots" width="9" height="9" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1" fill="#161817" fill-opacity=".08"/>
-    </pattern>
-    <pattern id="blue-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <path d="M24 0H0V24" fill="none" stroke="#36a7d2" stroke-opacity=".18"/>
-    </pattern>
+    <pattern id="stage-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#86c7df" stroke-opacity=".1"/></pattern>
+    <pattern id="paper-dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#161817" fill-opacity=".08"/></pattern>
+    <pattern id="blue-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#36a7d2" stroke-opacity=".18"/></pattern>
   </defs>
-
-  <rect width="512" height="512" fill="#0f1113"/>
-  <rect width="512" height="512" fill="url(#stage-grid)"/>
-  <rect x="18" y="18" width="476" height="476" fill="none" stroke="#86c7df" stroke-opacity=".2"/>
-
+  <rect width="512" height="512" fill="#0f1113"/><rect width="512" height="512" fill="url(#stage-grid)"/><rect x="18" y="18" width="476" height="476" fill="none" stroke="#86c7df" stroke-opacity=".2"/>
   <g transform="translate(50 42)">
-    <rect x="9" y="11" width="412" height="420" rx="22" fill="#000" opacity=".42"/>
-    <rect width="412" height="420" rx="22" fill="#f3eee4" stroke="#36a7d2" stroke-width="3"/>
-    <rect width="412" height="420" rx="22" fill="url(#paper-dots)"/>
-    <rect x="10" y="10" width="392" height="400" rx="15" fill="none" stroke="#36a7d2" stroke-opacity=".34"/>
-
-    <text x="28" y="34" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">POMODORO // APARATO TEMPORAL</text>
-    <text x="28" y="61" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">FOCO MEDIDO.</text>
-
-    <g transform="translate(26 82)">
-      <rect width="360" height="33" fill="#d8f0f8" stroke="#36a7d2" stroke-opacity=".65"/>
-      <rect x="3" y="3" width="175" height="27" fill="#f3eee4"/>
-      <text x="90" y="21" text-anchor="middle" fill="#161817" font-family="Courier New, monospace" font-size="8" font-weight="700">TIMER LIVRE</text>
-      <text x="270" y="21" text-anchor="middle" fill="#161817" fill-opacity=".55" font-family="Courier New, monospace" font-size="8" font-weight="700">CICLO POMODORO</text>
-    </g>
-
+    <rect x="9" y="11" width="412" height="420" rx="22" fill="#000" opacity=".42"/><rect width="412" height="420" rx="22" fill="#f3eee4" stroke="#36a7d2" stroke-width="3"/><rect width="412" height="420" rx="22" fill="url(#paper-dots)"/><rect x="10" y="10" width="392" height="400" rx="15" fill="none" stroke="#36a7d2" stroke-opacity=".34"/>
+    <text x="28" y="34" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">POMODORO // APARATO TEMPORAL</text><text x="28" y="61" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">FOCO MEDIDO.</text>
+    <g transform="translate(26 82)"><rect width="360" height="33" fill="#d8f0f8" stroke="#36a7d2" stroke-opacity=".65"/><rect x="3" y="3" width="175" height="27" fill="#f3eee4"/><text x="90" y="21" text-anchor="middle" fill="#161817" font-family="Courier New, monospace" font-size="8" font-weight="700">TIMER LIVRE</text><text x="270" y="21" text-anchor="middle" fill="#161817" fill-opacity=".55" font-family="Courier New, monospace" font-size="8" font-weight="700">CICLO POMODORO</text></g>
     <g transform="translate(26 130)">
-      <rect width="360" height="210" fill="#f3eee4" stroke="#161817" stroke-width="3"/>
-      <rect width="360" height="210" fill="url(#blue-grid)"/>
-
-      <g>
-        <rect width="226" height="210" fill="#f3eee4" fill-opacity=".5"/>
-        <text x="22" y="34" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="1.5">FOCO</text>
-        <text x="20" y="126" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="71" font-weight="800" letter-spacing="-6">25:00</text>
-        <text x="23" y="153" fill="#161817" fill-opacity=".62" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">PRONTO</text>
-        <line x1="22" y1="180" x2="166" y2="180" stroke="#161817" stroke-width="2"/>
-        <text x="22" y="196" fill="#161817" fill-opacity=".56" font-family="Courier New, monospace" font-size="6.5" font-weight="700" letter-spacing="1">TEMPO RESTANTE</text>
-      </g>
-
+      <rect width="360" height="210" fill="#f3eee4" stroke="#161817" stroke-width="3"/><rect width="360" height="210" fill="url(#blue-grid)"/>
+      <g><rect width="226" height="210" fill="#f3eee4" fill-opacity=".5"/><text x="22" y="34" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="1.5">FOCO</text><text x="20" y="126" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="71" font-weight="800" letter-spacing="-6">25:00</text><text x="23" y="153" fill="#161817" fill-opacity=".62" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">PRONTO</text><line x1="22" y1="180" x2="166" y2="180" stroke="#161817" stroke-width="2"/><text x="22" y="196" fill="#161817" fill-opacity=".56" font-family="Courier New, monospace" font-size="6.5" font-weight="700" letter-spacing="1">TEMPO RESTANTE</text></g>
       <g transform="translate(226 0)">
-        <rect width="134" height="210" fill="#d8f0f8" stroke="#161817" stroke-width="2"/>
-        <text x="12" y="18" fill="#161817" font-family="Courier New, monospace" font-size="6.5" font-weight="700" letter-spacing="1">MARCADOR</text>
-        <text x="122" y="18" text-anchor="end" fill="#087da9" font-family="Courier New, monospace" font-size="6.5" font-weight="700">10 ETAPAS</text>
-        <line x1="12" y1="27" x2="122" y2="27" stroke="#161817" stroke-opacity=".35"/>
-        <rect x="18" y="39" width="98" height="108" fill="#f3eee4" fill-opacity=".65" stroke="#161817" stroke-opacity=".5"/>
-        <rect x="23" y="44" width="98" height="108" fill="#161817" opacity=".18"/>
-        <rect x="31" y="48" width="72" height="88" rx="12" fill="#ff5a19" stroke="#cf3d0a" stroke-width="5"/>
-        <path d="M67 58c-7-9-14-10-21-9 6 4 8 8 9 13-5-3-9-4-15-2 7 5 13 7 21 7h12c8 0 14-2 21-7-6-2-10-1-15 2 1-5 3-9 9-13-7-1-14 0-21 9Z" fill="#161817"/>
-        <text x="67" y="101" text-anchor="middle" fill="#fff8f1" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">25</text>
-        <text x="67" y="116" text-anchor="middle" fill="#fff8f1" font-family="Courier New, monospace" font-size="6" font-weight="700">MIN</text>
-        <text x="12" y="166" fill="#161817" fill-opacity=".6" font-family="Courier New, monospace" font-size="6" font-weight="700">PROGRESSO</text>
-        <g transform="translate(12 176)">
-          <rect width="8" height="7" fill="#ff5a19"/><rect x="10" width="8" height="7" fill="#ff5a19"/><rect x="20" width="8" height="7" fill="#ff5a19"/><rect x="30" width="8" height="7" fill="#ff5a19"/>
-          <rect x="40" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="50" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="60" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="70" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="80" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="90" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/>
-        </g>
+        <rect width="134" height="210" fill="#d8f0f8" stroke="#161817" stroke-width="2"/><text x="12" y="18" fill="#161817" font-family="Courier New, monospace" font-size="6.5" font-weight="700" letter-spacing="1">MARCADOR</text><text x="122" y="18" text-anchor="end" fill="#087da9" font-family="Courier New, monospace" font-size="6.5" font-weight="700">10 ETAPAS</text><line x1="12" y1="27" x2="122" y2="27" stroke="#161817" stroke-opacity=".35"/>
+        <rect x="18" y="39" width="98" height="108" fill="#f3eee4" fill-opacity=".75" stroke="#161817" stroke-opacity=".5"/><circle cx="67" cy="92" r="38" fill="#fbf8f1" stroke="#161817" stroke-width="3"/><circle cx="70" cy="96" r="38" fill="none" stroke="#36a7d2" stroke-width="4" opacity=".85"/>
+        <g transform="translate(46 70) scale(1.75)"><path d="M12 5C16.6944 5 20.5 8.80558 20.5 13.5C20.5 18.1944 16.6944 22 12 22C7.30558 22 3.5 18.1944 3.5 13.5C3.5 8.80558 7.30558 5 12 5ZM12 6.5C8.13401 6.5 5 9.63401 5 13.5C5 17.366 8.13401 20.5 12 20.5C15.866 20.5 19 17.366 19 13.5C19 9.63401 15.866 6.5 12 6.5ZM12 8C12.3797 8 12.6935 8.28215 12.7432 8.64823L12.75 8.75V13.25C12.75 13.6642 12.4142 14 12 14C11.6203 14 11.3065 13.7178 11.2568 13.3518L11.25 13.25V8.75C11.25 8.33579 11.5858 8 12 8ZM14.25 2.5C14.6642 2.5 15 2.83579 15 3.25C15 3.6297 14.7178 3.94349 14.3518 3.99315L14.25 4H9.75C9.33579 4 9 3.66421 9 3.25C9 2.8703 9.28215 2.55651 9.64823 2.50685L9.75 2.5H14.25Z" fill="#161817"/></g>
+        <text x="12" y="166" fill="#161817" fill-opacity=".6" font-family="Courier New, monospace" font-size="6" font-weight="700">PROGRESSO</text><g transform="translate(12 176)"><rect width="8" height="7" fill="#ff5a19"/><rect x="10" width="8" height="7" fill="#ff5a19"/><rect x="20" width="8" height="7" fill="#ff5a19"/><rect x="30" width="8" height="7" fill="#ff5a19"/><rect x="40" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="50" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="60" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="70" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="80" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/><rect x="90" width="8" height="7" fill="#f3eee4" stroke="#161817" stroke-opacity=".35"/></g>
       </g>
     </g>
-
-    <g transform="translate(26 354)" font-family="Courier New, monospace" font-size="7" font-weight="700" text-anchor="middle">
-      <rect width="112" height="40" fill="#f3eee4" stroke="#161817"/><rect x="124" width="112" height="40" fill="#161817" stroke="#161817"/><rect x="248" width="112" height="40" fill="#f3eee4" stroke="#161817"/>
-      <text x="56" y="24" fill="#161817">REINICIAR</text><text x="180" y="24" fill="#f3eee4">INICIAR</text><text x="304" y="24" fill="#161817">ENCERRAR</text>
-    </g>
-
+    <g transform="translate(26 354)" font-family="Courier New, monospace" font-size="7" font-weight="700" text-anchor="middle"><rect width="112" height="40" fill="#f3eee4" stroke="#161817"/><rect x="124" width="112" height="40" fill="#f3eee4" stroke="#161817"/><rect x="248" width="112" height="40" fill="#f3eee4" stroke="#161817"/><text x="56" y="24" fill="#161817">REINICIAR</text><text x="180" y="24" fill="#161817">INICIAR</text><text x="304" y="24" fill="#161817">ENCERRAR</text></g>
     <text x="28" y="408" fill="#161817" fill-opacity=".58" font-family="Courier New, monospace" font-size="7" font-weight="700" letter-spacing="1">RELÓGIO ABSOLUTO · SESSÃO PERSISTENTE · OFFLINE</text>
   </g>
 </svg>
