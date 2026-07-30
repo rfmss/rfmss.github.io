@@ -6,7 +6,7 @@ A identidade pública é **Rafa Mass**. `rfmss` permanece como matrícula técni
 
 ## Assinatura visual
 
-O site usa o RafaMass Blueprint System: papel gesso sobre palco técnico, linhas cyan de construção, tinta preta, uma interrupção vermelhão, metadados monoespaçados e sombras físicas sem suavização corporativa.
+O site usa o RafaMass Blueprint System: papel gesso sobre palco técnico, linhas cyan de construção, tinta preta, uma interrupção vermelhão, metadados monoespaçados e sombras físicas.
 
 A regra não é copiar um tabuleiro em toda interface. É transportar a mesma gramática:
 
@@ -19,6 +19,19 @@ A regra não é copiar um tabuleiro em toda interface. É transportar a mesma gr
 
 Leia [ASSINATURA-VISUAL.md](docs/ASSINATURA-VISUAL.md).
 
+## Apresentação profissional
+
+O hero identifica diretamente:
+
+- assinatura pública: Rafa Mass;
+- nome: Rafael Massena;
+- áreas: escrita, língua portuguesa, educação e desenvolvimento;
+- Currículo Lattes;
+- redes pessoais;
+- canais oficiais do Escrevaral.
+
+A fotografia editorial fornecida pelo autor foi convertida em um SVG autocontido e otimizado para o portfólio. Leia [PERFIL-E-REDES.md](docs/PERFIL-E-REDES.md).
+
 ## Projetos principais
 
 - [Escrevaral](https://escrevaral.com) — oficina local para escrita e português brasileiro;
@@ -28,13 +41,17 @@ Leia [ASSINATURA-VISUAL.md](docs/ASSINATURA-VISUAL.md).
 ## Arquitetura
 
 ```text
-index.html                          conteúdo e estrutura semântica
-assets/css/rafamass-blueprint.css  fundações reutilizáveis da assinatura
-assets/css/portfolio.css           composição específica do portfólio
-assets/js/portfolio.js             demonstração local, revelações e PWA
-assets/boletosmil.svg               marca técnica do projeto
-manifest.json                       metadados da PWA
-sw.js                               cache offline
+index.html                            conteúdo e estrutura semântica
+assets/css/rafamass-blueprint.css    fundações reutilizáveis da assinatura
+assets/css/portfolio.css             composição geral do portfólio
+assets/css/profile-refinement.css    perfil, redes e estados de ponteiro
+assets/js/portfolio.js               demonstração local, revelações e PWA
+assets/perfil-rafa.svg               retrato otimizado de Rafael Massena
+assets/boletosmil.svg                marca técnica do projeto
+docs/ASSINATURA-VISUAL.md            sistema visual
+docs/PERFIL-E-REDES.md               identidade, canais e interação
+manifest.json                         metadados da PWA
+sw.js                                 cache offline
 ```
 
 ## Implementação
@@ -43,6 +60,8 @@ sw.js                               cache offline
 - nenhuma etapa de build;
 - fontes do sistema;
 - conteúdo utilizável sem JavaScript;
+- `cursor: pointer` em links e comandos;
+- foco visível para teclado;
 - `prefers-reduced-motion` respeitado;
 - manifesto e service worker para funcionamento offline;
 - domínio personalizado por `CNAME`;
@@ -61,7 +80,7 @@ Não abra o arquivo diretamente pelo sistema de arquivos: o service worker preci
 ## Adicionar um projeto
 
 1. Classifique-o como projeto principal, produto em destaque ou arquivo.
-2. Escreva o problema e a função antes de listar tecnologias.
+2. Descreva a função antes de listar tecnologias.
 3. Use até cinco sinais técnicos curtos.
 4. Reserve o vermelhão para um único ponto de atenção.
 5. Teste em 320, 375, 768, 1024 e telas com pouca altura.
