@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Pomodoro RafaMass Blueprint</title>
+  <desc id="desc">Prévia do Pomodoro com relógio 25:00, selo de tomate e comandos técnicos.</desc>
+  <defs>
+    <pattern id="stage-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="#86c7df" stroke-opacity=".1"/>
+    </pattern>
+    <pattern id="paper-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#161817" fill-opacity=".08"/>
+    </pattern>
+    <pattern id="blue-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#36a7d2" stroke-opacity=".18"/>
+    </pattern>
+  </defs>
+
+  <rect width="512" height="512" fill="#0f1113"/>
+  <rect width="512" height="512" fill="url(#stage-grid)"/>
+  <rect x="18" y="18" width="476" height="476" fill="none" stroke="#86c7df" stroke-opacity=".2"/>
+
+  <g transform="translate(50 42)">
+    <rect x="9" y="11" width="412" height="420" rx="22" fill="#000" opacity=".42"/>
+    <rect width="412" height="420" rx="22" fill="#f3eee4" stroke="#36a7d2" stroke-width="3"/>
+    <rect width="412" height="420" rx="22" fill="url(#paper-dots)"/>
+    <rect x="10" y="10" width="392" height="400" rx="15" fill="none" stroke="#36a7d2" stroke-opacity=".34"/>
+
+    <text x="28" y="34" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">POMODORO // APARATO TEMPORAL</text>
+    <text x="28" y="61" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800">FOCO MEDIDO.</text>
+
+    <g transform="translate(26 82)">
+      <rect width="360" height="33" fill="#d8f0f8" stroke="#36a7d2" stroke-opacity=".65"/>
+      <rect x="3" y="3" width="175" height="27" fill="#f3eee4"/>
+      <text x="90" y="21" text-anchor="middle" fill="#161817" font-family="Courier New, monospace" font-size="8" font-weight="700">TIMER LIVRE</text>
+      <text x="270" y="21" text-anchor="middle" fill="#161817" fill-opacity=".55" font-family="Courier New, monospace" font-size="8" font-weight="700">CICLO POMODORO</text>
+    </g>
+
+    <g transform="translate(26 130)">
+      <rect width="360" height="210" fill="#f3eee4" stroke="#161817" stroke-width="3"/>
+      <rect width="360" height="210" fill="url(#blue-grid)"/>
+      <text x="24" y="32" fill="#087da9" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="1.5">SESSÃO LIVRE</text>
+      <text x="22" y="131" fill="#161817" font-family="Arial, Helvetica, sans-serif" font-size="78" font-weight="800" letter-spacing="-6">25:00</text>
+      <text x="25" y="157" fill="#161817" fill-opacity=".62" font-family="Courier New, monospace" font-size="9" font-weight="700" letter-spacing="2">PRONTO</text>
+
+      <g transform="translate(242 35)">
+        <circle cx="48" cy="54" r="48" fill="#ff5a19" stroke="#161817" stroke-width="5"/>
+        <path d="M48 13c-9-12-19-14-29-12 8 5 11 11 12 18-6-4-12-5-20-3 9 7 18 10 29 10h16c11 0 20-3 29-10-8-2-14-1-20 3 1-7 4-13 12-18-10-2-20 0-29 12Z" fill="#161817"/>
+        <text x="48" y="64" text-anchor="middle" fill="#fff8f1" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="800">25</text>
+        <text x="48" y="80" text-anchor="middle" fill="#fff8f1" font-family="Courier New, monospace" font-size="7" font-weight="700" letter-spacing="1.4">MIN</text>
+        <g transform="translate(0 118)">
+          <rect x="0" y="0" width="8" height="7" fill="#ff5a19"/><rect x="10" y="0" width="8" height="7" fill="#ff5a19"/><rect x="20" y="0" width="8" height="7" fill="#ff5a19"/><rect x="30" y="0" width="8" height="7" fill="#ff5a19"/>
+          <rect x="40" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/><rect x="50" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/><rect x="60" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/><rect x="70" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/><rect x="80" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/><rect x="90" y="0" width="8" height="7" fill="none" stroke="#161817" stroke-opacity=".35"/>
+        </g>
+      </g>
+    </g>
+
+    <g transform="translate(26 354)" font-family="Courier New, monospace" font-size="7" font-weight="700" text-anchor="middle">
+      <rect width="112" height="40" fill="#f3eee4" stroke="#161817"/><rect x="124" width="112" height="40" fill="#161817" stroke="#161817"/><rect x="248" width="112" height="40" fill="#f3eee4" stroke="#161817"/>
+      <text x="56" y="24" fill="#161817">REINICIAR</text><text x="180" y="24" fill="#f3eee4">INICIAR</text><text x="304" y="24" fill="#161817">ENCERRAR</text>
+    </g>
+
+    <text x="28" y="408" fill="#161817" fill-opacity=".58" font-family="Courier New, monospace" font-size="7" font-weight="700" letter-spacing="1">RELÓGIO ABSOLUTO · SESSÃO PERSISTENTE · OFFLINE</text>
+  </g>
+</svg>
