@@ -1,4 +1,4 @@
-var CACHE = 'rfmss-blueprint-v6';
+var CACHE = 'rfmss-blueprint-v7';
 var HOME = '/';
 var CORE = [
   HOME,
