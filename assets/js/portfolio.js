@@ -8,6 +8,8 @@
   var trace = document.getElementById('trace');
   var year = document.getElementById('currentYear');
 
+  addCalculatorCard();
+
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       root.classList.add('page-ready');
@@ -53,5 +55,39 @@
     window.addEventListener('load', function () {
       navigator.serviceWorker.register('/sw.js').catch(function () {});
     });
+  }
+
+  function addCalculatorCard() {
+    var grid = document.querySelector('.archive-grid');
+    if (!grid || grid.querySelector('[data-project="calculadora"]')) return;
+
+    var article = document.createElement('article');
+    article.className = 'archive-card reveal';
+    article.setAttribute('data-project', 'calculadora');
+
+    var copy = document.createElement('div');
+    var code = document.createElement('span');
+    code.className = 'project-code';
+    code.textContent = 'FERRAMENTA 08 · PWA · MIT';
+
+    var heading = document.createElement('h3');
+    var link = document.createElement('a');
+    link.href = '/calculadora/';
+    link.textContent = 'Calculadora';
+    heading.appendChild(link);
+
+    var description = document.createElement('p');
+    description.textContent = 'Calculadora básica e científica, com porcentagem contextual, DEG/RAD, teclado físico e funcionamento offline.';
+    copy.append(code, heading, description);
+
+    var image = document.createElement('img');
+    image.src = 'assets/calculadora-preview.svg';
+    image.alt = 'Prévia da Calculadora Blueprint com visor 96 e teclado cyan';
+    image.loading = 'lazy';
+    image.width = 512;
+    image.height = 512;
+
+    article.append(copy, image);
+    grid.appendChild(article);
   }
 }());

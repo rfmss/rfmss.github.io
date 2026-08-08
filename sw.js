@@ -1,4 +1,4 @@
-var CACHE = 'rfmss-blueprint-v5';
+var CACHE = 'rfmss-blueprint-v7';
 var HOME = '/';
 var CORE = [
   HOME,
@@ -13,6 +13,7 @@ var CORE = [
   '/assets/boletosmil.svg',
   '/assets/dirlizanu-preview.svg',
   '/assets/pomodoro-preview.svg',
+  '/assets/calculadora-preview.svg',
   '/assets/fox.webp',
   '/assets/robot.webp',
   '/assets/memo.png',
