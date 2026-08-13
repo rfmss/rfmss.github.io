@@ -1,57 +1,26 @@
 (function () {
   'use strict';
 
-  var root = document.documentElement;
-  var input = document.getElementById('sample');
-  var button = document.getElementById('analyze');
-  var feedback = document.getElementById('feedback');
-  var trace = document.getElementById('trace');
-  var year = document.getElementById('currentYear');
-
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () {
-      root.classList.add('page-ready');
-    });
-  });
-
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  if (input && button && feedback && trace) {
-    button.addEventListener('click', function () {
-      var match = input.value.match(/\bfazem\s+((?:um|uma|dois|duas|tr[eê]s|dez|\d+)\s+(?:dias?|meses?|anos?))/i);
-      if (match) {
-        feedback.textContent = 'Sugestão: “Faz ' + match[1] + '…”. Ao indicar tempo decorrido, o verbo fazer é impessoal.';
-        trace.textContent = 'regra acionada // fazer + duração → singular';
-      } else {
-        feedback.textContent = 'Nenhuma ocorrência desta regra foi encontrada. Esta miniatura procura apenas “fazem” seguido de uma duração.';
-        trace.textContent = 'regra inspecionada // fazer + duração → singular';
-      }
-    });
+  var image = document.querySelector('.profile-photo-frame img');
+  if (image) {
+    image.src = 'assets/perfil-rafa.jpg?v=20260813';
+    image.alt = 'Retrato em preto e branco';
   }
 
-  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'assets/css/book-promo.css?v=20260813';
+  document.head.appendChild(css);
 
-  if (reduced || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (element) { element.classList.add('in'); });
-  } else {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('in');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
-
-    reveals.forEach(function (element, index) {
-      element.style.transitionDelay = Math.min(index % 4, 3) * 70 + 'ms';
-      observer.observe(element);
-    });
+  var directory = document.querySelector('.social-directory');
+  if (directory) {
+    var promo = document.createElement('section');
+    promo.className = 'book-promo';
+    promo.innerHTML = '<span class="book-promo-kicker">Livro · 366 dias · 2020</span><h2>Um ano sabático no fim do mundo.</h2><p>Em 2020, parei parte da vida para escrever todos os dias. O mundo parou junto. 366 dias depois, havia 366 textos.</p><div class="book-promo-meta">Escrito em 2020 · <strong>Integralmente humano.</strong></div><a href="https://www.amazon.com.br/dp/B0HF57WX1Y">Ver o livro na Amazon ↗</a>';
+    directory.insertBefore(promo, directory.firstChild);
   }
 
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('/sw.js').catch(function () {});
-    });
-  }
+  var base = document.createElement('script');
+  base.src = 'assets/js/portfolio-base.js?v=20260813';
+  document.body.appendChild(base);
 }());

@@ -1,0 +1,11 @@
+.book-promo{position:relative;overflow:hidden;padding:15px;border:1px solid var(--rm-ink);background:linear-gradient(135deg,rgba(255,90,25,.09),transparent 45%),var(--rm-paper-high);box-shadow:3px 4px 0 rgba(22,24,23,.22)}
+.book-promo:before{content:"";position:absolute;top:0;left:0;width:72px;height:4px;background:var(--rm-vermilion)}
+.book-promo:after{content:"366";position:absolute;right:-8px;bottom:-25px;color:rgba(22,24,23,.055);font:900 86px/.9 var(--rm-font-display);letter-spacing:-.08em;pointer-events:none}
+.book-promo>*{position:relative;z-index:1}
+.book-promo-kicker{display:block;margin:0 0 8px;color:#087da9;font:800 8px/1.2 var(--rm-font-technical);letter-spacing:.12em;text-transform:uppercase}
+.book-promo h2{max-width:14ch;margin:0 0 9px;color:var(--rm-ink);font:900 22px/.96 var(--rm-font-display);letter-spacing:-.035em}
+.book-promo p{max-width:34ch;margin:0 0 11px;color:var(--rm-ink-soft);font:400 14px/1.38 var(--rm-font-editorial)}
+.book-promo-meta{margin:0 0 11px;padding-top:9px;border-top:1px solid rgba(22,24,23,.18);font:700 8px/1.25 var(--rm-font-technical);letter-spacing:.04em;text-transform:uppercase}
+.book-promo-meta strong{color:var(--rm-vermilion-deep)}
+.book-promo a{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;padding:9px 10px;color:var(--rm-paper-high);border:1px solid var(--rm-ink);background:var(--rm-ink);font:800 8px/1.2 var(--rm-font-technical);letter-spacing:.07em;text-decoration:none;text-transform:uppercase}
+.book-promo a:hover,.book-promo a:focus-visible{background:#000;transform:translateY(-1px)}
